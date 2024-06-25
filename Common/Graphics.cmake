@@ -31,7 +31,6 @@ set(DX11_FILES
         ${GRAPHICS_DIR}/Direct3D11/Direct3D11.cpp
         ${GRAPHICS_DIR}/Direct3D11/Direct3D11CapBuilder.h
         ${GRAPHICS_DIR}/Direct3D11/Direct3D11Config.h
-        ${GRAPHICS_DIR}/Direct3D11/Direct3D11Raytracing.cpp
         ${GRAPHICS_DIR}/Direct3D11/Direct3D11ShaderReflection.cpp
         )
 
