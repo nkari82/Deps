@@ -63,7 +63,6 @@ set(FORGE_FILESYSTEM_FILES
         ${FORGE_UTIL_DIR}/FileSystem/FileSystem.c
         ${FORGE_UTIL_DIR}/FileSystem/SystemRun.c
         ${FORGE_UTIL_DIR}/FileSystem/ToolFileSystem.c
-		${FORGE_UTIL_DIR}/FileSystem/UnixFileSystem.c
         )
 
 set(FORGE_MEMORY_TRACKING_FILES
