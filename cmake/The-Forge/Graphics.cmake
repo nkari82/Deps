@@ -1,12 +1,12 @@
 #The Forge Graphics Folder
-
-set(GRAPHICS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../The-Forge/Common_3/Graphics)
+set(THE_FORGE_DIR ../../The-Forge)
+set(GRAPHICS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/${THE_FORGE_DIR}/Common_3/Graphics)
 
 set(GRAPHICS_SOURCE_FILES
         ${GRAPHICS_DIR}/CommonShaderReflection.cpp
         ${GRAPHICS_DIR}/GraphicsConfig.cpp
         ${GRAPHICS_DIR}/PickRenderingAPI.cpp
-        ../The-Forge/Common_3/Resources/ResourceLoader/ResourceLoader.cpp
+        ${THE_FORGE_DIR}/Common_3/Resources/ResourceLoader/ResourceLoader.cpp
         )
 
 set(GRAPHICS_INCLUDE_FILES
@@ -14,8 +14,8 @@ set(GRAPHICS_INCLUDE_FILES
         ${GRAPHICS_DIR}/Interfaces/IGraphics.h
         ${GRAPHICS_DIR}/Interfaces/IRay.h
         ${GRAPHICS_DIR}/Interfaces/IShaderReflection.h
-        ../The-Forge/Common_3/Resources/ResourceLoader/Interfaces/IResourceLoader.h
-        ../The-Forge/Common_3/Resources/ResourceLoader/TextureContainers.h)
+        ${THE_FORGE_DIR}/Common_3/Resources/ResourceLoader/Interfaces/IResourceLoader.h
+        ${THE_FORGE_DIR}/Common_3/Resources/ResourceLoader/TextureContainers.h)
 
 set(METAL_FILES
         ${GRAPHICS_DIR}/Metal/MetalAvailabilityMacros.h

@@ -24,7 +24,7 @@ add_library(The-Forge STATIC
         )
 
 target_include_directories(The-Forge PUBLIC
-        ../The-Forge/Common_3/
+        ../../The-Forge/Common_3/
         ${RENDER_INCLUDES}
         )
 

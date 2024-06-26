@@ -1,5 +1,6 @@
-set(THIRD_PARTY_GRAPHIS_DIR ../The-Forge/Common_3/Graphics/ThirdParty/OpenSource)
-set(THIRD_PARTY_OS_DIR ../The-Forge/Common_3/OS/ThirdParty/OpenSource)
+set(THE_FORGE_DIR ../../The-Forge)
+set(THIRD_PARTY_GRAPHIS_DIR ${THE_FORGE_DIR}/Common_3/Graphics/ThirdParty/OpenSource)
+set(THIRD_PARTY_OS_DIR ${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource)
 
 
 add_library(WinPixEventRuntime SHARED IMPORTED)
@@ -9,9 +10,6 @@ set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_LOCATION
 set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_IMPLIB
         ${THIRD_PARTY_OS_DIR}/winpixeventruntime/bin/WinPixEventRuntime.lib
         )
-
-
-
 
 add_library(AGS SHARED IMPORTED)
 set_property(TARGET AGS PROPERTY IMPORTED_LOCATION
@@ -23,15 +21,11 @@ set_property(TARGET AGS PROPERTY IMPORTED_IMPLIB
 target_include_directories(AGS INTERFACE ${THIRD_PARTY_GRAPHIS_DIR}/ags)
 
 
-
-
 add_library(Nvapi STATIC IMPORTED)
 set_property(TARGET Nvapi PROPERTY IMPORTED_LOCATION
         ${THIRD_PARTY_GRAPHIS_DIR}/nvapi/amd64/nvapi64.lib
         )
 target_include_directories(Nvapi INTERFACE ${THIRD_PARTY_GRAPHIS_DIR}/nvapi)
-
-
 
 
 add_library(DirectXShaderCompiler STATIC IMPORTED)
@@ -45,170 +39,47 @@ target_include_directories(VulkanMemoryAllocator INTERFACE
         )
 
 
-
-
 add_library(D3D12MemoryAllocator INTERFACE)
 target_include_directories(D3D12MemoryAllocator INTERFACE
         ${THIRD_PARTY_GRAPHIS_DIR}/D3D12MemoryAllocator
         )
 
-#set(VOLK_FILES
-#        ../The-Forge/Common_3/Graphics/ThirdParty/OpenSource/volk/volk.c
-#        ../The-Forge/Common_3/Graphics/ThirdParty/OpenSource/volk/volk.h
-#        ../The-Forge/Common_3/Graphics/ThirdParty/OpenSource/volk/volkForgeExt.c
-#        ../The-Forge/Common_3/Graphics/ThirdParty/OpenSource/volk/volkForgeExt.h
-#        )
-#add_library(VOLK STATIC ${VOLK_FILES})
-
-
-#set(BASISU_FILES
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/basis_universal/transcoder/basisu_transcoder.cpp
-#        )
-#add_library(Basisu STATIC ${BASISU_FILES})
-
-
-
 set(BSTR_FILES
-        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/bstrlib/bstrlib.c)
+        ${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/bstrlib/bstrlib.c)
 add_library(Bstr STATIC ${BSTR_FILES})
 
-
-
-
 set(cJSON_FILES
-        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/cJSON/cJSON.c)
+        ${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/cJSON/cJSON.c)
 add_library(cJSON STATIC ${cJSON_FILES})
 
-
-
-
-
-#set(EASTL_FILES
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/EASTL/assert.cpp
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/EASTL/allocator_forge.cpp
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/EASTL/fixed_pool.cpp
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/EASTL/hashtable.cpp
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/EASTL/intrusive_list.cpp
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/EASTL/numeric_limits.cpp
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/EASTL/red_black_tree.cpp
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/EASTL/string.cpp
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/EASTL/thread_support.cpp
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/EASTL/EAStdC/EAMemory.cpp
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/EASTL/EAStdC/EASprintf.cpp
-#        )
-#add_library(Eastl STATIC ${EASTL_FILES})
-
-
-
-
-#set(MINIZIP_FILES
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/lib/brg/aes.h
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/lib/brg/aescrypt.c
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/lib/brg/aeskey.c
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/lib/brg/aesopt.h
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/lib/brg/aestab.c
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/lib/brg/aestab.h
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/lib/brg/brg_endian.h
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/lib/brg/brg_types.h
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/lib/brg/hmac.c
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/lib/brg/hmac.h
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/lib/brg/sha1.c
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/lib/brg/sha1.h
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/lib/brg/sha2.c
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/lib/brg/sha2.h
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/zip/miniz.h
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/mz.h
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/mz_crypt.c
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/mz_crypt.h
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/mz_crypt_brg.c
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/mz_os.cpp
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/mz_os.h
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/mz_strm.h
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/mz_strm_raw.c
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/mz_strm_wzaes.c
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/mz_strm_wzaes.h
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/mz_strm_zlib.c
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/mz_strm_zlib.h
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/mz_zip.c
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/minizip/mz_zip.h
-#        )
-#add_library(MiniZip STATIC ${MINIZIP_FILES})
-
-
-
-
 set(RMEM_FILES
-        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/rmem/src/rmem_get_module_info.cpp
-        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/rmem/src/rmem_hook.cpp
-        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/rmem/src/rmem_lib.cpp
+        ${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/rmem/src/rmem_get_module_info.cpp
+        ${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/rmem/src/rmem_hook.cpp
+        ${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/rmem/src/rmem_lib.cpp
         )
 add_library(RMem STATIC ${RMEM_FILES})
 
-
-
-
-#set(MESHOPTIMIZER_FILES
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/vertexfilter.cpp
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/allocator.cpp
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/clusterizer.cpp
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/indexcodec.cpp
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/indexgenerator.cpp
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/meshoptimizer.h
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/overdrawanalyzer.cpp
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/overdrawoptimizer.cpp
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/simplifier.cpp
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/spatialorder.cpp
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/stripifier.cpp
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/vcacheanalyzer.cpp
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/vcacheoptimizer.cpp
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/vertexcodec.cpp
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/vfetchanalyzer.cpp
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/meshoptimizer/src/vfetchoptimizer.cpp
-#        )
-#add_library(MeshOptimizer STATIC ${MESHOPTIMIZER_FILES})
-
-
-
-
-#set(THIRDPARTY_OSS_TINYEXR_FILES
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/TinyEXR/tinyexr.cpp
-#        ../The-Forge/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/TinyEXR/tinyexr.h
-#        )
-#add_library(TinyEXR STATIC ${THIRDPARTY_OSS_TINYEXR_FILES})
-
-
-#set(TINYXML_FILES
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/TinyXML2/tinyxml2.cpp
-#        ../The-Forge/Common_3/Utilities/ThirdParty/OpenSource/TinyXML2/tinyxml2.h
-#        )
-#add_library(TinyXML2 STATIC ${TINYXML_FILES})
-
 set(IMGUI_FILES
-        ../The-Forge/Common_3/Application/ThirdParty/OpenSource/imgui/imconfig.h
-        ../The-Forge/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_demo.cpp
-        ../The-Forge/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_draw.cpp
-        ../The-Forge/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_internal.h
-        ../The-Forge/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_widgets.cpp
-        ../The-Forge/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_tables.cpp
-        ../The-Forge/Common_3/Application/ThirdParty/OpenSource/imgui/imgui.cpp
-        ../The-Forge/Common_3/Application/ThirdParty/OpenSource/imgui/imgui.h
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imconfig.h
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_demo.cpp
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_draw.cpp
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_internal.h
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_widgets.cpp
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_tables.cpp
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui.cpp
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui.h
         )
 add_library(Imgui STATIC ${IMGUI_FILES})
 
-
-
-
 set(CPU_FEATURES_FILES
-        ../The-Forge/Common_3/OS/ThirdParty/OpenSource/cpu_features/src/impl_x86_macos.c
-        ../The-Forge/Common_3/OS/ThirdParty/OpenSource/cpu_features/src/impl_aarch64_iOS.c
-        ../The-Forge/Common_3/OS/ThirdParty/OpenSource/cpu_features/src/impl_x86_windows.c
+        ${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource/cpu_features/src/impl_x86_macos.c
+        ${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource/cpu_features/src/impl_aarch64_iOS.c
+        ${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource/cpu_features/src/impl_x86_windows.c
         )
 add_library(cpu_features STATIC ${CPU_FEATURES_FILES})
 
 
-
-
-set(GAINPUT_THIRD_PARTY_DIR ../The-Forge/Common_3/Application/ThirdParty/OpenSource)
+set(GAINPUT_THIRD_PARTY_DIR ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource)
 set(GAINPUT_STATIC_FILES
         ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gainput.cpp
         ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputAllocator.cpp
@@ -288,7 +159,7 @@ if (${APPLE_PLATFORM} MATCHES ON)
     target_compile_options(GaInput PRIVATE "-fno-objc-arc")
 endif()
 
-set(LUA_THIRD_PARTY_DIR ../The-Forge/Common_3/Game/ThirdParty/OpenSource)
+set(LUA_THIRD_PARTY_DIR ${THE_FORGE_DIR}/Common_3/Game/ThirdParty/OpenSource)
 
 set(LUA_FILES
         ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lapi.c
@@ -328,17 +199,11 @@ set(LUA_FILES
 add_library(Lua STATIC ${LUA_FILES})
 
 set(THIRD_PARTY_DEPS
-        Basisu
         Bstr
         cJSON
-        Eastl
         Imgui
-        MiniZip
         RMem
-        MeshOptimizer
-        TinyEXR
         GaInput
         cpu_features
-        #TinyXML2
         Lua
         )

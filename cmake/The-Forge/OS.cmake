@@ -1,8 +1,7 @@
-set(FORGE_OS_DIR ../The-Forge/Common_3/OS)
-
-set(FORGE_APP_DIR ../The-Forge/Common_3/Application)
-
-set(FORGE_UTIL_DIR ../The-Forge/Common_3/Utilities)
+set(THE_FORGE_DIR ../../The-Forge)
+set(FORGE_OS_DIR ${THE_FORGE_DIR}/Common_3/OS)
+set(FORGE_APP_DIR ${THE_FORGE_DIR}/Common_3/Application)
+set(FORGE_UTIL_DIR ${THE_FORGE_DIR}/Common_3/Utilities)
 
 set(FORGE_APP_FILES
         ${FORGE_APP_DIR}/CameraController.cpp
@@ -90,18 +89,18 @@ set(FORGE_LOG_FILES
         ${FORGE_UTIL_DIR}/Log/Log.h)
 
 set(OS_MIDDLEWARE_PARALLEL_PRIMS_FILES
-        ../The-Forge/Middleware_3/ParallelPrimitives/ParallelPrimitives.cpp
-        ../The-Forge/Middleware_3/ParallelPrimitives/ParallelPrimitives.h
+        ${THE_FORGE_DIR}/Middleware_3/ParallelPrimitives/ParallelPrimitives.cpp
+        ${THE_FORGE_DIR}/Middleware_3/ParallelPrimitives/ParallelPrimitives.h
         )
 
 set(FORGE_GAME_FILES
-        ../The-Forge/Common_3/Game/Scripting/LuaManager.cpp
-        ../The-Forge/Common_3/Game/Scripting/LuaManager.h
-        ../The-Forge/Common_3/Game/Scripting/LuaManagerCommon.h
-        ../The-Forge/Common_3/Game/Scripting/LuaManagerImpl.cpp
-        ../The-Forge/Common_3/Game/Scripting/LuaManagerImpl.h
-        ../The-Forge/Common_3/Game/Scripting/LuaSystem.cpp
-        ../The-Forge/Common_3/Game/Scripting/LunaV.hpp)
+        ${THE_FORGE_DIR}/Common_3/Game/Scripting/LuaManager.cpp
+        ${THE_FORGE_DIR}/Common_3/Game/Scripting/LuaManager.h
+        ${THE_FORGE_DIR}/Common_3/Game/Scripting/LuaManagerCommon.h
+        ${THE_FORGE_DIR}/Common_3/Game/Scripting/LuaManagerImpl.cpp
+        ${THE_FORGE_DIR}/Common_3/Game/Scripting/LuaManagerImpl.h
+        ${THE_FORGE_DIR}/Common_3/Game/Scripting/LuaSystem.cpp
+        ${THE_FORGE_DIR}/Common_3/Game/Scripting/LunaV.hpp)
 
 set(FORGE_OS_INTERFACE_FILES
         ${FORGE_UTIL_DIR}/RingBuffer.h
@@ -113,11 +112,10 @@ set(FORGE_OS_INTERFACE_FILES
         ${FORGE_APP_DIR}/Interfaces/IProfiler.h
         ${FORGE_APP_DIR}/Interfaces/IScreenshot.h
         ${FORGE_APP_DIR}/Interfaces/IUI.h
-        ../The-Forge/Common_3/Game/Interfaces/IScripting.h
+        ${THE_FORGE_DIR}/Common_3/Game/Interfaces/IScripting.h
         ${FORGE_UTIL_DIR}/Interfaces/IFileSystem.h
         ${FORGE_UTIL_DIR}/Interfaces/ILog.h
         ${FORGE_UTIL_DIR}/Interfaces/IMemory.h
         ${FORGE_UTIL_DIR}/Interfaces/IThread.h
         ${FORGE_UTIL_DIR}/Interfaces/ITime.h
         )
-
