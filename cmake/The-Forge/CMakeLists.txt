@@ -174,6 +174,37 @@ install(
 	DESTINATION include/The-Forge/Graphics/Interfaces
 	)
 	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Graphics/GraphicsConfig.h
+	DESTINATION include/The-Forge/Graphics
+	)
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Graphics/Direct3D12/Direct3D12Config.h
+	DESTINATION include/The-Forge/Graphics/Direct3D12
+	)
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Graphics/Direct3D11/Direct3D11Config.h
+	DESTINATION include/The-Forge/Graphics/Direct3D11/
+	)
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Graphics/Vulkan/VulkanConfig.h
+	DESTINATION include/The-Forge/Graphics/Vulkan/
+	)
+
+install(
+	DIRECTORY 
+	${THE_FORGE_DIR}/Common_3/Graphics/ThirdParty/
+	DESTINATION include/The-Forge/Graphics/ThirdParty/
+	PATTERN "*.hpp"
+	PATTERN "*.h" 
+	)
 	
 install(
 	FILES 
@@ -211,6 +242,12 @@ install(
 	
 install(
 	FILES 
+	${THE_FORGE_DIR}/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/tinyimageformat/tinyimageformat_base.h
+	DESTINATION include/The-Forge/Resources/ResourceLoader/ThirdParty/OpenSource/tinyimageformat/
+	)
+	
+install(
+	FILES 
 	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/IFileSystem.h
 	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/ILog.h
 	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/IMemory.h
@@ -235,12 +272,25 @@ install(
 install(
 	FILES 
 	${THE_FORGE_DIR}/Common_3/Utilities/Math/MathTypes.h
+	${THE_FORGE_DIR}/Common_3/Utilities/Math/Random.h
 	DESTINATION include/The-Forge/Utilities/Math
+	)
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Utilities/Threading/Atomics.h
+	DESTINATION include/The-Forge/Utilities/Threading/
 	)
 	
 install(
 	DIRECTORY 
 	${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/ModifiedSonyMath/
 	DESTINATION include/The-Forge/Utilities/ThirdParty/OpenSource/ModifiedSonyMath
-	PATTERN "*.hpp"
+	PATTERN "*.hpp" 
+	)
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/murmurhash3/MurmurHash3_32.h
+	DESTINATION include/The-Forge/Utilities/ThirdParty/OpenSource/murmurhash3
 	)
