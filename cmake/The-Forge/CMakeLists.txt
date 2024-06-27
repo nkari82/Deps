@@ -131,7 +131,10 @@ include(TheForge.cmake)
 
 install(TARGETS Lua DESTINATION lib)
 install(
-	DIRECTORY ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/ 
+	FILES ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lua.h
+	${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/luaconf.h
+	${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lualib.h
+	${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lauxlib.h
+	${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lua.hpp
 	DESTINATION include
-	FILES_MATCHING PATTERN "*.h*"
 	)
