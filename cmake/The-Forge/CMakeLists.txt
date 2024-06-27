@@ -239,8 +239,8 @@ install(
 	)
 	
 install(
-	FILES 
-	${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/ModifiedSonyMath/vectormath.hpp
-	${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/ModifiedSonyMath/vectormath_settings.hpp
+	DIRECTORY 
+	${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/ModifiedSonyMath/
 	DESTINATION include/The-Forge/Utilities/ThirdParty/OpenSource/ModifiedSonyMath
+	PATTERN "*.hpp"
 	)
