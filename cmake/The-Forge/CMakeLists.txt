@@ -138,3 +138,64 @@ install(
 	${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lua.hpp
 	DESTINATION include
 	)
+	
+install(TARGETS The-Forge DESTINATION lib)
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Application/interfaces/IApp.h
+	${THE_FORGE_DIR}/Common_3/Application/interfaces/ICameraController.h
+	${THE_FORGE_DIR}/Common_3/Application/interfaces/IFont.h
+	${THE_FORGE_DIR}/Common_3/Application/interfaces/IInput.h
+	${THE_FORGE_DIR}/Common_3/Application/interfaces/IMiddleware.h
+	${THE_FORGE_DIR}/Common_3/Application/interfaces/IProfiler.h
+	${THE_FORGE_DIR}/Common_3/Application/interfaces/IScreenshot.h
+	${THE_FORGE_DIR}/Common_3/Application/interfaces/IUI.h
+	DESTINATION include/The-Forge/Application
+	)
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Game/interfaces/IScripting.h
+	DESTINATION include/The-Forge/Game
+	)
+	
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Graphics/interfaces/IGraphics.h
+	${THE_FORGE_DIR}/Common_3/Graphics/interfaces/IRay.h
+	${THE_FORGE_DIR}/Common_3/Graphics/interfaces/IShaderReflection.h
+	DESTINATION include/The-Forge/Graphics
+	)
+	
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/OS/interfaces/IOperatingSystem.h
+	DESTINATION include/The-Forge/OS
+	)
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Renderer/interfaces/IParticleSystem.h
+	${THE_FORGE_DIR}/Common_3/Renderer/interfaces/IVisibilityBuffer.h
+	${THE_FORGE_DIR}/Common_3/Renderer/interfaces/IVisibilityBuffer2.h
+	DESTINATION include/The-Forge/Renderer
+	)
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Resources/ResourceLoader/interfaces/IResourceLoader.h
+	DESTINATION include/The-Forge/Resources/ResourceLoader
+	)
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Utilities/interfaces/IFileSystem.h
+	${THE_FORGE_DIR}/Common_3/Utilities/interfaces/ILog.h
+	${THE_FORGE_DIR}/Common_3/Utilities/interfaces/IMemory.h
+	${THE_FORGE_DIR}/Common_3/Utilities/interfaces/IThread.h
+	${THE_FORGE_DIR}/Common_3/Utilities/interfaces/ITime.h
+	${THE_FORGE_DIR}/Common_3/Utilities/interfaces/IToolFileSystem.h
+	DESTINATION include/The-Forge/Utilities
+	)
