@@ -127,3 +127,11 @@ include(Dependencies.cmake)
 include(OS.cmake)
 include(Graphics.cmake)
 include(TheForge.cmake)
+
+
+install(TARGETS Lua DESTINATION lib)
+install(
+	DIRECTORY ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/ 
+	DESTINATION include
+	FILES_MATCHING PATTERN "*.h*"
+	)
