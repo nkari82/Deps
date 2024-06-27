@@ -142,60 +142,105 @@ install(
 install(TARGETS The-Forge DESTINATION lib)
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Application/interfaces/IApp.h
-	${THE_FORGE_DIR}/Common_3/Application/interfaces/ICameraController.h
-	${THE_FORGE_DIR}/Common_3/Application/interfaces/IFont.h
-	${THE_FORGE_DIR}/Common_3/Application/interfaces/IInput.h
-	${THE_FORGE_DIR}/Common_3/Application/interfaces/IMiddleware.h
-	${THE_FORGE_DIR}/Common_3/Application/interfaces/IProfiler.h
-	${THE_FORGE_DIR}/Common_3/Application/interfaces/IScreenshot.h
-	${THE_FORGE_DIR}/Common_3/Application/interfaces/IUI.h
+	${THE_FORGE_DIR}/Common_3/Application/Interfaces/IApp.h
+	${THE_FORGE_DIR}/Common_3/Application/Interfaces/ICameraController.h
+	${THE_FORGE_DIR}/Common_3/Application/Interfaces/IFont.h
+	${THE_FORGE_DIR}/Common_3/Application/Interfaces/IInput.h
+	${THE_FORGE_DIR}/Common_3/Application/Interfaces/IMiddleware.h
+	${THE_FORGE_DIR}/Common_3/Application/Interfaces/IProfiler.h
+	${THE_FORGE_DIR}/Common_3/Application/Interfaces/IScreenshot.h
+	${THE_FORGE_DIR}/Common_3/Application/Interfaces/IUI.h
+	DESTINATION include/The-Forge/Application/Interfaces
+	)
+
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Application/Config.h
 	DESTINATION include/The-Forge/Application
 	)
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Game/interfaces/IScripting.h
-	DESTINATION include/The-Forge/Game
+	${THE_FORGE_DIR}/Common_3/Game/Interfaces/IScripting.h
+	DESTINATION include/The-Forge/Game/Interfaces
 	)
 	
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Graphics/interfaces/IGraphics.h
-	${THE_FORGE_DIR}/Common_3/Graphics/interfaces/IRay.h
-	${THE_FORGE_DIR}/Common_3/Graphics/interfaces/IShaderReflection.h
-	DESTINATION include/The-Forge/Graphics
+	${THE_FORGE_DIR}/Common_3/Graphics/Interfaces/IGraphics.h
+	${THE_FORGE_DIR}/Common_3/Graphics/Interfaces/IRay.h
+	${THE_FORGE_DIR}/Common_3/Graphics/Interfaces/IShaderReflection.h
+	DESTINATION include/The-Forge/Graphics/Interfaces
 	)
 	
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/OS/interfaces/IOperatingSystem.h
+	${THE_FORGE_DIR}/Common_3/OS/Interfaces/IOperatingSystem.h
+	DESTINATION include/The-Forge/OS/Interfaces
+	)
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/OS/CPUConfig.h
 	DESTINATION include/The-Forge/OS
 	)
 	
+	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Renderer/interfaces/IParticleSystem.h
-	${THE_FORGE_DIR}/Common_3/Renderer/interfaces/IVisibilityBuffer.h
-	${THE_FORGE_DIR}/Common_3/Renderer/interfaces/IVisibilityBuffer2.h
-	DESTINATION include/The-Forge/Renderer
+	${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource/cpu_features/src/cpu_features_types.h
+	DESTINATION include/The-Forge/OS/ThirdParty/OpenSource/cpu_features/src
+	)
+	
+
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Renderer/Interfaces/IParticleSystem.h
+	${THE_FORGE_DIR}/Common_3/Renderer/Interfaces/IVisibilityBuffer.h
+	${THE_FORGE_DIR}/Common_3/Renderer/Interfaces/IVisibilityBuffer2.h
+	DESTINATION include/The-Forge/Renderer/Interfaces
 	)
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Resources/ResourceLoader/interfaces/IResourceLoader.h
-	DESTINATION include/The-Forge/Resources/ResourceLoader
+	${THE_FORGE_DIR}/Common_3/Resources/ResourceLoader/Interfaces/IResourceLoader.h
+	DESTINATION include/The-Forge/Resources/ResourceLoader/Interfaces
 	)
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Utilities/interfaces/IFileSystem.h
-	${THE_FORGE_DIR}/Common_3/Utilities/interfaces/ILog.h
-	${THE_FORGE_DIR}/Common_3/Utilities/interfaces/IMemory.h
-	${THE_FORGE_DIR}/Common_3/Utilities/interfaces/IThread.h
-	${THE_FORGE_DIR}/Common_3/Utilities/interfaces/ITime.h
-	${THE_FORGE_DIR}/Common_3/Utilities/interfaces/IToolFileSystem.h
-	DESTINATION include/The-Forge/Utilities
+	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/IFileSystem.h
+	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/ILog.h
+	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/IMemory.h
+	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/IThread.h
+	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/ITime.h
+	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/IToolFileSystem.h
+	DESTINATION include/The-Forge/Utilities/Interfaces
+	)
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/bstrlib/bstrlib.h
+	DESTINATION include/The-Forge/Utilities/ThirdParty/OpenSource/bstrlib
+	)
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Utilities/Log/Log.h
+	DESTINATION include/The-Forge/Utilities/Log
+	)
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Utilities/Math/MathTypes.h
+	DESTINATION include/The-Forge/Utilities/Math
+	)
+	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/ModifiedSonyMath/vectormath.hpp
+	${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/ModifiedSonyMath/vectormath_settings.hpp
+	DESTINATION include/The-Forge/Utilities/ThirdParty/OpenSource/ModifiedSonyMath
 	)
