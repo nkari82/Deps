@@ -78,6 +78,49 @@ set(CPU_FEATURES_FILES
         )
 add_library(cpu_features STATIC ${CPU_FEATURES_FILES})
 
+set(TOOLS_FILES
+        ${THE_FORGE_DIR}/Common_3/Tools/Network/Network.c
+		${THE_FORGE_DIR}/Common_3/Tools/ReloadServer/ReloadClient.cpp
+        )
+add_library(tools STATIC ${TOOLS_FILES})
+
+
+set(LZ4_FILES
+        ${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/lz4/lz4.c
+        ${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/lz4/lz4hc.c
+        )
+		
+add_library(lz4 STATIC ${LZ4_FILES})
+
+set(ZSTD_FILES
+        ${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/common/debug.c
+        ${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/common/entropy_common.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/common/error_private.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/common/fse_decompress.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/common/pool.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/common/threading.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/common/xxhash.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/common/zstd_common.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/compress/fse_compress.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/compress/hist.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/compress/huf_compress.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/compress/zstdmt_compress.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/compress/zstd_compress.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/compress/zstd_compress_literals.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/compress/zstd_compress_sequences.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/compress/zstd_compress_superblock.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/compress/zstd_double_fast.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/compress/zstd_fast.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/compress/zstd_lazy.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/compress/zstd_ldm.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/compress/zstd_opt.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/decompress/huf_decompress.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/decompress/zstd_ddict.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/decompress/zstd_decompress.c
+		${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/zstd/decompress/zstd_decompress_block.c
+        )
+		
+add_library(zstd STATIC ${ZSTD_FILES})
 
 set(GAINPUT_THIRD_PARTY_DIR ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource)
 set(GAINPUT_STATIC_FILES
@@ -113,6 +156,7 @@ set(GAINPUT_STATIC_FILES
         ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/hid/GainputHIDWhitelist.cpp
         ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/hid/hidparsers/HIDParserPS4Controller.cpp
         ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/hid/hidparsers/HIDParserPS5Controller.cpp
+		${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/hid/hidparsers/HIDParserSwitchController.cpp
         )
 
 set(GAINPUT_WINDOWS_FILES

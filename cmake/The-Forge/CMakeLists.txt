@@ -128,7 +128,7 @@ include(OS.cmake)
 include(Graphics.cmake)
 include(TheForge.cmake)
 
-
+# installs
 install(TARGETS Lua DESTINATION lib)
 install(
 	FILES ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lua.h
@@ -138,8 +138,7 @@ install(
 	${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lua.hpp
 	DESTINATION include
 	)
-	
-install(TARGETS The-Forge DESTINATION lib)
+		
 install(
 	FILES 
 	${THE_FORGE_DIR}/Common_3/Application/Interfaces/IApp.h
@@ -165,6 +164,12 @@ install(
 	DESTINATION include/The-Forge/Game/Interfaces
 	)
 	
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Game/Scripting/LuaManager.h
+	${THE_FORGE_DIR}/Common_3/Game/Scripting/LuaManagerCommon.h
+	DESTINATION include/The-Forge/Game/Scripting
+	)
 	
 install(
 	FILES 
@@ -202,6 +207,7 @@ install(
 	DIRECTORY 
 	${THE_FORGE_DIR}/Common_3/Graphics/ThirdParty/
 	DESTINATION include/The-Forge/Graphics/ThirdParty/
+	FILES_MATCHING
 	PATTERN "*.hpp"
 	PATTERN "*.h" 
 	)
@@ -218,14 +224,12 @@ install(
 	DESTINATION include/The-Forge/OS
 	)
 	
-	
 install(
 	FILES 
 	${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource/cpu_features/src/cpu_features_types.h
 	DESTINATION include/The-Forge/OS/ThirdParty/OpenSource/cpu_features/src
 	)
 	
-
 install(
 	FILES 
 	${THE_FORGE_DIR}/Common_3/Renderer/Interfaces/IParticleSystem.h
@@ -256,13 +260,7 @@ install(
 	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/IToolFileSystem.h
 	DESTINATION include/The-Forge/Utilities/Interfaces
 	)
-	
-install(
-	FILES 
-	${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/bstrlib/bstrlib.h
-	DESTINATION include/The-Forge/Utilities/ThirdParty/OpenSource/bstrlib
-	)
-	
+		
 install(
 	FILES 
 	${THE_FORGE_DIR}/Common_3/Utilities/Log/Log.h
@@ -279,18 +277,57 @@ install(
 install(
 	FILES 
 	${THE_FORGE_DIR}/Common_3/Utilities/Threading/Atomics.h
-	DESTINATION include/The-Forge/Utilities/Threading/
+	DESTINATION include/The-Forge/Utilities/Threading
+	)
+
+install(
+	FILES 
+	${THE_FORGE_DIR}/Common_3/Utilities/RingBuffer.h
+	DESTINATION include/The-Forge/Utilities/
 	)
 	
 install(
 	DIRECTORY 
-	${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/ModifiedSonyMath/
-	DESTINATION include/The-Forge/Utilities/ThirdParty/OpenSource/ModifiedSonyMath
-	PATTERN "*.hpp" 
+	${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource
+	DESTINATION include/The-Forge/Utilities/ThirdParty
+	FILES_MATCHING 
+	PATTERN "*.hpp"
+	PATTERN "*.h" 
 	)
 	
+	
+install(
+	DIRECTORY  
+	${THE_FORGE_DIR}/Common_3/IDE/
+	DESTINATION include/The-Forge/
+	)
+	
+
+# binary
+install(TARGETS
+	The-Forge
+	Lua
+	Bstr 
+	cJSON 
+	RMem 
+	Imgui 
+	cpu_features
+	GaInput
+	tools
+	lz4
+	zstd
+	SpirvTools
+	DESTINATION lib)
+
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/murmurhash3/MurmurHash3_32.h
-	DESTINATION include/The-Forge/Utilities/ThirdParty/OpenSource/murmurhash3
+	${THE_FORGE_DIR}/Common_3/Graphics/ThirdParty/OpenSource/ags/ags_lib/lib/amd_ags_x64.dll
+	${THE_FORGE_DIR}/Common_3/Graphics/ThirdParty/OpenSource/ags/ags_lib/lib/amd_ags_x64.lib
+	${THE_FORGE_DIR}/Common_3/Graphics/ThirdParty/OpenSource/nvapi/amd64/nvapi64.lib
+	${THE_FORGE_DIR}/Common_3/Graphics/ThirdParty/OpenSource/DirectXShaderCompiler/lib/x64/dxcompiler.lib
+	${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource/winpixeventruntime/bin/WinPixEventRuntime.lib
+	${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource/winpixeventruntime/bin/WinPixEventRuntime_UAP.lib
+	${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource/winpixeventruntime/bin/WinPixEventRuntime.dll
+	${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource/winpixeventruntime/bin/WinPixEventRuntime_UAP.dll
+	DESTINATION lib
 	)
