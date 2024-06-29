@@ -122,8 +122,9 @@ endif()
 
 message("\n")
 
+#  RENDERER, OS 구분하지 말자.
 set(THE_FORGE_DIR ../../The-Forge)
-set(RENDERER_GRAPHICS_DIR ${THE_FORGE_DIR}/Common_3/Graphics)
+set(RENDERER_GRAPHICS_DIR ${THE_FORGE_DIR}/Common_3/Graphics) 
 set(RENDERER_CORE_DIR ${THE_FORGE_DIR}/Common_3/Renderer)
 set(RENDERER_RESOURCES_DIR ${THE_FORGE_DIR}/Common_3/Resources)
 set(RENDERER_TOOLS_DIR ${THE_FORGE_DIR}/Common_3/Tools)
@@ -165,56 +166,39 @@ set_property(TARGET SpirvTools PROPERTY CXX_STANDARD 17)
 
 
 add_library(WinPixEventRuntime SHARED IMPORTED)
-set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_LOCATION
-        ${THIRD_PARTY_OS_DIR}/winpixeventruntime/bin/WinPixEventRuntime.dll
-        )
-set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_IMPLIB
-        ${THIRD_PARTY_OS_DIR}/winpixeventruntime/bin/WinPixEventRuntime.lib
-        )
+set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_OS_DIR}/winpixeventruntime/bin/WinPixEventRuntime.dll)
+set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_IMPLIB ${THIRD_PARTY_OS_DIR}/winpixeventruntime/bin/WinPixEventRuntime.lib)
 
 add_library(AGS SHARED IMPORTED)
-set_property(TARGET AGS PROPERTY IMPORTED_LOCATION
-        ${THIRD_PARTY_GRAPHIS_DIR}/ags/ags_lib/lib/amd_ags_x64.dll
-        )
-set_property(TARGET AGS PROPERTY IMPORTED_IMPLIB
-        ${THIRD_PARTY_GRAPHIS_DIR}/ags/ags_lib/lib/amd_ags_x64.lib
-        )
+set_property(TARGET AGS PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_GRAPHIS_DIR}/ags/ags_lib/lib/amd_ags_x64.dll)
+set_property(TARGET AGS PROPERTY IMPORTED_IMPLIB ${THIRD_PARTY_GRAPHIS_DIR}/ags/ags_lib/lib/amd_ags_x64.lib)
 target_include_directories(AGS INTERFACE ${THIRD_PARTY_GRAPHIS_DIR}/ags)
 
 
 add_library(Nvapi STATIC IMPORTED)
-set_property(TARGET Nvapi PROPERTY IMPORTED_LOCATION
-        ${THIRD_PARTY_GRAPHIS_DIR}/nvapi/amd64/nvapi64.lib
-        )
+set_property(TARGET Nvapi PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_GRAPHIS_DIR}/nvapi/amd64/nvapi64.lib)
 target_include_directories(Nvapi INTERFACE ${THIRD_PARTY_GRAPHIS_DIR}/nvapi)
 
-
 add_library(DirectXShaderCompiler STATIC IMPORTED)
-set_property(TARGET DirectXShaderCompiler PROPERTY IMPORTED_LOCATION
-        ${THIRD_PARTY_GRAPHIS_DIR}/DirectXShaderCompiler/lib/x64/dxcompiler.lib
-        )
+set_property(TARGET DirectXShaderCompiler PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_GRAPHIS_DIR}/DirectXShaderCompiler/lib/x64/dxcompiler.lib)
 
 add_library(VulkanMemoryAllocator INTERFACE)
-target_include_directories(VulkanMemoryAllocator INTERFACE
-        ${THIRD_PARTY_GRAPHIS_DIR}/VulkanMemoryAllocator
-        )
+target_include_directories(VulkanMemoryAllocator INTERFACE ${THIRD_PARTY_GRAPHIS_DIR}/VulkanMemoryAllocator)
 
 
 add_library(D3D12MemoryAllocator INTERFACE)
-target_include_directories(D3D12MemoryAllocator INTERFACE
-        ${THIRD_PARTY_GRAPHIS_DIR}/D3D12MemoryAllocator
-        )
+target_include_directories(D3D12MemoryAllocator INTERFACE ${THIRD_PARTY_GRAPHIS_DIR}/D3D12MemoryAllocator)
 
 set(IMGUI_FILES
-        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imconfig.h
-        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_demo.cpp
-        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_draw.cpp
-        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_internal.h
-        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_widgets.cpp
-        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_tables.cpp
-        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui.cpp
-        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui.h
-        )
+    ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imconfig.h
+    ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_demo.cpp
+    ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_draw.cpp
+    ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_internal.h
+    ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_widgets.cpp
+    ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_tables.cpp
+    ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui.cpp
+    ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui.h
+    )
 add_library(Imgui STATIC ${IMGUI_FILES})
 
 set(GAINPUT_THIRD_PARTY_DIR ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource)
@@ -364,6 +348,33 @@ set(OZZ_FILES
 
 
 # AssetPipelineCmd
+set(ASSET_PIPELINE_CMD_FILES
+	${THE_FORGE_DIR}/Common_3/Resources/AnimationSystem/ThirdParty/OpenSource/TressFX/TressFXAsset.h
+	${THE_FORGE_DIR}/Common_3/Resources/AnimationSystem/ThirdParty/OpenSource/TressFX/TressFXAsset.cpp
+	${THE_FORGE_DIR}/Common_3/Resources/AnimationSystem/ThirdParty/OpenSource/TressFX/TressFXFileFormat.h
+	${THE_FORGE_DIR}/Common_3/Tools/AssetPipeline/src/AssetPipeline.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/AssetPipeline/src/AssetPipeline.h
+	${THE_FORGE_DIR}/Common_3/Tools/AssetPipeline/src/AssetPipeline_Textures.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/AssetPipeline/src/AssetPipelineCmd.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/AssetPipeline/src/AssetPipelineConfig.h
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/allocator.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/clusterizer.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/indexcodec.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/indexgenerator.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/meshoptimizer.h
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/overdrawanalyzer.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/overdrawoptimizer.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/simplifier.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/spatialorder.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/stripifier.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/vcacheanalyzer.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/vcacheoptimizer.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/vertexcodec.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/vertexfilter.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/vfetchanalyzer.cpp
+	${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource/meshoptimizer/src/vfetchoptimizer.cpp
+	${THE_FORGE_DIR}/Common_3/Utilities/FileSystem/ToolFileSystem.c
+	)
 # BunyLib
 # BunyTool
 # ispc_texcomp
