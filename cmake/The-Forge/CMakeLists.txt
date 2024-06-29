@@ -124,8 +124,9 @@ message("\n")
 
 set(THE_FORGE_DIR ../../The-Forge)
 set(RENDERER_GRAPHICS_DIR ${THE_FORGE_DIR}/Common_3/Graphics)
-set(RENDERER_RENDERER_DIR ${THE_FORGE_DIR}/Common_3/Renderer)
+set(RENDERER_CORE_DIR ${THE_FORGE_DIR}/Common_3/Renderer)
 set(RENDERER_RESOURCES_DIR ${THE_FORGE_DIR}/Common_3/Resources)
+set(RENDERER_TOOLS_DIR ${THE_FORGE_DIR}/Common_3/Tools)
 
 set(OS_APPLICATION_DIR ${THE_FORGE_DIR}/Common_3/Application)
 set(OS_GAME_DIR ${THE_FORGE_DIR}/Common_3/Game)
@@ -133,12 +134,198 @@ set(OS_CORE_DIR ${THE_FORGE_DIR}/Common_3/OS)
 set(OS_RESOURCES_DIR ${THE_FORGE_DIR}/Common_3/Resources)
 set(OS_UTILITIES_DIR ${THE_FORGE_DIR}/Common_3/Utilities)
 
-include(SpirvTools.cmake)
-include(Dependencies.cmake)
-#include(OS.cmake)
-#include(Graphics.cmake)
-#include(TheForge.cmake)
+# Dependencies
+set(SPIRVTOOLS_SOURCE
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_cfg.cpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_cfg.hpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_cpp.cpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_cpp.hpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_cross.cpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_cross.hpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_cross_parsed_ir.cpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_cross_parsed_ir.hpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_cross_util.cpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_cross_util.hpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_glsl.cpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_glsl.hpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_hlsl.cpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_hlsl.hpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_msl.cpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_msl.hpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_parser.cpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_parser.hpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_reflect.cpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/spirv_reflect.hpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/SpirvTools.cpp
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/SPIRV_Cross/SpirvTools.h
+    )
 
+add_library(SpirvTools STATIC ${SPIRVTOOLS_SOURCE})
+set_property(TARGET SpirvTools PROPERTY CXX_STANDARD 17)
+
+
+add_library(WinPixEventRuntime SHARED IMPORTED)
+set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_LOCATION
+        ${THIRD_PARTY_OS_DIR}/winpixeventruntime/bin/WinPixEventRuntime.dll
+        )
+set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_IMPLIB
+        ${THIRD_PARTY_OS_DIR}/winpixeventruntime/bin/WinPixEventRuntime.lib
+        )
+
+add_library(AGS SHARED IMPORTED)
+set_property(TARGET AGS PROPERTY IMPORTED_LOCATION
+        ${THIRD_PARTY_GRAPHIS_DIR}/ags/ags_lib/lib/amd_ags_x64.dll
+        )
+set_property(TARGET AGS PROPERTY IMPORTED_IMPLIB
+        ${THIRD_PARTY_GRAPHIS_DIR}/ags/ags_lib/lib/amd_ags_x64.lib
+        )
+target_include_directories(AGS INTERFACE ${THIRD_PARTY_GRAPHIS_DIR}/ags)
+
+
+add_library(Nvapi STATIC IMPORTED)
+set_property(TARGET Nvapi PROPERTY IMPORTED_LOCATION
+        ${THIRD_PARTY_GRAPHIS_DIR}/nvapi/amd64/nvapi64.lib
+        )
+target_include_directories(Nvapi INTERFACE ${THIRD_PARTY_GRAPHIS_DIR}/nvapi)
+
+
+add_library(DirectXShaderCompiler STATIC IMPORTED)
+set_property(TARGET DirectXShaderCompiler PROPERTY IMPORTED_LOCATION
+        ${THIRD_PARTY_GRAPHIS_DIR}/DirectXShaderCompiler/lib/x64/dxcompiler.lib
+        )
+
+add_library(VulkanMemoryAllocator INTERFACE)
+target_include_directories(VulkanMemoryAllocator INTERFACE
+        ${THIRD_PARTY_GRAPHIS_DIR}/VulkanMemoryAllocator
+        )
+
+
+add_library(D3D12MemoryAllocator INTERFACE)
+target_include_directories(D3D12MemoryAllocator INTERFACE
+        ${THIRD_PARTY_GRAPHIS_DIR}/D3D12MemoryAllocator
+        )
+
+set(IMGUI_FILES
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imconfig.h
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_demo.cpp
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_draw.cpp
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_internal.h
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_widgets.cpp
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui_tables.cpp
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui.cpp
+        ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource/imgui/imgui.h
+        )
+add_library(Imgui STATIC ${IMGUI_FILES})
+
+set(GAINPUT_THIRD_PARTY_DIR ${THE_FORGE_DIR}/Common_3/Application/ThirdParty/OpenSource)
+set(GAINPUT_STATIC_FILES
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gainput.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputAllocator.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gestures/GainputButtonStickGesture.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/dev/GainputDev.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/dev/GainputMemoryStream.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/dev/GainputNetAddress.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/dev/GainputNetConnection.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/dev/GainputNetListener.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gestures/GainputDoubleClickGesture.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gestures/GainputHoldGesture.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputInputDeltaState.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputInputDevice.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/builtin/GainputInputDeviceBuiltIn.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/keyboard/GainputInputDeviceKeyboard.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/mouse/GainputInputDeviceMouse.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/pad/GainputInputDevicePad.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/touch/GainputInputDeviceTouch.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputInputManager.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputInputMap.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/recorder/GainputInputPlayer.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/recorder/GainputInputRecorder.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/recorder/GainputInputRecording.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputInputState.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputMapFilters.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gestures/GainputPinchGesture.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gestures/GainputRotateGesture.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gestures/GainputSimultaneouslyDownGesture.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gestures/GainputTapGesture.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/hid/GainputHID.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/hid/GainputHIDWhitelist.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/hid/hidparsers/HIDParserPS4Controller.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/hid/hidparsers/HIDParserPS5Controller.cpp
+		${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/hid/hidparsers/HIDParserSwitchController.cpp
+        )
+
+set(GAINPUT_WINDOWS_FILES ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/hidapi/windows/hid.c)
+set(GAINPUT_LINUX_FILES ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/hidapi/linux/hid.c)
+set(GAINPUT_MACOS_FILES
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputMac.mm
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/pad/GainputInputDevicePadMac.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/mouse/GainputInputDeviceMouseMac.mm
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/mouse/GainputInputDeviceMouseMacRaw.mm
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/keyboard/GainputInputDeviceKeyboardMac.cpp
+        ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/hidapi/mac/hid.c
+        )
+set(GAINPUT_IOS_FILES ${GAINPUT_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputIos.mm)
+source_group(Core FILES ${GAINPUT_STATIC_FILES})
+source_group(MacOS FILES ${GAINPUT_MACOS_FILES})
+if(${APPLE_PLATFORM} MATCHES ON)
+    set(GAINPUT_STATIC_FILES ${GAINPUT_STATIC_FILES} ${GAINPUT_MACOS_FILES} )
+endif()
+
+if(${WINDOWS} MATCHES ON)
+    set(GAINPUT_STATIC_FILES ${GAINPUT_STATIC_FILES} ${GAINPUT_WINDOWS_FILES})
+endif()
+
+add_library(GaInput STATIC ${GAINPUT_STATIC_FILES})
+target_include_directories(GaInput PUBLIC ${THIRD_PARTY_DIR}/gainput/lib/include)
+if (${APPLE_PLATFORM} MATCHES ON)
+    #set_source_files_properties(${GAINPUT_STATIC_FILES} PROPERTIES COMPILE_FLAGS "-x objective-c++")
+    set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=c++17 -stdlib=libc++ -x objective-c++")
+    set_property(TARGET GaInput PROPERTY C_STANDARD 17)
+    target_compile_options(GaInput PRIVATE "-fno-objc-arc")
+endif()
+
+set(LUA_THIRD_PARTY_DIR ${THE_FORGE_DIR}/Common_3/Game/ThirdParty/OpenSource)
+
+set(LUA_FILES
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lapi.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lauxlib.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lbaselib.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lbitlib.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lcode.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lcorolib.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lctype.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/ldblib.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/ldebug.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/ldo.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/ldump.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lfunc.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lgc.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/linit.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/liolib.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/llex.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lmathlib.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lmem.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/loadlib.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lobject.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lopcodes.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/loslib.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lparser.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lstate.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lstring.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lstrlib.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/ltable.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/ltablib.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/ltm.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lundump.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lutf8lib.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lvm.c
+    ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lzio.c
+    )
+add_library(Lua STATIC ${LUA_FILES})
+
+set(THIRD_PARTY_DEPS Imgui GaInput Lua)
+		
+# Renderer
 set(RENDERER_GRAPHICS_DX11_FILES
     ${RENDERER_GRAPHICS_DIR}/Direct3D11/Direct3D11.cpp
     ${RENDERER_GRAPHICS_DIR}/Direct3D11/Direct3D11CapBuilder.h
@@ -173,7 +360,13 @@ set(RENDERER_GRAPHICS_METAL_FILES
     ${RENDERER_GRAPHICS_DIR}/Metal/MetalRenderer.mm
     ${RENDERER_GRAPHICS_DIR}/Metal/MetalShaderReflection.mm
     )
-		
+	
+set(RENDERER_GRAPHICS_THIRDPARTY_FILES
+	${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/ags/AgsHelper.h
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/nvapi/NvApiHelper.h
+    ${RENDERER_GRAPHICS_DIR}/ThirdParty/OpenSource/ags/VulkanMemoryAllocator.h
+	)
+	
 set(RENDERER_GRAPHICS_INTERFACE_FILES
 	${RENDERER_GRAPHICS_DIR}/Interfaces/IGraphics.h
     ${RENDERER_GRAPHICS_DIR}/Interfaces/IRay.h
@@ -187,15 +380,15 @@ set(RENDERER_GRAPHICS_FILES
     ${RENDERER_GRAPHICS_DIR}/PickRenderingAPI.cpp
     )
 
-set(RENDERER_RENDERER_INTERFACE_FILES
-	${FORGE_RENDERER_RENDERER_DIR}/Interfaces/IParticleSystem.h
-	${FORGE_RENDERER_RENDERER_DIR}/Interfaces/IVisibilityBuffer.h
+set(RENDERER_CORE_INTERFACE_FILES
+	${RENDERER_CORE_DIR}/Interfaces/IParticleSystem.h
+	${RENDERER_CORE_DIR}/Interfaces/IVisibilityBuffer.h
 	)
 
-set(RENDERER_RENDERER_FILES
-	${RENDERER_RENDERER_INTERFACE_FILES}
-	${RENDERER_RENDERER_DIR}/ParticleSystem/ParticleSystem.cpp
-	${RENDERER_RENDERER_DIR}/VisibilityBuffer/VisibilityBuffer.cpp
+set(RENDERER_CORE_FILES
+	${RENDERER_CORE_INTERFACE_FILES}
+	${RENDERER_CORE_DIR}/ParticleSystem/ParticleSystem.cpp
+	${RENDERER_CORE_DIR}/VisibilityBuffer/VisibilityBuffer.cpp
 	)
 
 set(RENDERER_RESOURCES_INTERFACES_FILES
@@ -208,10 +401,20 @@ set(RENDERER_RESOURCES_FILES
 	${RENDERER_RESOURCES_DIR}/ResourceLoader/TextureContainers.h
 	)
 	
+set(RENDERER_TOOLS_FILES
+	${RENDERER_TOOLS_DIR}/Network/Network.c
+	${RENDERER_TOOLS_DIR}/Network/Network.h
+	${RENDERER_TOOLS_DIR}/ReloadServer/ReloadServer.cpp
+	${RENDERER_TOOLS_DIR}/ReloadServer/ReloadServer.h
+	)
+
 set(RENDERER_SOURCE_FILES 
 	${RENDERER_GRAPHICS_FILES}
-	${RENDERER_RENDERER_FILES}
-	${RENDERER_RESOURCES_FILES})
+	${RENDERER_GRAPHICS_THIRDPARTY_FILES}
+	${RENDERER_CORE_FILES}
+	${RENDERER_RESOURCES_FILES}
+	${RENDERER_TOOLS_FILES}
+	)
 
 if(${APPLE_PLATFORM} MATCHES ON)
     find_library(APPLE_METAL Metal)
@@ -303,7 +506,7 @@ if(${WINDOWS} MATCHES ON)
 		)
 endif()
 
-# OS (OK without Imgui)
+# OS
 set(APP_FILES
 	${OS_APPLICATION_DIR}/Fonts/FontSystem.cpp
 	${OS_APPLICATION_DIR}/Fonts/stbtt.cpp
@@ -320,7 +523,6 @@ set(APP_FILES
 	${OS_APPLICATION_DIR}/Screenshot.cpp
 	)
 
-#(without lua)
 set(GAME_FILES
 	${OS_GAME_DIR}/Scripting/LuaManager.cpp
     ${OS_GAME_DIR}/Scripting/LuaManager.h
@@ -456,30 +658,28 @@ if (${APPLE_PLATFORM} MATCHES ON)
 	set(OS_UTILLITY_FILES ${OS_UTILITIES_DIR}/FileSystem/UnixFileSystem.cpp)
 endif ()
 
+set(OS_SOURCE_FILES
+	${OS_CORE_FILES} 
+	${OS_RESOURCES_FILES}
+	${OS_UTILLITY_FILES}
+	)
+	
 # Merge
 set(FORGE_FILES
-        #${RENDERER_SOURCE_FILES}
-        #${RENDERER_INCLUDE_FILES}
-        #${RENDERER_FILES}
-		
-		${OS_INTERFACE_FILES}
-        ${OS_APP_FILES}
-		${OS_CORE_FILES}
-		${OS_GAME_FILES}
-		${OS_RESOURCES_FILES}
-		
-        ${FORGE_FILESYSTEM_FILES}
-        ${FORGE_MEMORY_TRACKING_FILES}
-        ${FORGE_THREADING_FILES}
-        ${FORGE_MATH_FILES}
-        ${FORGE_LOG_FILES}
-        ${OS_MIDDLEWARE_PARALLEL_PRIMS_FILES}
-        )
+    ${RENDERER_SOURCE_FILES}
+	${OS_SOURCE_FILES}
+	
+
+    ${FORGE_FILESYSTEM_FILES}
+    ${FORGE_MEMORY_TRACKING_FILES}
+    ${FORGE_THREADING_FILES}
+    ${FORGE_MATH_FILES}
+    ${FORGE_LOG_FILES}
+    ${OS_MIDDLEWARE_PARALLEL_PRIMS_FILES}
+    )
 
 
-add_library(The-Forge STATIC
-        ${FORGE_FILES}
-        )
+add_library(The-Forge STATIC ${FORGE_FILES})
 
 target_include_directories(The-Forge PUBLIC
         ../../The-Forge/Common_3/
@@ -487,9 +687,7 @@ target_include_directories(The-Forge PUBLIC
         )
 
 target_link_libraries(The-Forge PUBLIC ${RENDERER_LIBRARIES} ${THIRD_PARTY_DEPS})
-
 target_link_directories(The-Forge PUBLIC ${RENDERER_LIBRARY_PATHS})
-
 target_compile_definitions(The-Forge PUBLIC ${RENDERER_DEFINES})
 
 if (${APPLE_PLATFORM} MATCHES ON)
