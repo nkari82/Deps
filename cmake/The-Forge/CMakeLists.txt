@@ -278,7 +278,6 @@ endif()
 add_library(GaInput STATIC ${GAINPUT_STATIC_FILES})
 target_include_directories(GaInput PUBLIC ${THIRD_PARTY_DIR}/gainput/lib/include)
 if (${APPLE_PLATFORM} MATCHES ON)
-    #set_source_files_properties(${GAINPUT_STATIC_FILES} PROPERTIES COMPILE_FLAGS "-x objective-c++")
     set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=c++17 -stdlib=libc++ -x objective-c++")
     set_property(TARGET GaInput PROPERTY C_STANDARD 17)
     target_compile_options(GaInput PRIVATE "-fno-objc-arc")
@@ -383,6 +382,7 @@ set(RENDERER_GRAPHICS_FILES
 set(RENDERER_CORE_INTERFACE_FILES
 	${RENDERER_CORE_DIR}/Interfaces/IParticleSystem.h
 	${RENDERER_CORE_DIR}/Interfaces/IVisibilityBuffer.h
+	${RENDERER_CORE_DIR}/Interfaces/IVisibilityBuffer2.h	
 	)
 
 set(RENDERER_CORE_FILES
@@ -436,8 +436,8 @@ if(${APPLE_PLATFORM} MATCHES ON)
     find_library(APPLE_QUARTZCORE QuartzCore)
     find_library(APPLE_IOKIT IOKit)
 
-    set(RENDER_LIBRARIES
-        ${RENDER_LIBRARIES}
+    set(RENDERER_LIBRARIES
+        ${RENDERER_LIBRARIES}
         ${APPLE_QUARTZCORE}
         ${APPLE_APPKIT}
         ${APPLE_IOKIT}
@@ -453,10 +453,7 @@ if(${VULKAN} MATCHES ON)
         message("Vulkan SDK not found.  Please make sure it is installed and added to your path.")
     endif()
 
-    set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES}
-            VulkanMemoryAllocator
-            SpirvTools
-            )
+    set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES} VulkanMemoryAllocator SpirvTools)
     set(RENDERER_SOURCE_FILES 
 		${RENDERER_SOURCE_FILES} 
 		${RENDERER_GRAPHICS_VULKAN_FILES})
@@ -507,7 +504,19 @@ if(${WINDOWS} MATCHES ON)
 endif()
 
 # OS
+set(APP_INTERFACES_FILES
+	${OS_APPLICATION_DIR}/Interfaces/IApp.h
+	${OS_APPLICATION_DIR}/Interfaces/ICameraController.h
+	${OS_APPLICATION_DIR}/Interfaces/IFont.h
+	${OS_APPLICATION_DIR}/Interfaces/IInput.h
+	${OS_APPLICATION_DIR}/Interfaces/IMiddleware.h
+	${OS_APPLICATION_DIR}/Interfaces/IProfiler.h
+	${OS_APPLICATION_DIR}/Interfaces/IScreenshot.h
+	${OS_APPLICATION_DIR}/Interfaces/IUI.h
+	)
+
 set(APP_FILES
+	${APP_INTERFACES_FILES}
 	${OS_APPLICATION_DIR}/Fonts/FontSystem.cpp
 	${OS_APPLICATION_DIR}/Fonts/stbtt.cpp
 	${OS_APPLICATION_DIR}/Profiler/GpuProfiler.cpp
@@ -523,7 +532,9 @@ set(APP_FILES
 	${OS_APPLICATION_DIR}/Screenshot.cpp
 	)
 
+set(GAME_INTERFACES_FILES ${OS_GAME_DIR}/Interfaces/IScripting.h
 set(GAME_FILES
+	${GAME_INTERFACES_FILES}
 	${OS_GAME_DIR}/Scripting/LuaManager.cpp
     ${OS_GAME_DIR}/Scripting/LuaManager.h
     ${OS_GAME_DIR}/Scripting/LuaManagerCommon.h
@@ -532,8 +543,9 @@ set(GAME_FILES
     ${OS_GAME_DIR}/Scripting/LuaSystem.cpp
     ${OS_GAME_DIR}/Scripting/LunaV.hpp)
 
+set{OS_CORE_INTERFACES_FILES ${OS_CORE_DIR}/Interfaces/IOperatingSystem.h)
 set(OS_CORE_FILES
-    ${OS_CORE_DIR}/Interfaces/IOperatingSystem.h
+    ${OS_CORE_INTERFACES_FILES}
     ${OS_CORE_DIR}/CPUConfig.cpp
     ${OS_CORE_DIR}/CPUConfig.h
     ${OS_CORE_DIR}/WindowSystem/WindowSystem.cpp
@@ -596,6 +608,7 @@ set(OS_UTILLITIES_INTERFACES_FILES
 	${OS_UTILITIES_DIR}/Interfaces/IMemory.h
 	${OS_UTILITIES_DIR}/Interfaces/IThread.h
 	${OS_UTILITIES_DIR}/Interfaces/ITime.h
+	${OS_UTILITIES_DIR}/Interfaces/IToolFileSystem.h
 	)
 	
 set(OS_UTILLITY_FILES
@@ -668,23 +681,19 @@ set(OS_SOURCE_FILES
 set(FORGE_FILES
     ${RENDERER_SOURCE_FILES}
 	${OS_SOURCE_FILES}
-	
-
-    ${FORGE_FILESYSTEM_FILES}
-    ${FORGE_MEMORY_TRACKING_FILES}
-    ${FORGE_THREADING_FILES}
-    ${FORGE_MATH_FILES}
-    ${FORGE_LOG_FILES}
-    ${OS_MIDDLEWARE_PARALLEL_PRIMS_FILES}
     )
 
 
 add_library(The-Forge STATIC ${FORGE_FILES})
 
 target_include_directories(The-Forge PUBLIC
-        ../../The-Forge/Common_3/
-        ${RENDER_INCLUDES}
-        )
+	${THE_FORGE_DIR}/Common_3/
+	${RENDERER_GRAPHICS_INTERFACE_FILES}
+	${RENDERER_RESOURCES_INTERFACES_FILES}
+    ${RENDERER_GRAPHICS_DIR}/GraphicsConfig.h
+	${RENDERER_GRAPHICS_DIR}/GPUConfig.h
+	${RENDERER_RESOURCES_DIR}/ResourceLoader/TextureContainers.h
+    )
 
 target_link_libraries(The-Forge PUBLIC ${RENDERER_LIBRARIES} ${THIRD_PARTY_DEPS})
 target_link_directories(The-Forge PUBLIC ${RENDERER_LIBRARY_PATHS})
@@ -698,7 +707,8 @@ endif()
 # installs
 install(TARGETS Lua DESTINATION lib)
 install(
-	FILES ${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lua.h
+	FILES 
+	${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lua.h
 	${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/luaconf.h
 	${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lualib.h
 	${LUA_THIRD_PARTY_DIR}/lua-5.3.5/src/lauxlib.h
@@ -708,15 +718,8 @@ install(
 		
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Application/Interfaces/IApp.h
-	${THE_FORGE_DIR}/Common_3/Application/Interfaces/ICameraController.h
-	${THE_FORGE_DIR}/Common_3/Application/Interfaces/IFont.h
-	${THE_FORGE_DIR}/Common_3/Application/Interfaces/IInput.h
-	${THE_FORGE_DIR}/Common_3/Application/Interfaces/IMiddleware.h
-	${THE_FORGE_DIR}/Common_3/Application/Interfaces/IProfiler.h
-	${THE_FORGE_DIR}/Common_3/Application/Interfaces/IScreenshot.h
-	${THE_FORGE_DIR}/Common_3/Application/Interfaces/IUI.h
-	DESTINATION include/The-Forge/Application/Interfaces
+	${APP_INTERFACES_FILES}
+	DESTINATION include/The-Forge/Application/Interfaces/
 	)
 
 install(
@@ -727,35 +730,33 @@ install(
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Game/Interfaces/IScripting.h
-	DESTINATION include/The-Forge/Game/Interfaces
+	${GAME_INTERFACES_FILES}
+	DESTINATION include/The-Forge/Game/Interfaces/
 	)
 	
 install(
 	FILES 
 	${THE_FORGE_DIR}/Common_3/Game/Scripting/LuaManager.h
 	${THE_FORGE_DIR}/Common_3/Game/Scripting/LuaManagerCommon.h
-	DESTINATION include/The-Forge/Game/Scripting
+	DESTINATION include/The-Forge/Game/Scripting/
 	)
 	
 install(
-	FILES 
-	${THE_FORGE_DIR}/Common_3/Graphics/Interfaces/IGraphics.h
-	${THE_FORGE_DIR}/Common_3/Graphics/Interfaces/IRay.h
-	${THE_FORGE_DIR}/Common_3/Graphics/Interfaces/IShaderReflection.h
-	DESTINATION include/The-Forge/Graphics/Interfaces
+	FILES
+	${RENDERER_GRAPHICS_INTERFACE_FILES}
+	DESTINATION include/The-Forge/Graphics/Interfaces/
 	)
 	
 install(
 	FILES 
 	${THE_FORGE_DIR}/Common_3/Graphics/GraphicsConfig.h
-	DESTINATION include/The-Forge/Graphics
+	DESTINATION include/The-Forge/Graphics/
 	)
 	
 install(
 	FILES 
 	${THE_FORGE_DIR}/Common_3/Graphics/Direct3D12/Direct3D12Config.h
-	DESTINATION include/The-Forge/Graphics/Direct3D12
+	DESTINATION include/The-Forge/Graphics/Direct3D12/
 	)
 	
 install(
@@ -781,34 +782,32 @@ install(
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/OS/Interfaces/IOperatingSystem.h
-	DESTINATION include/The-Forge/OS/Interfaces
+	${OS_CORE_INTERFACES_FILES}
+	DESTINATION include/The-Forge/OS/Interfaces/
 	)
 	
 install(
 	FILES 
 	${THE_FORGE_DIR}/Common_3/OS/CPUConfig.h
-	DESTINATION include/The-Forge/OS
+	DESTINATION include/The-Forge/OS/
 	)
 	
 install(
 	FILES 
 	${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource/cpu_features/src/cpu_features_types.h
-	DESTINATION include/The-Forge/OS/ThirdParty/OpenSource/cpu_features/src
+	DESTINATION include/The-Forge/OS/ThirdParty/OpenSource/cpu_features/src/
 	)
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Renderer/Interfaces/IParticleSystem.h
-	${THE_FORGE_DIR}/Common_3/Renderer/Interfaces/IVisibilityBuffer.h
-	${THE_FORGE_DIR}/Common_3/Renderer/Interfaces/IVisibilityBuffer2.h
-	DESTINATION include/The-Forge/Renderer/Interfaces
+	${RENDERER_CORE_INTERFACE_FILES}
+	DESTINATION include/The-Forge/Renderer/Interfaces/
 	)
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Resources/ResourceLoader/Interfaces/IResourceLoader.h
-	DESTINATION include/The-Forge/Resources/ResourceLoader/Interfaces
+	${RENDERER_RESOURCES_INTERFACES_FILES}
+	DESTINATION include/The-Forge/Resources/ResourceLoader/Interfaces/
 	)
 	
 install(
@@ -819,32 +818,27 @@ install(
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/IFileSystem.h
-	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/ILog.h
-	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/IMemory.h
-	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/IThread.h
-	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/ITime.h
-	${THE_FORGE_DIR}/Common_3/Utilities/Interfaces/IToolFileSystem.h
+	${OS_UTILLITIES_INTERFACES_FILES}
 	DESTINATION include/The-Forge/Utilities/Interfaces
 	)
 		
 install(
 	FILES 
 	${THE_FORGE_DIR}/Common_3/Utilities/Log/Log.h
-	DESTINATION include/The-Forge/Utilities/Log
+	DESTINATION include/The-Forge/Utilities/Log/
 	)
 	
 install(
 	FILES 
 	${THE_FORGE_DIR}/Common_3/Utilities/Math/MathTypes.h
 	${THE_FORGE_DIR}/Common_3/Utilities/Math/Random.h
-	DESTINATION include/The-Forge/Utilities/Math
+	DESTINATION include/The-Forge/Utilities/Math/
 	)
 	
 install(
 	FILES 
 	${THE_FORGE_DIR}/Common_3/Utilities/Threading/Atomics.h
-	DESTINATION include/The-Forge/Utilities/Threading
+	DESTINATION include/The-Forge/Utilities/Threading/
 	)
 
 install(
@@ -855,8 +849,8 @@ install(
 	
 install(
 	DIRECTORY 
-	${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource
-	DESTINATION include/The-Forge/Utilities/ThirdParty
+	${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/
+	DESTINATION include/The-Forge/Utilities/ThirdParty/
 	FILES_MATCHING 
 	PATTERN "*.hpp"
 	PATTERN "*.h" 
@@ -868,23 +862,9 @@ install(
 	${THE_FORGE_DIR}/Common_3/IDE/
 	DESTINATION include/The-Forge/
 	)
-	
 
 # binary
-install(TARGETS
-	The-Forge
-	Lua
-	Bstr 
-	cJSON 
-	RMem 
-	Imgui 
-	cpu_features
-	GaInput
-	tools
-	lz4
-	zstd
-	SpirvTools
-	DESTINATION lib)
+install(TARGETS The-Forge Imgui GaInput SpirvTools DESTINATION lib)
 
 install(
 	FILES 
