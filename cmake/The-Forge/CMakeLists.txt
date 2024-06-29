@@ -324,6 +324,50 @@ add_library(Lua STATIC ${LUA_FILES})
 
 set(THIRD_PARTY_DEPS Imgui GaInput Lua)
 		
+# Tools
+# ozz-animation
+set(OZZ_THIRD_PARTY_DIR ${THE_FORGE_DIR}/Common_3/Resources/AnimationSystem/ThirdParty/OpenSource/ozz-animation/src)
+set(OZZ_FILES
+	${OZZ_THIRD_PARTY_DIR}/offline/additive_animation_builder.cc
+	${OZZ_THIRD_PARTY_DIR}/offline/animation_builder.cc
+	${OZZ_THIRD_PARTY_DIR}/offline/animation_optimizer.cc
+	${OZZ_THIRD_PARTY_DIR}/offline/raw_animation.cc
+	${OZZ_THIRD_PARTY_DIR}/offline/raw_animation_archive.cc
+	${OZZ_THIRD_PARTY_DIR}/offline/raw_animation_utils.cc
+	${OZZ_THIRD_PARTY_DIR}/offline/raw_skeleton.cc
+	${OZZ_THIRD_PARTY_DIR}/offline/raw_skeleton_archive.cc
+	${OZZ_THIRD_PARTY_DIR}/offline/raw_track.cc
+	${OZZ_THIRD_PARTY_DIR}/offline/skeleton_builder.cc
+	${OZZ_THIRD_PARTY_DIR}/offline/track_builder.cc
+	${OZZ_THIRD_PARTY_DIR}/offline/track_optimizer.cc
+	${OZZ_THIRD_PARTY_DIR}/runtime/animation.cc
+	${OZZ_THIRD_PARTY_DIR}/runtime/animation_keyframe.h
+	${OZZ_THIRD_PARTY_DIR}/runtime/animation_utils.cc
+	${OZZ_THIRD_PARTY_DIR}/runtime/blending_job.cc
+	${OZZ_THIRD_PARTY_DIR}/runtime/ik_aim_job.cc
+	${OZZ_THIRD_PARTY_DIR}/runtime/ik_two_bone_job.cc
+	${OZZ_THIRD_PARTY_DIR}/runtime/local_to_model_job.cc
+	${OZZ_THIRD_PARTY_DIR}/runtime/sampling_job.cc
+	${OZZ_THIRD_PARTY_DIR}/runtime/skeleton.cc
+	${OZZ_THIRD_PARTY_DIR}/runtime/skeleton_utils.cc
+	${OZZ_THIRD_PARTY_DIR}/runtime/track.cc
+	${OZZ_THIRD_PARTY_DIR}/runtime/track_sampling_job.cc
+	${OZZ_THIRD_PARTY_DIR}/runtime/track_triggering_job.cc
+	${OZZ_THIRD_PARTY_DIR}/base/containers/string_archive.cc
+	${OZZ_THIRD_PARTY_DIR}/base/io/archive.cc
+	${OZZ_THIRD_PARTY_DIR}/base/maths/math_archive.cc
+	${OZZ_THIRD_PARTY_DIR}/base/maths/simd_math_archive.cc
+	${OZZ_THIRD_PARTY_DIR}/base/maths/soa_math_archive.cc
+	${OZZ_THIRD_PARTY_DIR}/base/memory/allocator.cc
+	${OZZ_THIRD_PARTY_DIR}/base/platform.cc
+	)
+
+
+# AssetPipelineCmd
+# BunyLib
+# BunyTool
+# ispc_texcomp
+
 # Renderer
 set(RENDERER_GRAPHICS_DX11_FILES
     ${RENDERER_GRAPHICS_DIR}/Direct3D11/Direct3D11.cpp
@@ -598,7 +642,7 @@ set(OS_RESOURCES_FILES
 	${OS_RESOURCES_DIR}/Animation/ClipMask.h
 	${OS_RESOURCES_DIR}/Animation/Rig.cpp
 	${OS_RESOURCES_DIR}/Animation/Rig.h
-	${OS_RESOURCES_DIR}/Animation/SkeletonBatcher.h
+	${OS_RESOURCES_DIR}/Animation/SkeletonBatcher.cpp
 	${OS_RESOURCES_DIR}/Animation/SkeletonBatcher.h
     )
 
