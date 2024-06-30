@@ -123,143 +123,143 @@ endif()
 message("\n")
 
 set(THE_FORGE_DIR ../../The-Forge)
-set(GRAPHICS_DIR ${THE_FORGE_DIR}/Common_3/Graphics) 
-set(GRAPHICS_THIRD_PARTY_DIR ${GRAPHICS_DIR}/ThirdParty/OpenSource)
+set(TF_GRAPHICS_DIR ${THE_FORGE_DIR}/Common_3/Graphics) 
+set(TF_GRAPHICS_THIRD_PARTY_DIR ${GRAPHICS_DIR}/ThirdParty/OpenSource)
 
-set(RENDERER_DIR ${THE_FORGE_DIR}/Common_3/Renderer)
+set(TF_RENDERER_DIR ${THE_FORGE_DIR}/Common_3/Renderer)
 
-set(RESOURCES_DIR ${THE_FORGE_DIR}/Common_3/Resources)
-set(RESOURCE_ANIMATION ${RESOURCES_DIR}/AnimationSystem)
-set(RESOURCE_ANIMATION_THIRD_PARTY_DIR ${RESOURCE_ANIMATION}/ThirdParty/OpenSource)
-set(RESOURCE_LOADER ${RESOURCES_DIR}/ResourceLoader)
-set(RESOURCE_LOADER_THIRD_PARTY_DIR ${RESOURCE_LOADER}/ThirdParty/OpenSource)
+set(TF_RESOURCES_DIR ${THE_FORGE_DIR}/Common_3/Resources)
+set(TF_RESOURCE_ANIMATION ${RESOURCES_DIR}/AnimationSystem)
+set(TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR ${RESOURCE_ANIMATION}/ThirdParty/OpenSource)
+set(TF_RESOURCE_LOADER ${RESOURCES_DIR}/ResourceLoader)
+set(TF_RESOURCE_LOADER_THIRD_PARTY_DIR ${RESOURCE_LOADER}/ThirdParty/OpenSource)
 
-set(TOOLS_DIR ${THE_FORGE_DIR}/Common_3/Tools)
-set(TOOLS_THIRD_PARTY_DIR ${TOOLS_DIR}/ThirdParty/OpenSource)
+set(TF_TOOLS_DIR ${THE_FORGE_DIR}/Common_3/Tools)
+set(TF_TOOLS_THIRD_PARTY_DIR ${TOOLS_DIR}/ThirdParty/OpenSource)
 
-set(APPLICATION_DIR ${THE_FORGE_DIR}/Common_3/Application)
-set(APPLICATION_THIRD_PARTY_DIR ${APPLICATION_DIR}/ThirdParty/OpenSource)
+set(TF_APPLICATION_DIR ${THE_FORGE_DIR}/Common_3/Application)
+set(TF_APPLICATION_THIRD_PARTY_DIR ${APPLICATION_DIR}/ThirdParty/OpenSource)
 
-set(GAME_DIR ${THE_FORGE_DIR}/Common_3/Game)
-set(GAME_THIRD_PARTY_DIR ${GAME_DIR}/ThirdParty/OpenSource)
+set(TF_GAME_DIR ${THE_FORGE_DIR}/Common_3/Game)
+set(TF_GAME_THIRD_PARTY_DIR ${GAME_DIR}/ThirdParty/OpenSource)
 
-set(OS_DIR ${THE_FORGE_DIR}/Common_3/OS)
-set(OS_THIRD_PARTY_DIR ${OS_DIR}/ThirdPaty/OpenSource)
+set(TF_OS_DIR ${THE_FORGE_DIR}/Common_3/OS)
+set(TF_OS_THIRD_PARTY_DIR ${OS_DIR}/ThirdPaty/OpenSource)
 
-set(UTILITIES_DIR ${THE_FORGE_DIR}/Common_3/Utilities)
-set(UTILITIES_THIRD_PARTY_DIR ${UTILITIES_DIR}/ThirdParty/OpenSource)
+set(TF_UTILITIES_DIR ${THE_FORGE_DIR}/Common_3/Utilities)
+set(TF_UTILITIES_THIRD_PARTY_DIR ${UTILITIES_DIR}/ThirdParty/OpenSource)
 
 # Dependencies
 set(SPIRVTOOLS_SOURCE
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cfg.cpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cfg.hpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cpp.cpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cpp.hpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cross.cpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cross.hpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cross_parsed_ir.cpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cross_parsed_ir.hpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cross_util.cpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cross_util.hpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_glsl.cpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_glsl.hpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_hlsl.cpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_hlsl.hpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_msl.cpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_msl.hpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_parser.cpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_parser.hpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_reflect.cpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_reflect.hpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/SpirvTools.cpp
-    ${GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/SpirvTools.h
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cfg.cpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cfg.hpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cpp.cpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cpp.hpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cross.cpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cross.hpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cross_parsed_ir.cpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cross_parsed_ir.hpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cross_util.cpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_cross_util.hpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_glsl.cpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_glsl.hpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_hlsl.cpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_hlsl.hpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_msl.cpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_msl.hpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_parser.cpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_parser.hpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_reflect.cpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/spirv_reflect.hpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/SpirvTools.cpp
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/SPIRV_Cross/SpirvTools.h
     )
 
 add_library(SpirvTools STATIC ${SPIRVTOOLS_SOURCE})
 set_property(TARGET SpirvTools PROPERTY CXX_STANDARD 17)
 
 add_library(WinPixEventRuntime SHARED IMPORTED)
-set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_OS_DIR}/winpixeventruntime/bin/WinPixEventRuntime.dll)
-set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_IMPLIB ${THIRD_PARTY_OS_DIR}/winpixeventruntime/bin/WinPixEventRuntime.lib)
+set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_LOCATION ${TF_THIRD_PARTY_OS_DIR}/winpixeventruntime/bin/WinPixEventRuntime.dll)
+set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_IMPLIB ${TF_THIRD_PARTY_OS_DIR}/winpixeventruntime/bin/WinPixEventRuntime.lib)
 
 add_library(AGS SHARED IMPORTED)
-set_property(TARGET AGS PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_GRAPHIS_DIR}/ags/ags_lib/lib/amd_ags_x64.dll)
-set_property(TARGET AGS PROPERTY IMPORTED_IMPLIB ${THIRD_PARTY_GRAPHIS_DIR}/ags/ags_lib/lib/amd_ags_x64.lib)
-target_include_directories(AGS INTERFACE ${THIRD_PARTY_GRAPHIS_DIR}/ags)
+set_property(TARGET AGS PROPERTY IMPORTED_LOCATION ${TF_THIRD_PARTY_GRAPHIS_DIR}/ags/ags_lib/lib/amd_ags_x64.dll)
+set_property(TARGET AGS PROPERTY IMPORTED_IMPLIB ${TF_THIRD_PARTY_GRAPHIS_DIR}/ags/ags_lib/lib/amd_ags_x64.lib)
+target_include_directories(AGS INTERFACE ${TF_THIRD_PARTY_GRAPHIS_DIR}/ags)
 
 add_library(Nvapi STATIC IMPORTED)
-set_property(TARGET Nvapi PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_GRAPHIS_DIR}/nvapi/amd64/nvapi64.lib)
-target_include_directories(Nvapi INTERFACE ${THIRD_PARTY_GRAPHIS_DIR}/nvapi)
+set_property(TARGET Nvapi PROPERTY IMPORTED_LOCATION ${TF_THIRD_PARTY_GRAPHIS_DIR}/nvapi/amd64/nvapi64.lib)
+target_include_directories(Nvapi INTERFACE ${TF_THIRD_PARTY_GRAPHIS_DIR}/nvapi)
 
 add_library(DirectXShaderCompiler STATIC IMPORTED)
-set_property(TARGET DirectXShaderCompiler PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_GRAPHIS_DIR}/DirectXShaderCompiler/lib/x64/dxcompiler.lib)
+set_property(TARGET DirectXShaderCompiler PROPERTY IMPORTED_LOCATION ${TF_THIRD_PARTY_GRAPHIS_DIR}/DirectXShaderCompiler/lib/x64/dxcompiler.lib)
 
 add_library(VulkanMemoryAllocator INTERFACE)
-target_include_directories(VulkanMemoryAllocator INTERFACE ${THIRD_PARTY_GRAPHIS_DIR}/VulkanMemoryAllocator)
+target_include_directories(VulkanMemoryAllocator INTERFACE ${TF_THIRD_PARTY_GRAPHIS_DIR}/VulkanMemoryAllocator)
 
 add_library(D3D12MemoryAllocator INTERFACE)
-target_include_directories(D3D12MemoryAllocator INTERFACE ${THIRD_PARTY_GRAPHIS_DIR}/D3D12MemoryAllocator)
+target_include_directories(D3D12MemoryAllocator INTERFACE ${TF_THIRD_PARTY_GRAPHIS_DIR}/D3D12MemoryAllocator)
 
 set(IMGUI_FILES
-    ${APPLICATION_THIRD_PARTY_DIR}/imgui/imconfig.h
-    ${APPLICATION_THIRD_PARTY_DIR}/imgui/imgui_demo.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/imgui/imgui_draw.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/imgui/imgui_internal.h
-    ${APPLICATION_THIRD_PARTY_DIR}/imgui/imgui_widgets.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/imgui/imgui_tables.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/imgui/imgui.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/imgui/imgui.h
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/imgui/imconfig.h
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/imgui/imgui_demo.cpp
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/imgui/imgui_draw.cpp
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/imgui/imgui_internal.h
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/imgui/imgui_widgets.cpp
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/imgui/imgui_tables.cpp
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/imgui/imgui.cpp
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/imgui/imgui.h
     )
 add_library(Imgui STATIC ${IMGUI_FILES})
 
-set(APPLICATION_THIRD_PARTY_INPUT_DIR ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source)
+set(TF_APPLICATION_THIRD_PARTY_INPUT_DIR ${TF_APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source)
 set(GAINPUT_STATIC_FILES
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gainput.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputAllocator.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputButtonStickGesture.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/dev/GainputDev.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/dev/GainputMemoryStream.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/dev/GainputNetAddress.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/dev/GainputNetConnection.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/dev/GainputNetListener.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputDoubleClickGesture.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputHoldGesture.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputInputDeltaState.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputInputDevice.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/builtin/GainputInputDeviceBuiltIn.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/keyboard/GainputInputDeviceKeyboard.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/mouse/GainputInputDeviceMouse.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/pad/GainputInputDevicePad.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/touch/GainputInputDeviceTouch.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputInputManager.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputInputMap.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/recorder/GainputInputPlayer.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/recorder/GainputInputRecorder.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/recorder/GainputInputRecording.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputInputState.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputMapFilters.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputPinchGesture.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputRotateGesture.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputSimultaneouslyDownGesture.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputTapGesture.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/GainputHID.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/GainputHIDWhitelist.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/hidparsers/HIDParserPS4Controller.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/hidparsers/HIDParserPS5Controller.cpp
-	${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/hidparsers/HIDParserSwitchController.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gainput.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputAllocator.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputButtonStickGesture.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/dev/GainputDev.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/dev/GainputMemoryStream.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/dev/GainputNetAddress.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/dev/GainputNetConnection.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/dev/GainputNetListener.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputDoubleClickGesture.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputHoldGesture.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputInputDeltaState.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputInputDevice.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/builtin/GainputInputDeviceBuiltIn.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/keyboard/GainputInputDeviceKeyboard.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/mouse/GainputInputDeviceMouse.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/pad/GainputInputDevicePad.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/touch/GainputInputDeviceTouch.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputInputManager.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputInputMap.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/recorder/GainputInputPlayer.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/recorder/GainputInputRecorder.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/recorder/GainputInputRecording.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputInputState.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputMapFilters.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputPinchGesture.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputRotateGesture.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputSimultaneouslyDownGesture.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputTapGesture.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/GainputHID.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/GainputHIDWhitelist.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/hidparsers/HIDParserPS4Controller.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/hidparsers/HIDParserPS5Controller.cpp
+	${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/hidparsers/HIDParserSwitchController.cpp
     )
 
-set(GAINPUT_WINDOWS_FILES ${APPLICATION_THIRD_PARTY_INPUT_DIR}/hidapi/windows/hid.c)
-set(GAINPUT_LINUX_FILES ${APPLICATION_THIRD_PARTY_INPUT_DIR}/hidapi/linux/hid.c)
+set(GAINPUT_WINDOWS_FILES ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/hidapi/windows/hid.c)
+set(GAINPUT_LINUX_FILES ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/hidapi/linux/hid.c)
 set(GAINPUT_MACOS_FILES
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputMac.mm
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/pad/GainputInputDevicePadMac.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/mouse/GainputInputDeviceMouseMac.mm
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/mouse/GainputInputDeviceMouseMacRaw.mm
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/keyboard/GainputInputDeviceKeyboardMac.cpp
-    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/hidapi/mac/hid.c
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputMac.mm
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/pad/GainputInputDevicePadMac.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/mouse/GainputInputDeviceMouseMac.mm
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/mouse/GainputInputDeviceMouseMacRaw.mm
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/keyboard/GainputInputDeviceKeyboardMac.cpp
+    ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/hidapi/mac/hid.c
     )
-set(GAINPUT_IOS_FILES ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputIos.mm)
+set(GAINPUT_IOS_FILES ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputIos.mm)
 source_group(Core FILES ${GAINPUT_STATIC_FILES})
 source_group(MacOS FILES ${GAINPUT_MACOS_FILES})
 if(${APPLE_PLATFORM} MATCHES ON)
@@ -271,7 +271,7 @@ if(${WINDOWS} MATCHES ON)
 endif()
 
 add_library(GaInput STATIC ${GAINPUT_STATIC_FILES})
-target_include_directories(GaInput PUBLIC ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/include)
+target_include_directories(GaInput PUBLIC ${TF_APPLICATION_THIRD_PARTY_DIR}/gainput/lib/include)
 if (${APPLE_PLATFORM} MATCHES ON)
     set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=c++17 -stdlib=libc++ -x objective-c++")
     set_property(TARGET GaInput PROPERTY C_STANDARD 17)
@@ -279,39 +279,39 @@ if (${APPLE_PLATFORM} MATCHES ON)
 endif()
 
 set(LUA_FILES
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lapi.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lauxlib.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lbaselib.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lbitlib.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lcode.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lcorolib.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lctype.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/ldblib.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/ldebug.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/ldo.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/ldump.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lfunc.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lgc.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/linit.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/liolib.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/llex.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lmathlib.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lmem.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/loadlib.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lobject.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lopcodes.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/loslib.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lparser.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lstate.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lstring.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lstrlib.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/ltable.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/ltablib.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/ltm.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lundump.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lutf8lib.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lvm.c
-    ${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lzio.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lapi.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lauxlib.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lbaselib.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lbitlib.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lcode.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lcorolib.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lctype.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/ldblib.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/ldebug.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/ldo.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/ldump.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lfunc.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lgc.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/linit.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/liolib.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/llex.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lmathlib.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lmem.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/loadlib.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lobject.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lopcodes.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/loslib.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lparser.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lstate.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lstring.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lstrlib.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/ltable.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/ltablib.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/ltm.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lundump.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lutf8lib.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lvm.c
+    ${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lzio.c
     )
 add_library(Lua STATIC ${LUA_FILES})
 
@@ -320,213 +320,213 @@ set(THIRD_PARTY_DEPS Imgui GaInput Lua)
 # Tools
 # ozz-animation
 set(OZZ_FILES
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/additive_animation_builder.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/animation_builder.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/animation_optimizer.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_animation.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_animation_archive.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_animation_utils.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_skeleton.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_skeleton_archive.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_track.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/skeleton_builder.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/track_builder.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/track_optimizer.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/animation.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/animation_keyframe.h
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/animation_utils.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/blending_job.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/ik_aim_job.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/ik_two_bone_job.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/local_to_model_job.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/sampling_job.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/skeleton.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/skeleton_utils.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/track.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/track_sampling_job.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/track_triggering_job.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/containers/string_archive.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/io/archive.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/maths/math_archive.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/maths/simd_math_archive.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/maths/soa_math_archive.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/memory/allocator.cc
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/platform.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/additive_animation_builder.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/animation_builder.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/animation_optimizer.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_animation.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_animation_archive.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_animation_utils.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_skeleton.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_skeleton_archive.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_track.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/skeleton_builder.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/track_builder.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/track_optimizer.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/animation.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/animation_keyframe.h
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/animation_utils.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/blending_job.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/ik_aim_job.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/ik_two_bone_job.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/local_to_model_job.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/sampling_job.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/skeleton.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/skeleton_utils.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/track.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/track_sampling_job.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/track_triggering_job.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/containers/string_archive.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/io/archive.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/maths/math_archive.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/maths/simd_math_archive.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/maths/soa_math_archive.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/memory/allocator.cc
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/platform.cc
 	)
 
 
 # AssetPipelineCmd
 set(ASSET_PIPELINE_CMD_FILES
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/TressFX/TressFXAsset.h
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/TressFX/TressFXAsset.cpp
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/TressFX/TressFXFileFormat.h
-	${TOOLS_DIR}/AssetPipeline/src/AssetPipeline.cpp
-	${TOOLS_DIR}/AssetPipeline/src/AssetPipeline.h
-	${TOOLS_DIR}/AssetPipeline/src/AssetPipeline_Textures.cpp
-	${TOOLS_DIR}/AssetPipeline/src/AssetPipelineCmd.cpp
-	${TOOLS_DIR}/AssetPipeline/src/AssetPipelineConfig.h
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/allocator.cpp
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/clusterizer.cpp
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/indexcodec.cpp
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/indexgenerator.cpp
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/meshoptimizer.h
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/overdrawanalyzer.cpp
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/overdrawoptimizer.cpp
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/simplifier.cpp
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/spatialorder.cpp
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/stripifier.cpp
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vcacheanalyzer.cpp
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vcacheoptimizer.cpp
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vertexcodec.cpp
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vertexfilter.cpp
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vfetchanalyzer.cpp
-	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vfetchoptimizer.cpp
-	${UTILITIES_DIR}/FileSystem/ToolFileSystem.c
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/TressFX/TressFXAsset.h
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/TressFX/TressFXAsset.cpp
+	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/TressFX/TressFXFileFormat.h
+	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipeline.cpp
+	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipeline.h
+	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipeline_Textures.cpp
+	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipelineCmd.cpp
+	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipelineConfig.h
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/allocator.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/clusterizer.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/indexcodec.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/indexgenerator.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/meshoptimizer.h
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/overdrawanalyzer.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/overdrawoptimizer.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/simplifier.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/spatialorder.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/stripifier.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vcacheanalyzer.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vcacheoptimizer.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vertexcodec.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vertexfilter.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vfetchanalyzer.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vfetchoptimizer.cpp
+	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c
 	)
 # lz4
 set(LZ4_FILES
-	${UTILITIES_DIR}/ThirdParty/OpenSource/lz4/lz4.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/lz4/lz4hc.c
+	${TF_UTILITIES_DIR}/ThirdParty/OpenSource/lz4/lz4.c
+	${TF_UTILITIES_DIR}/ThirdParty/OpenSource/lz4/lz4hc.c
 	)
 
 # zstd
 set(ZSTD_FILES
-    ${UTILITIES_THIRD_PARTY_DIR}/zstd/common/debug.c
-    ${UTILITIES_THIRD_PARTY_DIR}/zstd/common/entropy_common.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/common/error_private.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/common/fse_decompress.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/common/pool.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/common/threading.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/common/xxhash.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/common/zstd_common.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/fse_compress.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/hist.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/huf_compress.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstdmt_compress.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_compress.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_compress_literals.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_compress_sequences.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_compress_superblock.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_double_fast.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_fast.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_lazy.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_ldm.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_opt.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/huf_decompress.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_ddict.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_decompress.c
-	${UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_decompress_block.c
+    ${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/common/debug.c
+    ${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/common/entropy_common.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/common/error_private.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/common/fse_decompress.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/common/pool.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/common/threading.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/common/xxhash.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/common/zstd_common.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/compress/fse_compress.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/compress/hist.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/compress/huf_compress.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstdmt_compress.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_compress.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_compress_literals.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_compress_sequences.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_compress_superblock.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_double_fast.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_fast.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_lazy.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_ldm.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_opt.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/huf_decompress.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_ddict.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_decompress.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_decompress_block.c
 	);
 
 # BunyLib
 set(BUNY_FILES
-	${TOOLS_DIR}/BunyArchive/Buny.c
-	${TOOLS_DIR}/BunyArchive/Buny.h
+	${TF_TOOLS_DIR}/BunyArchive/Buny.c
+	${TF_TOOLS_DIR}/BunyArchive/Buny.h
 	${LZ4_FILES}
 	${ZSTD_FILES}
 	)
 	
 # BunyTool
 set(BUNY_TOOL_FILES
-	${OS_DIR}/Windows/WindowsToolsFileSystem.cpp
-	${TOOLS_DIR}/BunyArchive/BunyTool.c
-	${TOOLS_DIR}/BunyArchive/VisualStudio/BunyTool.rc
-	${TOOLS_DIR}/BunyArchive/VisualStudio/icon.cio
-	${TOOLS_DIR}/BunyArchive/VisualStudio/resource.h
-	${UTILITIES_DIR}/FileSystem/ToolFileSystem.c
+	${TF_OS_DIR}/Windows/WindowsToolsFileSystem.cpp
+	${TF_TOOLS_DIR}/BunyArchive/BunyTool.c
+	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/BunyTool.rc
+	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/icon.cio
+	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/resource.h
+	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c
 	)
 	
 # ispc_texcomp
 set(ISPC_TEX_COMP_FILES
-	${TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp.cpp
-	${TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp.h
-	${TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp_astc.cpp
-	${TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/kernel.ispc
-	${TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/kernel_astc.ispc
+	${TF_TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp.h
+	${TF_TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp_astc.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/kernel.ispc
+	${TF_TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/kernel_astc.ispc
 	)
 	
 # Renderer
 set(GRAPHICS_DX11_FILES
-    ${GRAPHICS_DIR}/Direct3D11/Direct3D11.cpp
-    ${GRAPHICS_DIR}/Direct3D11/Direct3D11CapBuilder.h
-    ${GRAPHICS_DIR}/Direct3D11/Direct3D11Config.h
-    ${GRAPHICS_DIR}/Direct3D11/Direct3D11ShaderReflection.cpp
+    ${TF_GRAPHICS_DIR}/Direct3D11/Direct3D11.cpp
+    ${TF_GRAPHICS_DIR}/Direct3D11/Direct3D11CapBuilder.h
+    ${TF_GRAPHICS_DIR}/Direct3D11/Direct3D11Config.h
+    ${TF_GRAPHICS_DIR}/Direct3D11/Direct3D11ShaderReflection.cpp
     )
 
 set(GRAPHICS_DX12_FILES
-    ${GRAPHICS_DIR}/Direct3D12/Direct3D12.cpp
-    ${GRAPHICS_DIR}/Direct3D12/Direct3D12CapBuilder.h
-    ${GRAPHICS_DIR}/Direct3D12/Direct3D12Config.h
-    ${GRAPHICS_DIR}/Direct3D12/Direct3D12Hooks.cpp
-    ${GRAPHICS_DIR}/Direct3D12/Direct3D12Hooks.h
-    ${GRAPHICS_DIR}/Direct3D12/Direct3D12Raytracing.cpp
-    ${GRAPHICS_DIR}/Direct3D12/Direct3D12ShaderReflection.cpp
+    ${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12.cpp
+    ${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12CapBuilder.h
+    ${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12Config.h
+    ${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12Hooks.cpp
+    ${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12Hooks.h
+    ${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12Raytracing.cpp
+    ${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12ShaderReflection.cpp
     )
 
 set(GRAPHICS_VULKAN_FILES
-    ${GRAPHICS_DIR}/Vulkan/Vulkan.cpp
-    ${GRAPHICS_DIR}/Vulkan/VulkanCapsBuilder.h
-    ${GRAPHICS_DIR}/Vulkan/VulkanConfig.h
-    ${GRAPHICS_DIR}/Vulkan/VulkanRaytracing.cpp
-    ${GRAPHICS_DIR}/Vulkan/VulkanShaderReflection.cpp
+    ${TF_GRAPHICS_DIR}/Vulkan/Vulkan.cpp
+    ${TF_GRAPHICS_DIR}/Vulkan/VulkanCapsBuilder.h
+    ${TF_GRAPHICS_DIR}/Vulkan/VulkanConfig.h
+    ${TF_GRAPHICS_DIR}/Vulkan/VulkanRaytracing.cpp
+    ${TF_GRAPHICS_DIR}/Vulkan/VulkanShaderReflection.cpp
     )
 
 set(GRAPHICS_METAL_FILES
-    ${GRAPHICS_DIR}/Metal/MetalAvailabilityMacros.h
-    ${GRAPHICS_DIR}/Metal/MetalCapBuilder.h
-    ${GRAPHICS_DIR}/Metal/MetalConfig.h
-    ${GRAPHICS_DIR}/Metal/MetalMemoryAllocatorImpl.h
-    ${GRAPHICS_DIR}/Metal/MetalRaytracing.mm
-    ${GRAPHICS_DIR}/Metal/MetalRenderer.mm
-    ${GRAPHICS_DIR}/Metal/MetalShaderReflection.mm
+    ${TF_GRAPHICS_DIR}/Metal/MetalAvailabilityMacros.h
+    ${TF_GRAPHICS_DIR}/Metal/MetalCapBuilder.h
+    ${TF_GRAPHICS_DIR}/Metal/MetalConfig.h
+    ${TF_GRAPHICS_DIR}/Metal/MetalMemoryAllocatorImpl.h
+    ${TF_GRAPHICS_DIR}/Metal/MetalRaytracing.mm
+    ${TF_GRAPHICS_DIR}/Metal/MetalRenderer.mm
+    ${TF_GRAPHICS_DIR}/Metal/MetalShaderReflection.mm
     )
 	
 set(GRAPHICS_THIRD_PARTY_FILES
-	${GRAPHICS_THIRD_PARTY_DIR}/ags/AgsHelper.h
-    ${GRAPHICS_THIRD_PARTY_DIR}/nvapi/NvApiHelper.h
-    ${GRAPHICS_THIRD_PARTY_DIR}/ags/VulkanMemoryAllocator.h
+	${TF_GRAPHICS_THIRD_PARTY_DIR}/ags/AgsHelper.h
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/nvapi/NvApiHelper.h
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/ags/VulkanMemoryAllocator.h
 	)
 	
 set(GRAPHICS_INTERFACE_FILES
-	${GRAPHICS_DIR}/Interfaces/IGraphics.h
-    ${GRAPHICS_DIR}/Interfaces/IRay.h
-    ${GRAPHICS_DIR}/Interfaces/IShaderReflection.h
+	${TF_GRAPHICS_DIR}/Interfaces/IGraphics.h
+    ${TF_GRAPHICS_DIR}/Interfaces/IRay.h
+    ${TF_GRAPHICS_DIR}/Interfaces/IShaderReflection.h
 	)
 
 set(RENDERER_GRAPHICS_FILES
-    ${GRAPHICS_DIR}/CommonShaderReflection.cpp
-    ${GRAPHICS_DIR}/GraphicsConfig.cpp
-	${GRAPHICS_DIR}/GraphicsConfig.h
-    ${GRAPHICS_DIR}/PickRenderingAPI.cpp
+    ${TF_GRAPHICS_DIR}/CommonShaderReflection.cpp
+    ${TF_GRAPHICS_DIR}/GraphicsConfig.cpp
+	${TF_GRAPHICS_DIR}/GraphicsConfig.h
+    ${TF_GRAPHICS_DIR}/PickRenderingAPI.cpp
     )
 
 set(RENDERER_INTERFACE_FILES
-	${RENDERER_DIR}/Interfaces/IParticleSystem.h
-	${RENDERER_DIR}/Interfaces/IVisibilityBuffer.h
-	${RENDERER_DIR}/Interfaces/IVisibilityBuffer2.h	
+	${TF_RENDERER_DIR}/Interfaces/IParticleSystem.h
+	${TF_RENDERER_DIR}/Interfaces/IVisibilityBuffer.h
+	${TF_RENDERER_DIR}/Interfaces/IVisibilityBuffer2.h	
 	)
 
 set(RENDERER__FILES
 	${RENDERER_INTERFACE_FILES}
-	${RENDERER_DIR}/ParticleSystem/ParticleSystem.cpp
-	${RENDERER_DIR}/VisibilityBuffer/VisibilityBuffer.cpp
+	${TF_RENDERER_DIR}/ParticleSystem/ParticleSystem.cpp
+	${TF_RENDERER_DIR}/VisibilityBuffer/VisibilityBuffer.cpp
 	)
 
 set(RESOURCES_INTERFACES_FILES
-	${RESOURCES_DIR}/Interfaces/IResourceLoader.h
+	${TF_RESOURCES_DIR}/Interfaces/IResourceLoader.h
 	)
 	
 set(RESOURCES_FILES
 	${RESOURCES_INTERFACES_FILES}
-	${RESOURCES_DIR}/ResourceLoader/ResourceLoader.cpp
-	${RESOURCES_DIR}/ResourceLoader/TextureContainers.h
+	${TF_RESOURCES_DIR}/ResourceLoader/ResourceLoader.cpp
+	${TF_RESOURCES_DIR}/ResourceLoader/TextureContainers.h
 	)
 	
 set(TOOLS_FILES
-	${TOOLS_DIR}/Network/Network.c
-	${TOOLS_DIR}/Network/Network.h
-	${TOOLS_DIR}/ReloadServer/ReloadServer.cpp
-	${TOOLS_DIR}/ReloadServer/ReloadServer.h
+	${TF_TOOLS_DIR}/Network/Network.c
+	${TF_TOOLS_DIR}/Network/Network.h
+	${TF_TOOLS_DIR}/ReloadServer/ReloadServer.cpp
+	${TF_TOOLS_DIR}/ReloadServer/ReloadServer.h
 	)
 
 set(RENDERER_SOURCE_FILES 
@@ -586,63 +586,63 @@ endif()
 
 # OS
 set(APP_INTERFACES_FILES
-	${APPLICATION_DIR}/Interfaces/IApp.h
-	${APPLICATION_DIR}/Interfaces/ICameraController.h
-	${APPLICATION_DIR}/Interfaces/IFont.h
-	${APPLICATION_DIR}/Interfaces/IInput.h
-	${APPLICATION_DIR}/Interfaces/IMiddleware.h
-	${APPLICATION_DIR}/Interfaces/IProfiler.h
-	${APPLICATION_DIR}/Interfaces/IScreenshot.h
-	${APPLICATION_DIR}/Interfaces/IUI.h
+	${TF_APPLICATION_DIR}/Interfaces/IApp.h
+	${TF_APPLICATION_DIR}/Interfaces/ICameraController.h
+	${TF_APPLICATION_DIR}/Interfaces/IFont.h
+	${TF_APPLICATION_DIR}/Interfaces/IInput.h
+	${TF_APPLICATION_DIR}/Interfaces/IMiddleware.h
+	${TF_APPLICATION_DIR}/Interfaces/IProfiler.h
+	${TF_APPLICATION_DIR}/Interfaces/IScreenshot.h
+	${TF_APPLICATION_DIR}/Interfaces/IUI.h
 	)
 
 set(APP_FILES
 	${APP_INTERFACES_FILES}
-	${APPLICATION_DIR}/Fonts/FontSystem.cpp
-	${APPLICATION_DIR}/Fonts/stbtt.cpp
-	${APPLICATION_DIR}/Profiler/GpuProfiler.cpp
-    ${APPLICATION_DIR}/Profiler/GpuProfiler.h
-	${APPLICATION_DIR}/Profiler/ProfilerBase.cpp
-    ${APPLICATION_DIR}/Profiler/ProfilerBase.h
-    ${APPLICATION_DIR}/Profiler/ProfilerHTML.h
-	${APPLICATION_DIR}/UI/UI.cpp
-	${APPLICATION_DIR}/CameraController.cpp
-    ${APPLICATION_DIR}/Config.h
-    ${APPLICATION_DIR}/InputSystem.cpp
-	${APPLICATION_DIR}/RemoteControl.cpp
-	${APPLICATION_DIR}/Screenshot.cpp
+	${TF_APPLICATION_DIR}/Fonts/FontSystem.cpp
+	${TF_APPLICATION_DIR}/Fonts/stbtt.cpp
+	${TF_APPLICATION_DIR}/Profiler/GpuProfiler.cpp
+    ${TF_APPLICATION_DIR}/Profiler/GpuProfiler.h
+	${TF_APPLICATION_DIR}/Profiler/ProfilerBase.cpp
+    ${TF_APPLICATION_DIR}/Profiler/ProfilerBase.h
+    ${TF_APPLICATION_DIR}/Profiler/ProfilerHTML.h
+	${TF_APPLICATION_DIR}/UI/UI.cpp
+	${TF_APPLICATION_DIR}/CameraController.cpp
+    ${TF_APPLICATION_DIR}/Config.h
+    ${TF_APPLICATION_DIR}/InputSystem.cpp
+	${TF_APPLICATION_DIR}/RemoteControl.cpp
+	${TF_APPLICATION_DIR}/Screenshot.cpp
 	)
 
 set(GAME_INTERFACES_FILES ${GAME_DIR}/Interfaces/IScripting.h
 set(GAME_FILES
 	${GAME_INTERFACES_FILES}
-	${GAME_DIR}/Scripting/LuaManager.cpp
-    ${GAME_DIR}/Scripting/LuaManager.h
-    ${GAME_DIR}/Scripting/LuaManagerCommon.h
-    ${GAME_DIR}/Scripting/LuaManagerImpl.cpp
-    ${GAME_DIR}/Scripting/LuaManagerImpl.h
-    ${GAME_DIR}/Scripting/LuaSystem.cpp
-    ${GAME_DIR}/Scripting/LunaV.hpp)
+	${TF_GAME_DIR}/Scripting/LuaManager.cpp
+    ${TF_GAME_DIR}/Scripting/LuaManager.h
+    ${TF_GAME_DIR}/Scripting/LuaManagerCommon.h
+    ${TF_GAME_DIR}/Scripting/LuaManagerImpl.cpp
+    ${TF_GAME_DIR}/Scripting/LuaManagerImpl.h
+    ${TF_GAME_DIR}/Scripting/LuaSystem.cpp
+    ${TF_GAME_DIR}/Scripting/LunaV.hpp)
 
 set{OS_INTERFACES_FILES ${OS_DIR}/Interfaces/IOperatingSystem.h)
 set(OS_FILES
     ${OS_INTERFACES_FILES}
-    ${OS_DIR}/CPUConfig.cpp
-    ${OS_DIR}/CPUConfig.h
-    ${OS_DIR}/WindowSystem/WindowSystem.cpp
+    ${TF_OS_DIR}/CPUConfig.cpp
+    ${TF_OS_DIR}/CPUConfig.h
+    ${TF_OS_DIR}/WindowSystem/WindowSystem.cpp
     )
 
 if (${WINDOWS} MATCHES ON)
     set(OS_FILES
-		${OS_DIR}/Windows/WindowsBase.cpp
-        ${OS_DIR}/Windows/WindowsFileSystem.cpp
-        ${OS_DIR}/Windows/WindowsLog.c
-        ${OS_DIR}/Windows/WindowsStackTraceDump.cpp
-        ${OS_DIR}/Windows/WindowsStackTraceDump.h
-        ${OS_DIR}/Windows/WindowsThread.c
-        ${OS_DIR}/Windows/WindowsTime.c
-        ${OS_DIR}/Windows/WindowsWindow.cpp
-		${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_x86_windows.c
+		${TF_OS_DIR}/Windows/WindowsBase.cpp
+        ${TF_OS_DIR}/Windows/WindowsFileSystem.cpp
+        ${TF_OS_DIR}/Windows/WindowsLog.c
+        ${TF_OS_DIR}/Windows/WindowsStackTraceDump.cpp
+        ${TF_OS_DIR}/Windows/WindowsStackTraceDump.h
+        ${TF_OS_DIR}/Windows/WindowsThread.c
+        ${TF_OS_DIR}/Windows/WindowsTime.c
+        ${TF_OS_DIR}/Windows/WindowsWindow.cpp
+		${TF_OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_x86_windows.c
 		#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_aarch64_iOS.c
 		#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_aarch64_linux_or_android.c
 		#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_x86_freebsd.c
@@ -652,80 +652,80 @@ if (${WINDOWS} MATCHES ON)
 endif ()
 
 set(OS_DARWIN_FILES
-    ${OS_DIR}/Darwin/CocoaFileSystem.mm
-    ${OS_DIR}/Darwin/DarwinLog.c
-    ${OS_DIR}/Darwin/DarwinThread.c)
+    ${TF_OS_DIR}/Darwin/CocoaFileSystem.mm
+    ${TF_OS_DIR}/Darwin/DarwinLog.c
+    ${TF_OS_DIR}/Darwin/DarwinThread.c)
 		
 if (${APPLE_PLATFORM} MATCHES ON)
 	set(OS_FILES 
-	${OS_DIR}/Darwin/macOSAppDelegate.h
-	${OS_DIR}/Darwin/macOSAppDelegate.m
-	${OS_DIR}/Darwin/macOSBase.mm
-	${OS_DIR}/Darwin/macOSWindow.mm
+	${TF_OS_DIR}/Darwin/macOSAppDelegate.h
+	${TF_OS_DIR}/Darwin/macOSAppDelegate.m
+	${TF_OS_DIR}/Darwin/macOSBase.mm
+	${TF_OS_DIR}/Darwin/macOSWindow.mm
 	${OS_FILES} 
 	${OS_DARWIN_FILES})
 endif ()
 
 set(RESOURCES_FILES
-    ${RESOURCES_DIR}/Animation/AnimatedObject.cpp
-    ${RESOURCES_DIR}/Animation/AnimatedObject.h
-    ${RESOURCES_DIR}/Animation/Animation.cpp
-    ${RESOURCES_DIR}/Animation/Animation.h
-	${RESOURCES_DIR}/Animation/Clip.cpp
-	${RESOURCES_DIR}/Animation/Clip.h
-	${RESOURCES_DIR}/Animation/ClipController.cpp
-	${RESOURCES_DIR}/Animation/ClipController.h
-	${RESOURCES_DIR}/Animation/ClipMask.cpp
-	${RESOURCES_DIR}/Animation/ClipMask.h
-	${RESOURCES_DIR}/Animation/Rig.cpp
-	${RESOURCES_DIR}/Animation/Rig.h
-	${RESOURCES_DIR}/Animation/SkeletonBatcher.cpp
-	${RESOURCES_DIR}/Animation/SkeletonBatcher.h
+    ${TF_RESOURCES_DIR}/Animation/AnimatedObject.cpp
+    ${TF_RESOURCES_DIR}/Animation/AnimatedObject.h
+    ${TF_RESOURCES_DIR}/Animation/Animation.cpp
+    ${TF_RESOURCES_DIR}/Animation/Animation.h
+	${TF_RESOURCES_DIR}/Animation/Clip.cpp
+	${TF_RESOURCES_DIR}/Animation/Clip.h
+	${TF_RESOURCES_DIR}/Animation/ClipController.cpp
+	${TF_RESOURCES_DIR}/Animation/ClipController.h
+	${TF_RESOURCES_DIR}/Animation/ClipMask.cpp
+	${TF_RESOURCES_DIR}/Animation/ClipMask.h
+	${TF_RESOURCES_DIR}/Animation/Rig.cpp
+	${TF_RESOURCES_DIR}/Animation/Rig.h
+	${TF_RESOURCES_DIR}/Animation/SkeletonBatcher.cpp
+	${TF_RESOURCES_DIR}/Animation/SkeletonBatcher.h
     )
 
 set(UTILLITIES_INTERFACES_FILES
-	${UTILITIES_DIR}/Interfaces/IFileSystem.h
-	${UTILITIES_DIR}/Interfaces/ILog.h
-	${UTILITIES_DIR}/Interfaces/IMemory.h
-	${UTILITIES_DIR}/Interfaces/IThread.h
-	${UTILITIES_DIR}/Interfaces/ITime.h
-	${UTILITIES_DIR}/Interfaces/IToolFileSystem.h
+	${TF_UTILITIES_DIR}/Interfaces/IFileSystem.h
+	${TF_UTILITIES_DIR}/Interfaces/ILog.h
+	${TF_UTILITIES_DIR}/Interfaces/IMemory.h
+	${TF_UTILITIES_DIR}/Interfaces/IThread.h
+	${TF_UTILITIES_DIR}/Interfaces/ITime.h
+	${TF_UTILITIES_DIR}/Interfaces/IToolFileSystem.h
 	)
 	
 set(UTILLITY_FILES
 	${UTILLITIES_INTERFACES_FILES}
-	${UTILITIES_DIR}/FileSystem/FileSystem.c
-	${UTILITIES_DIR}/FileSystem/SystemRun.c
-	${UTILITIES_DIR}/Log/Log.c
-	${UTILITIES_DIR}/Log/Log.h
-	${UTILITIES_DIR}/Math/Algorithms.c
-	${UTILITIES_DIR}/Math/Algorithms.h
-	${UTILITIES_DIR}/Math/AlgorithmsImpl.h
-	${UTILITIES_DIR}/Math/BStringHashMap.h
-	${UTILITIES_DIR}/Math/MathTypes.h
-	${UTILITIES_DIR}/Math/Random.h
-	${UTILITIES_DIR}/Math/RTree.h
-	${UTILITIES_DIR}/Math/ShaderUtilities.h
-	${UTILITIES_DIR}/Math/StbDs.c
 	${LZ4_FILES}
 	${ZSTD_FILES}
-	${UTILITIES_DIR}/MemoryTracking/MemoryTracking.c
-	${UTILITIES_DIR}/MemoryTracking/NoMemoryDefines.h
-	${UTILITIES_DIR}/ThirdParty/OpenSource/bstrlib/bstrlib.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/bstrlib/bstrlib.h
-	${UTILITIES_DIR}/ThirdParty/OpenSource/rmem/src/rmem_get_module_info.cpp
-	${UTILITIES_DIR}/ThirdParty/OpenSource/rmem/src/rmem_hook.cpp
-	${UTILITIES_DIR}/ThirdParty/OpenSource/rmem/src/rmem_lib.cpp
-	${UTILITIES_DIR}/Threading/Atomic.h
-	${UTILITIES_DIR}/Threading/ThreadSystem.c
-	${UTILITIES_DIR}/Threading/ThreadSystem.h
-	${UTILITIES_DIR}/CustomUIWidgets.h
-	${UTILITIES_DIR}/RingBuffer.h
-	${UTILITIES_DIR}/Timer.c
+	${TF_UTILITIES_DIR}/FileSystem/FileSystem.c
+	${TF_UTILITIES_DIR}/FileSystem/SystemRun.c
+	${TF_UTILITIES_DIR}/Log/Log.c
+	${TF_UTILITIES_DIR}/Log/Log.h
+	${TF_UTILITIES_DIR}/Math/Algorithms.c
+	${TF_UTILITIES_DIR}/Math/Algorithms.h
+	${TF_UTILITIES_DIR}/Math/AlgorithmsImpl.h
+	${TF_UTILITIES_DIR}/Math/BStringHashMap.h
+	${TF_UTILITIES_DIR}/Math/MathTypes.h
+	${TF_UTILITIES_DIR}/Math/Random.h
+	${TF_UTILITIES_DIR}/Math/RTree.h
+	${TF_UTILITIES_DIR}/Math/ShaderUtilities.h
+	${TF_UTILITIES_DIR}/Math/StbDs.c
+	${TF_UTILITIES_DIR}/MemoryTracking/MemoryTracking.c
+	${TF_UTILITIES_DIR}/MemoryTracking/NoMemoryDefines.h
+	${UTILITIES_THIRD_PARTY_DIR}/bstrlib/bstrlib.c
+	${UTILITIES_THIRD_PARTY_DIR}/bstrlib/bstrlib.h
+	${UTILITIES_THIRD_PARTY_DIR}/rmem/src/rmem_get_module_info.cpp
+	${UTILITIES_THIRD_PARTY_DIR}/rmem/src/rmem_hook.cpp
+	${UTILITIES_THIRD_PARTY_DIR}/rmem/src/rmem_lib.cpp
+	${TF_UTILITIES_DIR}/Threading/Atomic.h
+	${TF_UTILITIES_DIR}/Threading/ThreadSystem.c
+	${TF_UTILITIES_DIR}/Threading/ThreadSystem.h
+	${TF_UTILITIES_DIR}/CustomUIWidgets.h
+	${TF_UTILITIES_DIR}/RingBuffer.h
+	${TF_UTILITIES_DIR}/Timer.c
 	)
 
 if (${APPLE_PLATFORM} MATCHES ON)
-	set(UTILLITY_FILES ${UTILITIES_DIR}/FileSystem/UnixFileSystem.cpp)
+	set(UTILLITY_FILES ${TF_UTILITIES_DIR}/FileSystem/UnixFileSystem.cpp)
 endif ()
 
 set(OS_SOURCE_FILES
@@ -735,17 +735,10 @@ set(OS_SOURCE_FILES
 	)
 	
 # Merge
-set(FORGE_FILES
-    ${RENDERER_SOURCE_FILES}
-	${OS_SOURCE_FILES}
-    )
+set(FORGE_FILES ${RENDERER_SOURCE_FILES} ${OS_SOURCE_FILES})
 
 add_library(The-Forge STATIC ${FORGE_FILES})
-
-target_include_directories(The-Forge PUBLIC
-	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/include
-    )
-
+target_include_directories(The-Forge PUBLIC ${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/include)
 target_link_libraries(The-Forge PUBLIC ${RENDERER_LIBRARIES} ${THIRD_PARTY_DEPS})
 target_link_directories(The-Forge PUBLIC ${RENDERER_LIBRARY_PATHS})
 target_compile_definitions(The-Forge PUBLIC ${RENDERER_DEFINES})
@@ -759,11 +752,11 @@ endif()
 install(TARGETS Lua DESTINATION lib)
 install(
 	FILES 
-	${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lua.h
-	${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/luaconf.h
-	${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lualib.h
-	${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lauxlib.h
-	${GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lua.hpp
+	${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lua.h
+	${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/luaconf.h
+	${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lualib.h
+	${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lauxlib.h
+	${TF_GAME_THIRD_PARTY_DIR}/lua-5.3.5/src/lua.hpp
 	DESTINATION include
 	)
 		
@@ -775,7 +768,7 @@ install(
 
 install(
 	FILES 
-	${APPLICATION_DIR}/Config.h
+	${TF_APPLICATION_DIR}/Config.h
 	DESTINATION include/The-Forge/Application
 	)
 	
@@ -787,8 +780,8 @@ install(
 	
 install(
 	FILES 
-	${GAME_DIR}/Scripting/LuaManager.h
-	${GAME_DIR}/Scripting/LuaManagerCommon.h
+	${TF_GAME_DIR}/Scripting/LuaManager.h
+	${TF_GAME_DIR}/Scripting/LuaManagerCommon.h
 	DESTINATION include/The-Forge/Game/Scripting/
 	)
 	
@@ -806,25 +799,25 @@ install(
 	
 install(
 	FILES 
-	${GRAPHICS_DIR}/Direct3D12/Direct3D12Config.h
+	${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12Config.h
 	DESTINATION include/The-Forge/Graphics/Direct3D12/
 	)
 	
 install(
 	FILES 
-	${GRAPHICS_DIR}/Direct3D11/Direct3D11Config.h
+	${TF_GRAPHICS_DIR}/Direct3D11/Direct3D11Config.h
 	DESTINATION include/The-Forge/Graphics/Direct3D11/
 	)
 	
 install(
 	FILES 
-	${GRAPHICS_DIR}/Vulkan/VulkanConfig.h
+	${TF_GRAPHICS_DIR}/Vulkan/VulkanConfig.h
 	DESTINATION include/The-Forge/Graphics/Vulkan/
 	)
 
 install(
 	DIRECTORY 
-	${GRAPHICS_DIR}/ThirdParty/
+	${TF_GRAPHICS_DIR}/ThirdParty/
 	DESTINATION include/The-Forge/Graphics/ThirdParty/
 	FILES_MATCHING
 	PATTERN "*.hpp"
@@ -839,13 +832,13 @@ install(
 	
 install(
 	FILES 
-	${OS_DIR}/CPUConfig.h
+	${TF_OS_DIR}/CPUConfig.h
 	DESTINATION include/The-Forge/OS/
 	)
 	
 install(
 	FILES 
-	${OS_THIRD_PARTY_DIR}/cpu_features/src/cpu_features_types.h
+	${TF_OS_THIRD_PARTY_DIR}/cpu_features/src/cpu_features_types.h
 	DESTINATION include/The-Forge/OS/ThirdParty/OpenSource/cpu_features/src/
 	)
 	
@@ -863,7 +856,7 @@ install(
 	
 install(
 	FILES 
-	${RESOURCE_LOADER_THIRD_PARTY_DIR}/tinyimageformat/tinyimageformat_base.h
+	${TF_RESOURCE_LOADER_THIRD_PARTY_DIR}/tinyimageformat/tinyimageformat_base.h
 	DESTINATION include/The-Forge/Resources/ResourceLoader/ThirdParty/OpenSource/tinyimageformat/
 	)
 	
@@ -875,32 +868,32 @@ install(
 		
 install(
 	FILES 
-	${UTILITIES_DIR}/Log/Log.h
+	${TF_UTILITIES_DIR}/Log/Log.h
 	DESTINATION include/The-Forge/Utilities/Log/
 	)
 	
 install(
 	FILES 
-	${UTILITIES_DIR}/Math/MathTypes.h
-	${UTILITIES_DIR}/Math/Random.h
+	${TF_UTILITIES_DIR}/Math/MathTypes.h
+	${TF_UTILITIES_DIR}/Math/Random.h
 	DESTINATION include/The-Forge/Utilities/Math/
 	)
 	
 install(
 	FILES 
-	${UTILITIES_DIR}/Threading/Atomics.h
+	${TF_UTILITIES_DIR}/Threading/Atomics.h
 	DESTINATION include/The-Forge/Utilities/Threading/
 	)
 
 install(
 	FILES 
-	${UTILITIES_DIR}/RingBuffer.h
+	${TF_UTILITIES_DIR}/RingBuffer.h
 	DESTINATION include/The-Forge/Utilities/
 	)
 	
 install(
 	DIRECTORY 
-	${UTILITIES_THIRD_PARTY_DIR}
+	${TF_UTILITIES_THIRD_PARTY_DIR}
 	DESTINATION include/The-Forge/Utilities/ThirdParty/
 	FILES_MATCHING 
 	PATTERN "*.hpp"
@@ -919,20 +912,20 @@ install(TARGETS The-Forge Imgui GaInput SpirvTools DESTINATION lib)
 
 install(
 	FILES 
-	${GRAPHICS_THIRD_PARTY_DIR}/ags/ags_lib/lib/amd_ags_x64.lib
-	${GRAPHICS_THIRD_PARTY_DIR}/OpenSource/nvapi/amd64/nvapi64.lib
-	${GRAPHICS_THIRD_PARTY_DIR}/DirectXShaderCompiler/lib/x64/dxcompiler.lib
-	${OS_THIRD_PARTY_DIR}/winpixeventruntime/bin/WinPixEventRuntime.lib
-	${OS_THIRD_PARTY_DIR}/winpixeventruntime/bin/WinPixEventRuntime_UAP.lib
+	${TF_GRAPHICS_THIRD_PARTY_DIR}/ags/ags_lib/lib/amd_ags_x64.lib
+	${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/nvapi/amd64/nvapi64.lib
+	${TF_GRAPHICS_THIRD_PARTY_DIR}/DirectXShaderCompiler/lib/x64/dxcompiler.lib
+	${TF_OS_THIRD_PARTY_DIR}/winpixeventruntime/bin/WinPixEventRuntime.lib
+	${TF_OS_THIRD_PARTY_DIR}/winpixeventruntime/bin/WinPixEventRuntime_UAP.lib
 	DESTINATION lib
 	)
 	
 install(
 	FILES 
-	${GRAPHICS_THIRD_PARTY_DIR}/ags/ags_lib/lib/amd_ags_x64.dll
-	${GRAPHICS_THIRD_PARTY_DIR}/Direct3d12Agility/bin/x64/D3D12Core.dll
-	${GRAPHICS_THIRD_PARTY_DIR}/Direct3d12Agility/bin/x64/d3d12SDKLayers.dll
-	${OS_THIRD_PARTY_DIR}/winpixeventruntime/bin/WinPixEventRuntime.dll
-	${OS_THIRD_PARTY_DIR}/winpixeventruntime/bin/WinPixEventRuntime_UAP.dll
+	${TF_GRAPHICS_THIRD_PARTY_DIR}/ags/ags_lib/lib/amd_ags_x64.dll
+	${TF_GRAPHICS_THIRD_PARTY_DIR}/Direct3d12Agility/bin/x64/D3D12Core.dll
+	${TF_GRAPHICS_THIRD_PARTY_DIR}/Direct3d12Agility/bin/x64/d3d12SDKLayers.dll
+	${TF_OS_THIRD_PARTY_DIR}/winpixeventruntime/bin/WinPixEventRuntime.dll
+	${TF_OS_THIRD_PARTY_DIR}/winpixeventruntime/bin/WinPixEventRuntime_UAP.dll
 	DESTINATION bin
 	)
