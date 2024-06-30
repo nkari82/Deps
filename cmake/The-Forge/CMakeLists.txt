@@ -382,10 +382,68 @@ set(ASSET_PIPELINE_CMD_FILES
 	${TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vfetchoptimizer.cpp
 	${UTILITIES_DIR}/FileSystem/ToolFileSystem.c
 	)
-# BunyLib
-# BunyTool
-# ispc_texcomp
+# lz4
+set(LZ4_FILES
+	${UTILITIES_DIR}/ThirdParty/OpenSource/lz4/lz4.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/lz4/lz4hc.c
+	)
 
+# zstd
+set(ZSTD_FILES
+    ${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/debug.c
+    ${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/entropy_common.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/error_private.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/fse_decompress.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/pool.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/threading.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/xxhash.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/zstd_common.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/fse_compress.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/hist.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/huf_compress.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstdmt_compress.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_compress.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_compress_literals.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_compress_sequences.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_compress_superblock.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_double_fast.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_fast.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_lazy.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_ldm.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_opt.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/decompress/huf_decompress.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/decompress/zstd_ddict.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/decompress/zstd_decompress.c
+	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/decompress/zstd_decompress_block.c
+	);
+
+# BunyLib
+set(BUNY_FILES
+	${TOOLS_DIR}/BunyArchive/Buny.c
+	${TOOLS_DIR}/BunyArchive/Buny.h
+	${LZ4_FILES}
+	${ZSTD_FILES}
+	)
+	
+# BunyTool
+set(BUNY_TOOL_FILES
+	${OS_DIR}/Windows/WindowsToolsFileSystem.cpp
+	${TOOLS_DIR}/BunyArchive/BunyTool.c
+	${TOOLS_DIR}/BunyArchive/VisualStudio/BunyTool.rc
+	${TOOLS_DIR}/BunyArchive/VisualStudio/icon.cio
+	${TOOLS_DIR}/BunyArchive/VisualStudio/resource.h
+	${UTILITIES_DIR}/FileSystem/ToolFileSystem.c
+	)
+	
+# ispc_texcomp
+set(ISPC_TEX_COMP_FILES
+	${TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp.cpp
+	${TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp.h
+	${TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp_astc.cpp
+	${TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/kernel.ispc
+	${TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/kernel_astc.ispc
+	)
+	
 # Renderer
 set(GRAPHICS_DX11_FILES
     ${GRAPHICS_DIR}/Direct3D11/Direct3D11.cpp
@@ -688,39 +746,15 @@ set(UTILLITY_FILES
 	${UTILITIES_DIR}/Math/RTree.h
 	${UTILITIES_DIR}/Math/ShaderUtilities.h
 	${UTILITIES_DIR}/Math/StbDs.c
+	${LZ4_FILES}
+	${ZSTD_FILES}
 	${UTILITIES_DIR}/MemoryTracking/MemoryTracking.c
 	${UTILITIES_DIR}/MemoryTracking/NoMemoryDefines.h
 	${UTILITIES_DIR}/ThirdParty/OpenSource/bstrlib/bstrlib.c
 	${UTILITIES_DIR}/ThirdParty/OpenSource/bstrlib/bstrlib.h
-	${UTILITIES_DIR}/ThirdParty/OpenSource/lz4/lz4.c
 	${UTILITIES_DIR}/ThirdParty/OpenSource/rmem/src/rmem_get_module_info.cpp
 	${UTILITIES_DIR}/ThirdParty/OpenSource/rmem/src/rmem_hook.cpp
 	${UTILITIES_DIR}/ThirdParty/OpenSource/rmem/src/rmem_lib.cpp
-    ${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/debug.c
-    ${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/entropy_common.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/error_private.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/fse_decompress.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/pool.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/threading.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/xxhash.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/zstd_common.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/fse_compress.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/hist.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/huf_compress.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstdmt_compress.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_compress.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_compress_literals.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_compress_sequences.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_compress_superblock.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_double_fast.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_fast.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_lazy.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_ldm.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_opt.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/decompress/huf_decompress.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/decompress/zstd_ddict.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/decompress/zstd_decompress.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/decompress/zstd_decompress_block.c
 	${UTILITIES_DIR}/Threading/Atomic.h
 	${UTILITIES_DIR}/Threading/ThreadSystem.c
 	${UTILITIES_DIR}/Threading/ThreadSystem.h
