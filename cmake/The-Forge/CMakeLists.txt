@@ -183,22 +183,22 @@ set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_LOCATION ${TF_THIRD_PAR
 set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_IMPLIB ${TF_THIRD_PARTY_OS_DIR}/winpixeventruntime/bin/WinPixEventRuntime.lib)
 
 add_library(AGS SHARED IMPORTED)
-set_property(TARGET AGS PROPERTY IMPORTED_LOCATION ${TF_THIRD_PARTY_GRAPHIS_DIR}/ags/ags_lib/lib/amd_ags_x64.dll)
-set_property(TARGET AGS PROPERTY IMPORTED_IMPLIB ${TF_THIRD_PARTY_GRAPHIS_DIR}/ags/ags_lib/lib/amd_ags_x64.lib)
-target_include_directories(AGS INTERFACE ${TF_THIRD_PARTY_GRAPHIS_DIR}/ags)
+set_property(TARGET AGS PROPERTY IMPORTED_LOCATION ${TF_GRAPHICS_THIRD_PARTY_DIR}/ags/ags_lib/lib/amd_ags_x64.dll)
+set_property(TARGET AGS PROPERTY IMPORTED_IMPLIB ${TF_GRAPHICS_THIRD_PARTY_DIR}/ags/ags_lib/lib/amd_ags_x64.lib)
+target_include_directories(AGS INTERFACE ${TF_GRAPHICS_THIRD_PARTY_DIR}/ags)
 
 add_library(Nvapi STATIC IMPORTED)
-set_property(TARGET Nvapi PROPERTY IMPORTED_LOCATION ${TF_THIRD_PARTY_GRAPHIS_DIR}/nvapi/amd64/nvapi64.lib)
-target_include_directories(Nvapi INTERFACE ${TF_THIRD_PARTY_GRAPHIS_DIR}/nvapi)
+set_property(TARGET Nvapi PROPERTY IMPORTED_LOCATION ${TF_GRAPHICS_THIRD_PARTY_DIR}/nvapi/amd64/nvapi64.lib)
+target_include_directories(Nvapi INTERFACE ${TF_GRAPHICS_THIRD_PARTY_DIR}/nvapi)
 
 add_library(DirectXShaderCompiler STATIC IMPORTED)
-set_property(TARGET DirectXShaderCompiler PROPERTY IMPORTED_LOCATION ${TF_THIRD_PARTY_GRAPHIS_DIR}/DirectXShaderCompiler/lib/x64/dxcompiler.lib)
+set_property(TARGET DirectXShaderCompiler PROPERTY IMPORTED_LOCATION ${TF_GRAPHICS_THIRD_PARTY_DIR}/DirectXShaderCompiler/lib/x64/dxcompiler.lib)
 
 add_library(VulkanMemoryAllocator INTERFACE)
-target_include_directories(VulkanMemoryAllocator INTERFACE ${TF_THIRD_PARTY_GRAPHIS_DIR}/VulkanMemoryAllocator)
+target_include_directories(VulkanMemoryAllocator INTERFACE ${TF_GRAPHICS_THIRD_PARTY_DIR}/VulkanMemoryAllocator)
 
 add_library(D3D12MemoryAllocator INTERFACE)
-target_include_directories(D3D12MemoryAllocator INTERFACE ${TF_THIRD_PARTY_GRAPHIS_DIR}/D3D12MemoryAllocator)
+target_include_directories(D3D12MemoryAllocator INTERFACE ${TF_GRAPHICS_THIRD_PARTY_DIR}/D3D12MemoryAllocator)
 
 set(IMGUI_FILES
     ${TF_APPLICATION_THIRD_PARTY_DIR}/imgui/imconfig.h
