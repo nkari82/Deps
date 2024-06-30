@@ -124,23 +124,30 @@ message("\n")
 
 set(THE_FORGE_DIR ../../The-Forge)
 set(GRAPHICS_DIR ${THE_FORGE_DIR}/Common_3/Graphics) 
-set(GRAPHICS_THIRD_PARTY_DIR ${THE_FORGE_DIR}/Common_3/Graphics/ThirdParty/OpenSource)
+set(GRAPHICS_THIRD_PARTY_DIR ${GRAPHICS_DIR}/ThirdParty/OpenSource)
 
 set(RENDERER_DIR ${THE_FORGE_DIR}/Common_3/Renderer)
+
 set(RESOURCES_DIR ${THE_FORGE_DIR}/Common_3/Resources)
+set(RESOURCE_ANIMATION ${RESOURCES_DIR}/AnimationSystem)
+set(RESOURCE_ANIMATION_THIRD_PARTY_DIR ${RESOURCE_ANIMATION}/ThirdParty/OpenSource)
+set(RESOURCE_LOADER ${RESOURCES_DIR}/ResourceLoader)
+set(RESOURCE_LOADER_THIRD_PARTY_DIR ${RESOURCE_LOADER}/ThirdParty/OpenSource)
 
 set(TOOLS_DIR ${THE_FORGE_DIR}/Common_3/Tools)
-set(TOOLS_THIRD_PARTY_DIR ${THE_FORGE_DIR}/Common_3/Tools/ThirdParty/OpenSource)
+set(TOOLS_THIRD_PARTY_DIR ${TOOLS_DIR}/ThirdParty/OpenSource)
 
 set(APPLICATION_DIR ${THE_FORGE_DIR}/Common_3/Application)
 set(APPLICATION_THIRD_PARTY_DIR ${APPLICATION_DIR}/ThirdParty/OpenSource)
 
 set(GAME_DIR ${THE_FORGE_DIR}/Common_3/Game)
-set(GAME_THIRD_PARTY_DIR ${THE_FORGE_DIR}/Common_3/Game/ThirdParty/OpenSource)
+set(GAME_THIRD_PARTY_DIR ${GAME_DIR}/ThirdParty/OpenSource)
 
 set(OS_DIR ${THE_FORGE_DIR}/Common_3/OS)
-set(RESOURCES_DIR ${THE_FORGE_DIR}/Common_3/Resources)
+set(OS_THIRD_PARTY_DIR ${OS_DIR}/ThirdPaty/OpenSource)
+
 set(UTILITIES_DIR ${THE_FORGE_DIR}/Common_3/Utilities)
+set(UTILITIES_THIRD_PARTY_DIR ${UTILITIES_DIR}/ThirdParty/OpenSource)
 
 # Dependencies
 set(SPIRVTOOLS_SOURCE
@@ -171,7 +178,6 @@ set(SPIRVTOOLS_SOURCE
 add_library(SpirvTools STATIC ${SPIRVTOOLS_SOURCE})
 set_property(TARGET SpirvTools PROPERTY CXX_STANDARD 17)
 
-
 add_library(WinPixEventRuntime SHARED IMPORTED)
 set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_OS_DIR}/winpixeventruntime/bin/WinPixEventRuntime.dll)
 set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_IMPLIB ${THIRD_PARTY_OS_DIR}/winpixeventruntime/bin/WinPixEventRuntime.lib)
@@ -180,7 +186,6 @@ add_library(AGS SHARED IMPORTED)
 set_property(TARGET AGS PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_GRAPHIS_DIR}/ags/ags_lib/lib/amd_ags_x64.dll)
 set_property(TARGET AGS PROPERTY IMPORTED_IMPLIB ${THIRD_PARTY_GRAPHIS_DIR}/ags/ags_lib/lib/amd_ags_x64.lib)
 target_include_directories(AGS INTERFACE ${THIRD_PARTY_GRAPHIS_DIR}/ags)
-
 
 add_library(Nvapi STATIC IMPORTED)
 set_property(TARGET Nvapi PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_GRAPHIS_DIR}/nvapi/amd64/nvapi64.lib)
@@ -191,7 +196,6 @@ set_property(TARGET DirectXShaderCompiler PROPERTY IMPORTED_LOCATION ${THIRD_PAR
 
 add_library(VulkanMemoryAllocator INTERFACE)
 target_include_directories(VulkanMemoryAllocator INTERFACE ${THIRD_PARTY_GRAPHIS_DIR}/VulkanMemoryAllocator)
-
 
 add_library(D3D12MemoryAllocator INTERFACE)
 target_include_directories(D3D12MemoryAllocator INTERFACE ${THIRD_PARTY_GRAPHIS_DIR}/D3D12MemoryAllocator)
@@ -315,9 +319,6 @@ set(THIRD_PARTY_DEPS Imgui GaInput Lua)
 		
 # Tools
 # ozz-animation
-set(RESOURCE_ANIMATION ${RESOURCES_DIR}/AnimationSystem)
-set(RESOURCE_ANIMATION_THIRD_PARTY_DIR ${RESOURCE_ANIMATION}/ThirdParty/OpenSource)
-
 set(OZZ_FILES
 	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/additive_animation_builder.cc
 	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/animation_builder.cc
@@ -390,31 +391,31 @@ set(LZ4_FILES
 
 # zstd
 set(ZSTD_FILES
-    ${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/debug.c
-    ${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/entropy_common.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/error_private.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/fse_decompress.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/pool.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/threading.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/xxhash.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/common/zstd_common.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/fse_compress.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/hist.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/huf_compress.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstdmt_compress.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_compress.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_compress_literals.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_compress_sequences.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_compress_superblock.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_double_fast.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_fast.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_lazy.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_ldm.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/compress/zstd_opt.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/decompress/huf_decompress.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/decompress/zstd_ddict.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/decompress/zstd_decompress.c
-	${UTILITIES_DIR}/ThirdParty/OpenSource/zstd/decompress/zstd_decompress_block.c
+    ${UTILITIES_THIRD_PARTY_DIR}/zstd/common/debug.c
+    ${UTILITIES_THIRD_PARTY_DIR}/zstd/common/entropy_common.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/common/error_private.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/common/fse_decompress.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/common/pool.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/common/threading.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/common/xxhash.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/common/zstd_common.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/fse_compress.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/hist.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/huf_compress.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstdmt_compress.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_compress.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_compress_literals.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_compress_sequences.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_compress_superblock.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_double_fast.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_fast.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_lazy.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_ldm.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/compress/zstd_opt.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/huf_decompress.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_ddict.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_decompress.c
+	${UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_decompress_block.c
 	);
 
 # BunyLib
@@ -774,7 +775,7 @@ install(
 
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Application/Config.h
+	${APPLICATION_DIR}/Config.h
 	DESTINATION include/The-Forge/Application
 	)
 	
@@ -786,8 +787,8 @@ install(
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Game/Scripting/LuaManager.h
-	${THE_FORGE_DIR}/Common_3/Game/Scripting/LuaManagerCommon.h
+	${GAME_DIR}/Scripting/LuaManager.h
+	${GAME_DIR}/Scripting/LuaManagerCommon.h
 	DESTINATION include/The-Forge/Game/Scripting/
 	)
 	
@@ -799,31 +800,31 @@ install(
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Graphics/GraphicsConfig.h
+	${GRAPHICS_DIR}/GraphicsConfig.h
 	DESTINATION include/The-Forge/Graphics/
 	)
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Graphics/Direct3D12/Direct3D12Config.h
+	${GRAPHICS_DIR}/Direct3D12/Direct3D12Config.h
 	DESTINATION include/The-Forge/Graphics/Direct3D12/
 	)
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Graphics/Direct3D11/Direct3D11Config.h
+	${GRAPHICS_DIR}/Direct3D11/Direct3D11Config.h
 	DESTINATION include/The-Forge/Graphics/Direct3D11/
 	)
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Graphics/Vulkan/VulkanConfig.h
+	${GRAPHICS_DIR}/Vulkan/VulkanConfig.h
 	DESTINATION include/The-Forge/Graphics/Vulkan/
 	)
 
 install(
 	DIRECTORY 
-	${THE_FORGE_DIR}/Common_3/Graphics/ThirdParty/
+	${GRAPHICS_DIR}/ThirdParty/
 	DESTINATION include/The-Forge/Graphics/ThirdParty/
 	FILES_MATCHING
 	PATTERN "*.hpp"
@@ -838,13 +839,13 @@ install(
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/OS/CPUConfig.h
+	${OS_DIR}/CPUConfig.h
 	DESTINATION include/The-Forge/OS/
 	)
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource/cpu_features/src/cpu_features_types.h
+	${OS_THIRD_PARTY_DIR}/cpu_features/src/cpu_features_types.h
 	DESTINATION include/The-Forge/OS/ThirdParty/OpenSource/cpu_features/src/
 	)
 	
@@ -862,7 +863,7 @@ install(
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Resources/ResourceLoader/ThirdParty/OpenSource/tinyimageformat/tinyimageformat_base.h
+	${RESOURCE_LOADER_THIRD_PARTY_DIR}/tinyimageformat/tinyimageformat_base.h
 	DESTINATION include/The-Forge/Resources/ResourceLoader/ThirdParty/OpenSource/tinyimageformat/
 	)
 	
@@ -874,32 +875,32 @@ install(
 		
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Utilities/Log/Log.h
+	${UTILITIES_DIR}/Log/Log.h
 	DESTINATION include/The-Forge/Utilities/Log/
 	)
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Utilities/Math/MathTypes.h
-	${THE_FORGE_DIR}/Common_3/Utilities/Math/Random.h
+	${UTILITIES_DIR}/Math/MathTypes.h
+	${UTILITIES_DIR}/Math/Random.h
 	DESTINATION include/The-Forge/Utilities/Math/
 	)
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Utilities/Threading/Atomics.h
+	${UTILITIES_DIR}/Threading/Atomics.h
 	DESTINATION include/The-Forge/Utilities/Threading/
 	)
 
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Utilities/RingBuffer.h
+	${UTILITIES_DIR}/RingBuffer.h
 	DESTINATION include/The-Forge/Utilities/
 	)
 	
 install(
 	DIRECTORY 
-	${THE_FORGE_DIR}/Common_3/Utilities/ThirdParty/OpenSource/
+	${UTILITIES_THIRD_PARTY_DIR}
 	DESTINATION include/The-Forge/Utilities/ThirdParty/
 	FILES_MATCHING 
 	PATTERN "*.hpp"
@@ -918,20 +919,20 @@ install(TARGETS The-Forge Imgui GaInput SpirvTools DESTINATION lib)
 
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Graphics/ThirdParty/OpenSource/ags/ags_lib/lib/amd_ags_x64.lib
-	${THE_FORGE_DIR}/Common_3/Graphics/ThirdParty/OpenSource/nvapi/amd64/nvapi64.lib
-	${THE_FORGE_DIR}/Common_3/Graphics/ThirdParty/OpenSource/DirectXShaderCompiler/lib/x64/dxcompiler.lib
-	${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource/winpixeventruntime/bin/WinPixEventRuntime.lib
-	${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource/winpixeventruntime/bin/WinPixEventRuntime_UAP.lib
+	${GRAPHICS_THIRD_PARTY_DIR}/ags/ags_lib/lib/amd_ags_x64.lib
+	${GRAPHICS_THIRD_PARTY_DIR}/OpenSource/nvapi/amd64/nvapi64.lib
+	${GRAPHICS_THIRD_PARTY_DIR}/DirectXShaderCompiler/lib/x64/dxcompiler.lib
+	${OS_THIRD_PARTY_DIR}/winpixeventruntime/bin/WinPixEventRuntime.lib
+	${OS_THIRD_PARTY_DIR}/winpixeventruntime/bin/WinPixEventRuntime_UAP.lib
 	DESTINATION lib
 	)
 	
 install(
 	FILES 
-	${THE_FORGE_DIR}/Common_3/Graphics/ThirdParty/OpenSource/ags/ags_lib/lib/amd_ags_x64.dll
-	${THE_FORGE_DIR}/Common_3/Graphics/ThirdParty/OpenSource/Direct3d12Agility/bin/x64/D3D12Core.dll
-	${THE_FORGE_DIR}/Common_3/Graphics/ThirdParty/OpenSource/Direct3d12Agility/bin/x64/d3d12SDKLayers.dll
-	${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource/winpixeventruntime/bin/WinPixEventRuntime.dll
-	${THE_FORGE_DIR}/Common_3/OS/ThirdParty/OpenSource/winpixeventruntime/bin/WinPixEventRuntime_UAP.dll
+	${GRAPHICS_THIRD_PARTY_DIR}/ags/ags_lib/lib/amd_ags_x64.dll
+	${GRAPHICS_THIRD_PARTY_DIR}/Direct3d12Agility/bin/x64/D3D12Core.dll
+	${GRAPHICS_THIRD_PARTY_DIR}/Direct3d12Agility/bin/x64/d3d12SDKLayers.dll
+	${OS_THIRD_PARTY_DIR}/winpixeventruntime/bin/WinPixEventRuntime.dll
+	${OS_THIRD_PARTY_DIR}/winpixeventruntime/bin/WinPixEventRuntime_UAP.dll
 	DESTINATION bin
 	)
