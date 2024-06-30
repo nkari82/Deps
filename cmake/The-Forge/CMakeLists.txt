@@ -124,30 +124,30 @@ message("\n")
 
 set(THE_FORGE_DIR ../../The-Forge)
 set(TF_GRAPHICS_DIR ${THE_FORGE_DIR}/Common_3/Graphics) 
-set(TF_GRAPHICS_THIRD_PARTY_DIR ${GRAPHICS_DIR}/ThirdParty/OpenSource)
+set(TF_GRAPHICS_THIRD_PARTY_DIR ${TF_GRAPHICS_DIR}/ThirdParty/OpenSource)
 
 set(TF_RENDERER_DIR ${THE_FORGE_DIR}/Common_3/Renderer)
 
 set(TF_RESOURCES_DIR ${THE_FORGE_DIR}/Common_3/Resources)
-set(TF_RESOURCE_ANIMATION ${RESOURCES_DIR}/AnimationSystem)
-set(TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR ${RESOURCE_ANIMATION}/ThirdParty/OpenSource)
-set(TF_RESOURCE_LOADER ${RESOURCES_DIR}/ResourceLoader)
-set(TF_RESOURCE_LOADER_THIRD_PARTY_DIR ${RESOURCE_LOADER}/ThirdParty/OpenSource)
+set(TF_RESOURCE_ANIMATION ${TF_RESOURCES_DIR}/AnimationSystem)
+set(TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR ${TF_RESOURCE_ANIMATION}/ThirdParty/OpenSource)
+set(TF_RESOURCE_LOADER ${TF_RESOURCES_DIR}/ResourceLoader)
+set(TF_RESOURCE_LOADER_THIRD_PARTY_DIR ${TF_RESOURCE_LOADER}/ThirdParty/OpenSource)
 
 set(TF_TOOLS_DIR ${THE_FORGE_DIR}/Common_3/Tools)
-set(TF_TOOLS_THIRD_PARTY_DIR ${TOOLS_DIR}/ThirdParty/OpenSource)
+set(TF_TOOLS_THIRD_PARTY_DIR ${TF_TOOLS_DIR}/ThirdParty/OpenSource)
 
 set(TF_APPLICATION_DIR ${THE_FORGE_DIR}/Common_3/Application)
-set(TF_APPLICATION_THIRD_PARTY_DIR ${APPLICATION_DIR}/ThirdParty/OpenSource)
+set(TF_APPLICATION_THIRD_PARTY_DIR ${TF_APPLICATION_DIR}/ThirdParty/OpenSource)
 
 set(TF_GAME_DIR ${THE_FORGE_DIR}/Common_3/Game)
-set(TF_GAME_THIRD_PARTY_DIR ${GAME_DIR}/ThirdParty/OpenSource)
+set(TF_GAME_THIRD_PARTY_DIR ${TF_GAME_DIR}/ThirdParty/OpenSource)
 
 set(TF_OS_DIR ${THE_FORGE_DIR}/Common_3/OS)
-set(TF_OS_THIRD_PARTY_DIR ${OS_DIR}/ThirdPaty/OpenSource)
+set(TF_OS_THIRD_PARTY_DIR ${TF_OS_DIR}/ThirdPaty/OpenSource)
 
 set(TF_UTILITIES_DIR ${THE_FORGE_DIR}/Common_3/Utilities)
-set(TF_UTILITIES_THIRD_PARTY_DIR ${UTILITIES_DIR}/ThirdParty/OpenSource)
+set(TF_UTILITIES_THIRD_PARTY_DIR ${TF_UTILITIES_DIR}/ThirdParty/OpenSource)
 
 # Dependencies
 set(SPIRVTOOLS_SOURCE
@@ -416,7 +416,7 @@ set(ZSTD_FILES
 	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_ddict.c
 	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_decompress.c
 	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_decompress_block.c
-	);
+	)
 
 # BunyLib
 set(BUNY_FILES
@@ -484,7 +484,7 @@ set(GRAPHICS_METAL_FILES
 set(GRAPHICS_THIRD_PARTY_FILES
 	${TF_GRAPHICS_THIRD_PARTY_DIR}/ags/AgsHelper.h
     ${TF_GRAPHICS_THIRD_PARTY_DIR}/nvapi/NvApiHelper.h
-    ${TF_GRAPHICS_THIRD_PARTY_DIR}/ags/VulkanMemoryAllocator.h
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/VulkanMemoryAllocator/VulkanMemoryAllocator.h
 	)
 	
 set(GRAPHICS_INTERFACE_FILES
@@ -513,20 +513,20 @@ set(RENDERER__FILES
 	)
 
 set(RESOURCES_INTERFACES_FILES
-	${TF_RESOURCES_DIR}/Interfaces/IResourceLoader.h
+	${TF_RESOURCE_LOADER}/Interfaces/IResourceLoader.h
 	)
 	
 set(RESOURCES_FILES
 	${RESOURCES_INTERFACES_FILES}
-	${TF_RESOURCES_DIR}/ResourceLoader/ResourceLoader.cpp
-	${TF_RESOURCES_DIR}/ResourceLoader/TextureContainers.h
+	${TF_RESOURCE_LOADER}/ResourceLoader.cpp
+	${TF_RESOURCE_LOADER}/TextureContainers.h
 	)
 	
 set(TOOLS_FILES
 	${TF_TOOLS_DIR}/Network/Network.c
 	${TF_TOOLS_DIR}/Network/Network.h
-	${TF_TOOLS_DIR}/ReloadServer/ReloadServer.cpp
-	${TF_TOOLS_DIR}/ReloadServer/ReloadServer.h
+	${TF_TOOLS_DIR}/ReloadServer/ReloadClient.cpp
+	${TF_TOOLS_DIR}/ReloadServer/ReloadClient.h
 	)
 
 set(RENDERER_SOURCE_FILES 
@@ -667,20 +667,20 @@ if (${APPLE_PLATFORM} MATCHES ON)
 endif ()
 
 set(RESOURCES_FILES
-    ${TF_RESOURCES_DIR}/Animation/AnimatedObject.cpp
-    ${TF_RESOURCES_DIR}/Animation/AnimatedObject.h
-    ${TF_RESOURCES_DIR}/Animation/Animation.cpp
-    ${TF_RESOURCES_DIR}/Animation/Animation.h
-	${TF_RESOURCES_DIR}/Animation/Clip.cpp
-	${TF_RESOURCES_DIR}/Animation/Clip.h
-	${TF_RESOURCES_DIR}/Animation/ClipController.cpp
-	${TF_RESOURCES_DIR}/Animation/ClipController.h
-	${TF_RESOURCES_DIR}/Animation/ClipMask.cpp
-	${TF_RESOURCES_DIR}/Animation/ClipMask.h
-	${TF_RESOURCES_DIR}/Animation/Rig.cpp
-	${TF_RESOURCES_DIR}/Animation/Rig.h
-	${TF_RESOURCES_DIR}/Animation/SkeletonBatcher.cpp
-	${TF_RESOURCES_DIR}/Animation/SkeletonBatcher.h
+    ${TF_RESOURCE_ANIMATION}/Animation/AnimatedObject.cpp
+    ${TF_RESOURCE_ANIMATION}/Animation/AnimatedObject.h
+    ${TF_RESOURCE_ANIMATION}/Animation/Animation.cpp
+    ${TF_RESOURCE_ANIMATION}/Animation/Animation.h
+	${TF_RESOURCE_ANIMATION}/Animation/Clip.cpp
+	${TF_RESOURCE_ANIMATION}/Animation/Clip.h
+	${TF_RESOURCE_ANIMATION}/Animation/ClipController.cpp
+	${TF_RESOURCE_ANIMATION}/Animation/ClipController.h
+	${TF_RESOURCE_ANIMATION}/Animation/ClipMask.cpp
+	${TF_RESOURCE_ANIMATION}/Animation/ClipMask.h
+	${TF_RESOURCE_ANIMATION}/Animation/Rig.cpp
+	${TF_RESOURCE_ANIMATION}/Animation/Rig.h
+	${TF_RESOURCE_ANIMATION}/Animation/SkeletonBatcher.cpp
+	${TF_RESOURCE_ANIMATION}/Animation/SkeletonBatcher.h
     )
 
 set(UTILLITIES_INTERFACES_FILES
@@ -711,12 +711,12 @@ set(UTILLITY_FILES
 	${TF_UTILITIES_DIR}/Math/StbDs.c
 	${TF_UTILITIES_DIR}/MemoryTracking/MemoryTracking.c
 	${TF_UTILITIES_DIR}/MemoryTracking/NoMemoryDefines.h
-	${UTILITIES_THIRD_PARTY_DIR}/bstrlib/bstrlib.c
-	${UTILITIES_THIRD_PARTY_DIR}/bstrlib/bstrlib.h
-	${UTILITIES_THIRD_PARTY_DIR}/rmem/src/rmem_get_module_info.cpp
-	${UTILITIES_THIRD_PARTY_DIR}/rmem/src/rmem_hook.cpp
-	${UTILITIES_THIRD_PARTY_DIR}/rmem/src/rmem_lib.cpp
-	${TF_UTILITIES_DIR}/Threading/Atomic.h
+	${TF_UTILITIES_THIRD_PARTY_DIR}/bstrlib/bstrlib.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/bstrlib/bstrlib.h
+	${TF_UTILITIES_THIRD_PARTY_DIR}/rmem/src/rmem_get_module_info.cpp
+	${TF_UTILITIES_THIRD_PARTY_DIR}/rmem/src/rmem_hook.cpp
+	${TF_UTILITIES_THIRD_PARTY_DIR}/rmem/src/rmem_lib.cpp
+	${TF_UTILITIES_DIR}/Threading/Atomics.h
 	${TF_UTILITIES_DIR}/Threading/ThreadSystem.c
 	${TF_UTILITIES_DIR}/Threading/ThreadSystem.h
 	${TF_UTILITIES_DIR}/CustomUIWidgets.h
