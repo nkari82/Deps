@@ -541,27 +541,14 @@ if(${APPLE_PLATFORM} MATCHES ON)
     find_library(APPLE_METALKIT MetalKit)
     find_library(APPLE_METALPS MetalPerformanceShaders)
 
-    set(RENDERER_LIBRARIES 
-		${RENDERER_LIBRARIES}
-        ${APPLE_METAL}
-        ${APPLE_METALKIT}
-        ${APPLE_METALPS}
-        )
-
-    set(RENDERER_SOURCE_FILES 
-		${RENDERER_SOURCE_FILES} 
-		${GRAPHICS_METAL_FILES})
+    set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES} ${APPLE_METAL} ${APPLE_METALKIT} ${APPLE_METALPS})
+    set(RENDERER_SOURCE_FILES ${RENDERER_SOURCE_FILES} ${GRAPHICS_METAL_FILES})
 
     find_library(APPLE_APPKIT AppKit)
     find_library(APPLE_QUARTZCORE QuartzCore)
     find_library(APPLE_IOKIT IOKit)
 
-    set(RENDERER_LIBRARIES
-        ${RENDERER_LIBRARIES}
-        ${APPLE_QUARTZCORE}
-        ${APPLE_APPKIT}
-        ${APPLE_IOKIT}
-        )
+    set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES} ${APPLE_QUARTZCORE} ${APPLE_APPKIT} ${APPLE_IOKIT})
 endif()
 
 if(${VULKAN} MATCHES ON)
@@ -574,53 +561,26 @@ if(${VULKAN} MATCHES ON)
     endif()
 
     set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES} VulkanMemoryAllocator SpirvTools)
-    set(RENDERER_SOURCE_FILES 
-		${RENDERER_SOURCE_FILES} 
-		${GRAPHICS_VULKAN_FILES})
-
+    set(RENDERER_SOURCE_FILES  ${RENDERER_SOURCE_FILES}  ${GRAPHICS_VULKAN_FILES})
     set(RENDERER_LIBRARY_PATHS ${Vulkan_INCLUDE_DIRS})
 
 endif()
 
 if(${DX11} MATCHES ON)
-    set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES}
-            DirectXShaderCompiler
-            "d3d11.lib"
-            )
-    set(RENDERER_SOURCE_FILES 
-		${RENDERER_SOURCE_FILES} 
-		${GRAPHICS_DX11_FILES})
+    set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES} DirectXShaderCompiler "d3d11.lib")
+    set(RENDERER_SOURCE_FILES  ${RENDERER_SOURCE_FILES} ${GRAPHICS_DX11_FILES})
 endif()
 
 if(${DX12} MATCHES ON)
-    set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES}
-            D3D12MemoryAllocator
-            )
-
-    set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES}
-            "d3d12.lib"
-            )
-
-    set(RENDERER_SOURCE_FILES 
-		${RENDERER_SOURCE_FILES} 
-		${GRAPHICS_DX12_FILES})
+    set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES} D3D12MemoryAllocator)
+    set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES} "d3d12.lib")
+    set(RENDERER_SOURCE_FILES ${RENDERER_SOURCE_FILES} ${GRAPHICS_DX12_FILES})
 endif()
 
 if(${WINDOWS} MATCHES ON)
-    set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES}
-         WinPixEventRuntime
-         AGS
-         Nvapi
-         )
-
-    set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES}
-        "Xinput9_1_0.lib"
-        "ws2_32.lib"
-        )
-
-    set(RENDERER_DEFINES ${RENDERER_DEFINES}
-        "_WINDOWS"
-		)
+    set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES} WinPixEventRuntime AGS Nvapi)
+    set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES} "Xinput9_1_0.lib" "ws2_32.lib")
+    set(RENDERER_DEFINES ${RENDERER_DEFINES} "_WINDOWS")
 endif()
 
 # OS
@@ -782,12 +742,7 @@ set(FORGE_FILES
 add_library(The-Forge STATIC ${FORGE_FILES})
 
 target_include_directories(The-Forge PUBLIC
-	${THE_FORGE_DIR}/Common_3/
-	${GRAPHICS_INTERFACE_FILES}
-	${RESOURCES_INTERFACES_FILES}
-    ${GRAPHICS_DIR}/GraphicsConfig.h
-	${GRAPHICS_DIR}/GPUConfig.h
-	${RESOURCES_DIR}/ResourceLoader/TextureContainers.h
+	${RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/include
     )
 
 target_link_libraries(The-Forge PUBLIC ${RENDERER_LIBRARIES} ${THIRD_PARTY_DEPS})
