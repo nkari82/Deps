@@ -208,54 +208,54 @@ set(IMGUI_FILES
     )
 add_library(Imgui STATIC ${IMGUI_FILES})
 
-
+set(APPLICATION_THIRD_PARTY_INPUT_DIR ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source)
 set(GAINPUT_STATIC_FILES
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gainput.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputAllocator.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gestures/GainputButtonStickGesture.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/dev/GainputDev.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/dev/GainputMemoryStream.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/dev/GainputNetAddress.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/dev/GainputNetConnection.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/dev/GainputNetListener.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gestures/GainputDoubleClickGesture.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gestures/GainputHoldGesture.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputInputDeltaState.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputInputDevice.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/builtin/GainputInputDeviceBuiltIn.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/keyboard/GainputInputDeviceKeyboard.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/mouse/GainputInputDeviceMouse.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/pad/GainputInputDevicePad.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/touch/GainputInputDeviceTouch.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputInputManager.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputInputMap.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/recorder/GainputInputPlayer.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/recorder/GainputInputRecorder.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/recorder/GainputInputRecording.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputInputState.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputMapFilters.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gestures/GainputPinchGesture.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gestures/GainputRotateGesture.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gestures/GainputSimultaneouslyDownGesture.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/gestures/GainputTapGesture.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/hid/GainputHID.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/hid/GainputHIDWhitelist.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/hid/hidparsers/HIDParserPS4Controller.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/hid/hidparsers/HIDParserPS5Controller.cpp
-	${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/hid/hidparsers/HIDParserSwitchController.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gainput.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputAllocator.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputButtonStickGesture.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/dev/GainputDev.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/dev/GainputMemoryStream.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/dev/GainputNetAddress.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/dev/GainputNetConnection.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/dev/GainputNetListener.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputDoubleClickGesture.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputHoldGesture.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputInputDeltaState.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputInputDevice.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/builtin/GainputInputDeviceBuiltIn.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/keyboard/GainputInputDeviceKeyboard.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/mouse/GainputInputDeviceMouse.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/pad/GainputInputDevicePad.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/touch/GainputInputDeviceTouch.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputInputManager.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputInputMap.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/recorder/GainputInputPlayer.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/recorder/GainputInputRecorder.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/recorder/GainputInputRecording.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputInputState.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputMapFilters.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputPinchGesture.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputRotateGesture.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputSimultaneouslyDownGesture.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/gestures/GainputTapGesture.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/GainputHID.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/GainputHIDWhitelist.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/hidparsers/HIDParserPS4Controller.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/hidparsers/HIDParserPS5Controller.cpp
+	${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/hidparsers/HIDParserSwitchController.cpp
     )
 
-set(GAINPUT_WINDOWS_FILES ${APPLICATION_THIRDPARTY_DIR}/gainput/lib/source/hidapi/windows/hid.c)
-set(GAINPUT_LINUX_FILES ${APPLICATION_THIRDPARTY_DIR}/gainput/lib/source/hidapi/linux/hid.c)
+set(GAINPUT_WINDOWS_FILES ${APPLICATION_THIRD_PARTY_INPUT_DIR}/hidapi/windows/hid.c)
+set(GAINPUT_LINUX_FILES ${APPLICATION_THIRD_PARTY_INPUT_DIR}/hidapi/linux/hid.c)
 set(GAINPUT_MACOS_FILES
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputMac.mm
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/pad/GainputInputDevicePadMac.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/mouse/GainputInputDeviceMouseMac.mm
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/mouse/GainputInputDeviceMouseMacRaw.mm
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/keyboard/GainputInputDeviceKeyboardMac.cpp
-    ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/hidapi/mac/hid.c
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputMac.mm
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/pad/GainputInputDevicePadMac.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/mouse/GainputInputDeviceMouseMac.mm
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/mouse/GainputInputDeviceMouseMacRaw.mm
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/keyboard/GainputInputDeviceKeyboardMac.cpp
+    ${APPLICATION_THIRD_PARTY_INPUT_DIR}/hidapi/mac/hid.c
     )
-set(GAINPUT_IOS_FILES ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/source/gainput/GainputIos.mm)
+set(GAINPUT_IOS_FILES ${APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/GainputIos.mm)
 source_group(Core FILES ${GAINPUT_STATIC_FILES})
 source_group(MacOS FILES ${GAINPUT_MACOS_FILES})
 if(${APPLE_PLATFORM} MATCHES ON)
@@ -267,7 +267,7 @@ if(${WINDOWS} MATCHES ON)
 endif()
 
 add_library(GaInput STATIC ${GAINPUT_STATIC_FILES})
-target_include_directories(GaInput PUBLIC ${THIRD_PARTY_DIR}/gainput/lib/include)
+target_include_directories(GaInput PUBLIC ${APPLICATION_THIRD_PARTY_DIR}/gainput/lib/include)
 if (${APPLE_PLATFORM} MATCHES ON)
     set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=c++17 -stdlib=libc++ -x objective-c++")
     set_property(TARGET GaInput PROPERTY C_STANDARD 17)
