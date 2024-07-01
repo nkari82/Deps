@@ -150,7 +150,7 @@ set(TF_UTILITIES_DIR ${THE_FORGE_DIR}/Common_3/Utilities)
 set(TF_UTILITIES_THIRD_PARTY_DIR ${TF_UTILITIES_DIR}/ThirdParty)
 
 # Dependencies
-set(SPIRVTOOLS_SOURCE
+set(SPIRVTOOLS_FILES
     ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/SPIRV_Cross/spirv_cfg.cpp
     ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/SPIRV_Cross/spirv_cfg.hpp
     ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/SPIRV_Cross/spirv_cpp.cpp
@@ -172,10 +172,8 @@ set(SPIRVTOOLS_SOURCE
     ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/SPIRV_Cross/spirv_reflect.cpp
     ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/SPIRV_Cross/spirv_reflect.hpp
     ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/SPIRV_Cross/SpirvTools.cpp
-    ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/SPIRV_Cross/SpirvTools.h
-    )
-
-add_library(SpirvTools STATIC ${SPIRVTOOLS_SOURCE})
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/SPIRV_Cross/SpirvTools.h)
+add_library(SpirvTools STATIC ${SPIRVTOOLS_FILES})
 set_property(TARGET SpirvTools PROPERTY CXX_STANDARD 17)
 
 add_library(WinPixEventRuntime SHARED IMPORTED)
@@ -208,7 +206,7 @@ set(IMGUI_FILES
     ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_widgets.cpp
     ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_tables.cpp
     ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui.cpp
-    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui.h)
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui.h)	
 add_library(Imgui STATIC ${IMGUI_FILES})
 
 set(TF_APPLICATION_THIRD_PARTY_INPUT_DIR ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/gainput/lib/source)
@@ -245,8 +243,7 @@ set(GAINPUT_STATIC_FILES
     ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/GainputHIDWhitelist.cpp
     ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/hidparsers/HIDParserPS4Controller.cpp
     ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/hidparsers/HIDParserPS5Controller.cpp
-	${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/hidparsers/HIDParserSwitchController.cpp
-    )
+	${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/gainput/hid/hidparsers/HIDParserSwitchController.cpp)
 
 set(GAINPUT_WINDOWS_FILES ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/hidapi/windows/hid.c)
 set(GAINPUT_LINUX_FILES ${TF_APPLICATION_THIRD_PARTY_INPUT_DIR}/hidapi/linux/hid.c)
@@ -350,8 +347,7 @@ set(OZZ_FILES
 	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/maths/simd_math_archive.cc
 	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/maths/soa_math_archive.cc
 	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/memory/allocator.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/platform.cc
-	)
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/platform.cc)
 
 # AssetPipelineCmd
 set(ASSET_PIPELINE_CMD_FILES
@@ -472,37 +468,41 @@ set(GRAPHICS_METAL_FILES
     ${TF_GRAPHICS_DIR}/Metal/MetalRaytracing.mm
     ${TF_GRAPHICS_DIR}/Metal/MetalRenderer.mm
     ${TF_GRAPHICS_DIR}/Metal/MetalShaderReflection.mm)
-source_group(Graphics/Metal FILES ${GRAPHICS_METAL_FILES})
 	
-set(GRAPHICS_THIRD_PARTY_FILES
-	${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource//ags/AgsHelper.h
-    ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource//nvapi/NvApiHelper.h
-    ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource//VulkanMemoryAllocator/VulkanMemoryAllocator.h)
-
-source_group(Graphics/ThirdParty/OpenSource/ags FILES ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/ags/AgsHelper.h)
-source_group(Graphics/ThirdParty/OpenSource/nvapi FILES ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/nvapi/NvApiHelper.h)
-source_group(Graphics/ThirdParty/OpenSource/VulkanMemoryAllocator FILES 
-	${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/VulkanMemoryAllocator/VulkanMemoryAllocator.h)
+set(AGS_FILES ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/ags/AgsHelper.h)
+set(NVAPI_FILES ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/nvapi/NvApiHelper.h)
+set(VULKAN_MEMORY_ALLOCATOR_FILES ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/VulkanMemoryAllocator/VulkanMemoryAllocator.h)
 	
 set(GRAPHICS_INTERFACE_FILES
 	${TF_GRAPHICS_DIR}/Interfaces/IGraphics.h
     ${TF_GRAPHICS_DIR}/Interfaces/IRay.h
     ${TF_GRAPHICS_DIR}/Interfaces/IShaderReflection.h)
-source_group(Graphics/Interfaces FILES ${GRAPHICS_INTERFACE_FILES})
 
-set(GRAPHICS_FILES
+set(GRAPHICS_ROOT_FILES
     ${TF_GRAPHICS_DIR}/CommonShaderReflection.cpp
     ${TF_GRAPHICS_DIR}/GraphicsConfig.cpp
 	${TF_GRAPHICS_DIR}/GraphicsConfig.h
     ${TF_GRAPHICS_DIR}/PickRenderingAPI.cpp
 	${TF_GRAPHICS_DIR}/ShaderUtilities.h.fsl)
-source_group(Graphics FILES ${GRAPHICS_FILES})
+	
+set(GRAPHICS_FILES 
+	${GRAPHICS_INTERFACE_FILES} 
+	${GRAPHICS_ROOT_FILES}
+	${AGS_FILES} 
+	${NVAPI_FILES} 
+	${VULKAN_MEMORY_ALLOCATOR_FILES})
+	
+source_group(Graphics FILES ${GRAPHICS_ROOT_FILES})
+source_group(Graphics/Interfaces FILES ${GRAPHICS_INTERFACE_FILES})
+source_group(Graphics/Metal FILES ${GRAPHICS_METAL_FILES})
+source_group(Graphics/ThirdParty/OpenSource/ags FILES ${AGS_FILES})
+source_group(Graphics/ThirdParty/OpenSource/nvapi FILES ${NVAPI_FILES})
+source_group(Graphics/ThirdParty/OpenSource/VulkanMemoryAllocator FILES ${VULKAN_MEMORY_ALLOCATOR_FILES})
 
 set(RENDERER_INTERFACE_FILES
 	${TF_RENDERER_DIR}/Interfaces/IParticleSystem.h
 	${TF_RENDERER_DIR}/Interfaces/IVisibilityBuffer.h
 	${TF_RENDERER_DIR}/Interfaces/IVisibilityBuffer2.h)
-source_group(Renderer/Interfaces FILES ${RENDERER_INTERFACE_FILES})
 
 set(RENDERER_PARTICLE_SYSTEM_SHADER_FILES
 	${TF_RENDERER_DIR}/ParticleSystem/Shaders/particle.frag.fsl
@@ -529,46 +529,38 @@ set(RENDERER_VISIBILITY_BUFFER_SHADER_FILES
 	${TF_RENDERER_DIR}/VisibilityBuffer/Shaders/FSL/vb_structs.h.fsl)	
 set(RENDERER_VISIBILITY_BUFFER_FILES ${TF_RENDERER_DIR}/VisibilityBuffer/VisibilityBuffer.cpp)
 	
+set(RENDERER_FILES 
+	${RENDERER_INTERFACE_FILES}
+	${RENDERER_PARTICLE_SYSTEM_SHADER_FILES}
+	${RENDERER_PARTICLE_SYSTEM_FILES}
+	${RENDERER_VISIBILITY_BUFFER_SHADER_FILES}
+	${RENDERER_VISIBILITY_BUFFER_FILES})
+	
 source_group(Renderer/ParticleSystem FILES ${RENDERER_PARTICLE_SYSTEM_FILES})
 source_group(Renderer/VisibilityBuffer FILES ${RENDERER_VISIBILITY_BUFFER_FILES})
 source_group(Renderer/ParticleSystem/Shaders FILES ${RENDERER_PARTICLE_SYSTEM_SHADER_FILES})
 source_group(Renderer/VisibilityBuffer/Shaders FILES ${RENDERER_VISIBILITY_BUFFER_SHADER_FILES})
+source_group(Renderer/Interfaces FILES ${RENDERER_INTERFACE_FILES})
 
 set(RESOURCES_INTERFACES_FILES ${TF_RESOURCES_LOADER}/Interfaces/IResourceLoader.h)
+set(RESOURCES_ROOT_FILES ${TF_RESOURCES_LOADER}/ResourceLoader.cpp ${TF_RESOURCES_LOADER}/TextureContainers.h)
+set(RESOURCES_FILES ${RESOURCES_INTERFACES_FILES} ${RESOURCES_ROOT_FILES})
+	
+source_group(Resources/ResourceLoader FILES ${RESOURCES_ROOT_FILES})
 source_group(Resources/ResourceLoader/Interfaces FILES ${RESOURCES_INTERFACES_FILES})
 	
-set(RESOURCES_FILES
-	${TF_RESOURCES_LOADER}/ResourceLoader.cpp
-	${TF_RESOURCES_LOADER}/TextureContainers.h)
-source_group(Resources/ResourceLoader FILES ${RESOURCES_FILES})
+set(TOOLS_NETWORK_FILES ${TF_TOOLS_DIR}/Network/Network.c ${TF_TOOLS_DIR}/Network/Network.h)
+set(TOOLS_RELOAD_SERVER_FILES ${TF_TOOLS_DIR}/ReloadServer/ReloadClient.cpp ${TF_TOOLS_DIR}/ReloadServer/ReloadClient.h	)
+set(TOOLS_FILES ${TOOLS_NETWORK_FILES} ${TOOLS_RELOAD_SERVER_FILES})
 	
-set(TOOLS_FILES
-	${TF_TOOLS_DIR}/Network/Network.c
-	${TF_TOOLS_DIR}/Network/Network.h
-	${TF_TOOLS_DIR}/ReloadServer/ReloadClient.cpp
-	${TF_TOOLS_DIR}/ReloadServer/ReloadClient.h)
-	
-source_group(Tools/Network FILES 
-	${TF_TOOLS_DIR}/Network/Network.c 
-	${TF_TOOLS_DIR}/Network/Network.h)
-	
-source_group(Tools/ReloadServer FILES 
-	${TF_TOOLS_DIR}/ReloadServer/ReloadClient.cpp 
-	${TF_TOOLS_DIR}/ReloadServer/ReloadClient.h)
+source_group(Tools/Network FILES  ${TOOLS_NETWORK_FILES})
+source_group(Tools/ReloadServer FILES ${TOOLS_RELOAD_SERVER_FILES})
 
 set(RENDERER_SOURCE_FILES 
-	${RENDERER_INTERFACE_FILES}
-	${GRAPHICS_INTERFACE_FILES}
-	${RESOURCES_INTERFACES_FILES}
-	${RENDERER_PARTICLE_SYSTEM_SHADER_FILES}
-	${RENDERER_VISIBILITY_BUFFER_SHADER_FILES}
+	${RENDERER_FILES}	
 	${GRAPHICS_FILES}
-	${GRAPHICS_THIRD_PARTY_FILES}
-	${RENDERER_PARTICLE_SYSTEM_FILES}
-	${RENDERER_VISIBILITY_BUFFER_FILES}
 	${RESOURCES_FILES}
-	${TOOLS_FILES}
-	)
+	${TOOLS_FILES})
 
 if(${APPLE_PLATFORM} MATCHES ON)
     find_library(APPLE_METAL Metal)
@@ -754,8 +746,8 @@ set(RESOURCE_ANIMATION_SHADER_FILES
 	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/Shaders/FSL/joint.vert.fsl)
 
 set(RESOURCES_FILES ${RESOURCE_ANIMATION_FILES} ${RESOURCE_ANIMATION_SHADER_FILES})
-source_group(Resource/AnimationSystem/Animation FILES ${RESOURCE_ANIMATION_FILES})
-source_group(Resource/AnimationSystem/Animation/Shaders FILES ${RESOURCE_ANIMATION_SHADER_FILES})
+source_group(Resources/AnimationSystem/Animation FILES ${RESOURCE_ANIMATION_FILES})
+source_group(Resources/AnimationSystem/Animation/Shaders FILES ${RESOURCE_ANIMATION_SHADER_FILES})
 
 set(UTILITIES_INTERFACES_FILES
 	${TF_UTILITIES_DIR}/Interfaces/IFileSystem.h
