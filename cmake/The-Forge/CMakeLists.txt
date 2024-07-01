@@ -129,8 +129,8 @@ set(TF_GRAPHICS_THIRD_PARTY_DIR ${TF_GRAPHICS_DIR}/ThirdParty)
 set(TF_RENDERER_DIR ${THE_FORGE_DIR}/Common_3/Renderer)
 
 set(TF_RESOURCES_DIR ${THE_FORGE_DIR}/Common_3/Resources)
-set(TF_RESOURCES_ANIMATION ${TF_RESOURCES_DIR}/AnimationSystem)
-set(TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR ${TF_RESOURCES_ANIMATION}/ThirdParty)
+set(TF_RESOURCES_ANIMATION_SYSTEM ${TF_RESOURCES_DIR}/AnimationSystem)
+set(TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR ${TF_RESOURCES_ANIMATION_SYSTEM}/ThirdParty)
 set(TF_RESOURCES_LOADER ${TF_RESOURCES_DIR}/ResourceLoader)
 set(TF_RESOURCES_LOADER_THIRD_PARTY_DIR ${TF_RESOURCES_LOADER}/ThirdParty)
 
@@ -208,8 +208,7 @@ set(IMGUI_FILES
     ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_widgets.cpp
     ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_tables.cpp
     ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui.cpp
-    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui.h
-    )
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui.h)
 add_library(Imgui STATIC ${IMGUI_FILES})
 
 set(TF_APPLICATION_THIRD_PARTY_INPUT_DIR ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/gainput/lib/source)
@@ -731,40 +730,48 @@ if (${APPLE_PLATFORM} MATCHES ON)
 endif ()
 source_group(OS/ThirdParty/OpenSource/cpu_features/src FILES ${CPU_FEATURES_FILES})
 
-set(RESOURCES_FILES
-    ${TF_RESOURCES_ANIMATION}/Animation/AnimatedObject.cpp
-    ${TF_RESOURCES_ANIMATION}/Animation/AnimatedObject.h
-    ${TF_RESOURCES_ANIMATION}/Animation/Animation.cpp
-    ${TF_RESOURCES_ANIMATION}/Animation/Animation.h
-	${TF_RESOURCES_ANIMATION}/Animation/Clip.cpp
-	${TF_RESOURCES_ANIMATION}/Animation/Clip.h
-	${TF_RESOURCES_ANIMATION}/Animation/ClipController.cpp
-	${TF_RESOURCES_ANIMATION}/Animation/ClipController.h
-	${TF_RESOURCES_ANIMATION}/Animation/ClipMask.cpp
-	${TF_RESOURCES_ANIMATION}/Animation/ClipMask.h
-	${TF_RESOURCES_ANIMATION}/Animation/Rig.cpp
-	${TF_RESOURCES_ANIMATION}/Animation/Rig.h
-	${TF_RESOURCES_ANIMATION}/Animation/SkeletonBatcher.cpp
-	${TF_RESOURCES_ANIMATION}/Animation/SkeletonBatcher.h
-    )
+set(RESOURCE_ANIMATION_FILES
+    ${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/AnimatedObject.cpp
+    ${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/AnimatedObject.h
+    ${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/Animation.cpp
+    ${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/Animation.h
+	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/Clip.cpp
+	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/Clip.h
+	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/ClipController.cpp
+	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/ClipController.h
+	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/ClipMask.cpp
+	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/ClipMask.h
+	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/Rig.cpp
+	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/Rig.h
+	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/SkeletonBatcher.cpp
+	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/SkeletonBatcher.h)
+	
+set(RESOURCE_ANIMATION_SHADER_FILES
+	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/Shaders/FSL/Animation_ShaderList.fsl
+	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/Shaders/FSL/bone.frag.fsl
+	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/Shaders/FSL/bone.vert.fsl
+	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/Shaders/FSL/joint.frag.fsl
+	${TF_RESOURCES_ANIMATION_SYSTEM}/Animation/Shaders/FSL/joint.vert.fsl)
 
-set(UTILLITIES_INTERFACES_FILES
+set(RESOURCES_FILES ${RESOURCE_ANIMATION_FILES} ${RESOURCE_ANIMATION_SHADER_FILES})
+source_group(Resource/AnimationSystem/Animation FILES ${RESOURCE_ANIMATION_FILES})
+source_group(Resource/AnimationSystem/Animation/Shaders FILES ${RESOURCE_ANIMATION_SHADER_FILES})
+
+set(UTILITIES_INTERFACES_FILES
 	${TF_UTILITIES_DIR}/Interfaces/IFileSystem.h
 	${TF_UTILITIES_DIR}/Interfaces/ILog.h
 	${TF_UTILITIES_DIR}/Interfaces/IMemory.h
 	${TF_UTILITIES_DIR}/Interfaces/IThread.h
 	${TF_UTILITIES_DIR}/Interfaces/ITime.h
-	${TF_UTILITIES_DIR}/Interfaces/IToolFileSystem.h
-	)
+	${TF_UTILITIES_DIR}/Interfaces/IToolFileSystem.h)
 	
-set(UTILLITY_FILES
-	${UTILLITIES_INTERFACES_FILES}
-	${LZ4_FILES}
-	${ZSTD_FILES}
-	${TF_UTILITIES_DIR}/FileSystem/FileSystem.c
-	${TF_UTILITIES_DIR}/FileSystem/SystemRun.c
-	${TF_UTILITIES_DIR}/Log/Log.c
-	${TF_UTILITIES_DIR}/Log/Log.h
+set(UTILITIES_FILE_SYSTEM_FILES ${TF_UTILITIES_DIR}/FileSystem/FileSystem.c ${TF_UTILITIES_DIR}/FileSystem/SystemRun.c)
+if (${APPLE_PLATFORM} MATCHES ON)
+	set(UTILITIES_FILE_SYSTEM_FILES ${TF_UTILITIES_DIR}/FileSystem/UnixFileSystem.cpp ${UTILITIES_FILE_SYSTEM_FILES})
+endif ()
+
+set(UTILITIES_LOG_FILES ${TF_UTILITIES_DIR}/Log/Log.h ${TF_UTILITIES_DIR}/Log/Log.c)
+set(UTILITIES_MATH_FILES
 	${TF_UTILITIES_DIR}/Math/Algorithms.c
 	${TF_UTILITIES_DIR}/Math/Algorithms.h
 	${TF_UTILITIES_DIR}/Math/AlgorithmsImpl.h
@@ -773,38 +780,67 @@ set(UTILLITY_FILES
 	${TF_UTILITIES_DIR}/Math/Random.h
 	${TF_UTILITIES_DIR}/Math/RTree.h
 	${TF_UTILITIES_DIR}/Math/ShaderUtilities.h
-	${TF_UTILITIES_DIR}/Math/StbDs.c
+	${TF_UTILITIES_DIR}/Math/StbDs.c)
+	
+set(UTILITIES_MEMORY_TRACKING_FILES
 	${TF_UTILITIES_DIR}/MemoryTracking/MemoryTracking.c
-	${TF_UTILITIES_DIR}/MemoryTracking/NoMemoryDefines.h
-	${TF_UTILITIES_THIRD_PARTY_DIR}/OpenSource/bstrlib/bstrlib.c
-	${TF_UTILITIES_THIRD_PARTY_DIR}/OpenSource/bstrlib/bstrlib.h
-	${TF_UTILITIES_THIRD_PARTY_DIR}/OpenSource/rmem/src/rmem_get_module_info.cpp
-	${TF_UTILITIES_THIRD_PARTY_DIR}/OpenSource/rmem/src/rmem_hook.cpp
-	${TF_UTILITIES_THIRD_PARTY_DIR}/OpenSource/rmem/src/rmem_lib.cpp
+	${TF_UTILITIES_DIR}/MemoryTracking/NoMemoryDefines.h)
+	
+set(UTILITIES_THREADING_FILES
 	${TF_UTILITIES_DIR}/Threading/Atomics.h
 	${TF_UTILITIES_DIR}/Threading/ThreadSystem.c
-	${TF_UTILITIES_DIR}/Threading/ThreadSystem.h
+	${TF_UTILITIES_DIR}/Threading/ThreadSystem.h)
+	
+set(UTILITIES_ROOT_FILES
 	${TF_UTILITIES_DIR}/CustomUIWidgets.h
 	${TF_UTILITIES_DIR}/RingBuffer.h
-	${TF_UTILITIES_DIR}/Timer.c
-	)
+	${TF_UTILITIES_DIR}/Timer.c)
+	
+set(BSTRLIB_FILES
+	${TF_UTILITIES_THIRD_PARTY_DIR}/OpenSource/bstrlib/bstrlib.c
+	${TF_UTILITIES_THIRD_PARTY_DIR}/OpenSource/bstrlib/bstrlib.h)
+	
+set(RMEM_FILES
+	${TF_UTILITIES_THIRD_PARTY_DIR}/OpenSource/rmem/src/rmem_get_module_info.cpp
+	${TF_UTILITIES_THIRD_PARTY_DIR}/OpenSource/rmem/src/rmem_hook.cpp
+	${TF_UTILITIES_THIRD_PARTY_DIR}/OpenSource/rmem/src/rmem_lib.cpp)
+	
+source_group(Utilities/FileSystem FILES ${UTILITIES_FILE_SYSTEM_FILES})
+source_group(Utilities/Interfaces FILES ${UTILITIES_INTERFACES_FILES})
+source_group(Utilities/Log FILES ${UTILITIES_LOG_FILES})
+source_group(Utilities/Math FILES ${UTILITIES_MATH_FILES})
+source_group(Utilities/MemoryTracking FILES ${UTILITIES_MEMORY_TRACKING_FILES})
+source_group(Utilities FILES ${UTILITIES_ROOT_FILES})
+source_group(Utilities/Threading FILES ${UTILITIES_THREADING_FILES})
+source_group(Utilities/ThirdParty/OpenSource/bstrlib FILES ${BSTRLIB_FILES})
+source_group(Utilities/ThirdParty/OpenSource/rmem/src FILES ${RMEM_FILES})
+source_group(Utilities/ThirdParty/OpenSource/lz4 FILES ${LZ4_FILES})
+source_group(Utilities/ThirdParty/OpenSource/zstd FILES ${ZSTD_FILES})
 
-if (${APPLE_PLATFORM} MATCHES ON)
-	set(UTILLITY_FILES ${TF_UTILITIES_DIR}/FileSystem/UnixFileSystem.cpp)
-endif ()
+set(UTILITIES_FILES
+	${UTILITIES_INTERFACES_FILES}
+	${UTILITIES_FILE_SYSTEM_FILES}
+	${UTILITIES_LOG_FILES}
+	${UTILITIES_MATH_FILES}
+	${UTILITIES_MEMORY_TRACKING_FILES}
+	${UTILITIES_ROOT_FILES}
+	${UTILITIES_THREADING_FILES}
+	${BSTRLIB_FILES}
+	${RMEM_FILES}
+	${LZ4_FILES}
+	${ZSTD_FILES})
 
 set(OS_SOURCE_FILES
 	${OS_FILES}
 	${APPLICATION_FILES}
 	${RESOURCES_FILES}
-	${UTILLITY_FILES}
-	)
+	${UTILITIES_FILES})
 	
 # Merge
 set(FORGE_FILES ${RENDERER_SOURCE_FILES} ${OS_SOURCE_FILES})
 
 add_library(The-Forge STATIC ${FORGE_FILES})
-target_include_directories(The-Forge PUBLIC ${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/include)
+target_include_directories(The-Forge PUBLIC ${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/include)
 target_link_libraries(The-Forge PUBLIC ${RENDERER_LIBRARIES} ${THIRD_PARTY_DEPS})
 target_link_directories(The-Forge PUBLIC ${RENDERER_LIBRARY_PATHS})
 target_compile_definitions(The-Forge PUBLIC ${RENDERER_DEFINES})
