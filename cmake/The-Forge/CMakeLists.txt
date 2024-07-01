@@ -450,8 +450,8 @@ set(GRAPHICS_DX11_FILES
     ${TF_GRAPHICS_DIR}/Direct3D11/Direct3D11.cpp
     ${TF_GRAPHICS_DIR}/Direct3D11/Direct3D11CapBuilder.h
     ${TF_GRAPHICS_DIR}/Direct3D11/Direct3D11Config.h
-    ${TF_GRAPHICS_DIR}/Direct3D11/Direct3D11ShaderReflection.cpp
-    )
+    ${TF_GRAPHICS_DIR}/Direct3D11/Direct3D11ShaderReflection.cpp)
+source_group(Graphics/Direct3D11 FILES ${GRAPHICS_DX11_FILES})
 
 set(GRAPHICS_DX12_FILES
     ${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12.cpp
@@ -460,16 +460,16 @@ set(GRAPHICS_DX12_FILES
     ${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12Hooks.cpp
     ${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12Hooks.h
     ${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12Raytracing.cpp
-    ${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12ShaderReflection.cpp
-    )
+    ${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12ShaderReflection.cpp)
+source_group(Graphics/Direct3D12 FILES ${GRAPHICS_DX12_FILES})
 
 set(GRAPHICS_VULKAN_FILES
     ${TF_GRAPHICS_DIR}/Vulkan/Vulkan.cpp
     ${TF_GRAPHICS_DIR}/Vulkan/VulkanCapsBuilder.h
     ${TF_GRAPHICS_DIR}/Vulkan/VulkanConfig.h
     ${TF_GRAPHICS_DIR}/Vulkan/VulkanRaytracing.cpp
-    ${TF_GRAPHICS_DIR}/Vulkan/VulkanShaderReflection.cpp
-    )
+    ${TF_GRAPHICS_DIR}/Vulkan/VulkanShaderReflection.cpp)
+source_group(Graphics/Vulkan FILES ${GRAPHICS_VULKAN_FILES})
 
 set(GRAPHICS_METAL_FILES
     ${TF_GRAPHICS_DIR}/Metal/MetalAvailabilityMacros.h
@@ -478,8 +478,8 @@ set(GRAPHICS_METAL_FILES
     ${TF_GRAPHICS_DIR}/Metal/MetalMemoryAllocatorImpl.h
     ${TF_GRAPHICS_DIR}/Metal/MetalRaytracing.mm
     ${TF_GRAPHICS_DIR}/Metal/MetalRenderer.mm
-    ${TF_GRAPHICS_DIR}/Metal/MetalShaderReflection.mm
-    )
+    ${TF_GRAPHICS_DIR}/Metal/MetalShaderReflection.mm)
+source_group(Graphics/Metal FILES ${GRAPHICS_METAL_FILES})
 	
 set(GRAPHICS_THIRD_PARTY_FILES
 	${TF_GRAPHICS_THIRD_PARTY_DIR}/ags/AgsHelper.h
@@ -490,37 +490,36 @@ set(GRAPHICS_THIRD_PARTY_FILES
 set(GRAPHICS_INTERFACE_FILES
 	${TF_GRAPHICS_DIR}/Interfaces/IGraphics.h
     ${TF_GRAPHICS_DIR}/Interfaces/IRay.h
-    ${TF_GRAPHICS_DIR}/Interfaces/IShaderReflection.h
-	)
+    ${TF_GRAPHICS_DIR}/Interfaces/IShaderReflection.h)
+source_group(Graphics/Interfaces FILES ${GRAPHICS_INTERFACE_FILES})
 
-set(RENDERER_GRAPHICS_FILES
+set(GRAPHICS_FILES
     ${TF_GRAPHICS_DIR}/CommonShaderReflection.cpp
     ${TF_GRAPHICS_DIR}/GraphicsConfig.cpp
 	${TF_GRAPHICS_DIR}/GraphicsConfig.h
-    ${TF_GRAPHICS_DIR}/PickRenderingAPI.cpp
-    )
+    ${TF_GRAPHICS_DIR}/PickRenderingAPI.cpp)
+source_group(Graphics FILES ${GRAPHICS_FILES})
 
 set(RENDERER_INTERFACE_FILES
 	${TF_RENDERER_DIR}/Interfaces/IParticleSystem.h
 	${TF_RENDERER_DIR}/Interfaces/IVisibilityBuffer.h
-	${TF_RENDERER_DIR}/Interfaces/IVisibilityBuffer2.h	
-	)
+	${TF_RENDERER_DIR}/Interfaces/IVisibilityBuffer2.h)
+source_group(Renderer/Interfaces FILES ${RENDERER_INTERFACE_FILES})
 
-set(RENDERER__FILES
+set(RENDERER_FILES
 	${RENDERER_INTERFACE_FILES}
 	${TF_RENDERER_DIR}/ParticleSystem/ParticleSystem.cpp
-	${TF_RENDERER_DIR}/VisibilityBuffer/VisibilityBuffer.cpp
-	)
+	${TF_RENDERER_DIR}/VisibilityBuffer/VisibilityBuffer.cpp)
+source_group(Renderer FILES ${RENDERER_FILES})
 
-set(RESOURCES_INTERFACES_FILES
-	${TF_RESOURCE_LOADER}/Interfaces/IResourceLoader.h
-	)
+set(RESOURCES_INTERFACES_FILES ${TF_RESOURCE_LOADER}/Interfaces/IResourceLoader.h)
+source_group(Resources/ResourceLoader/Interfaces FILES ${RESOURCES_INTERFACES_FILES})
 	
 set(RESOURCES_FILES
 	${RESOURCES_INTERFACES_FILES}
 	${TF_RESOURCE_LOADER}/ResourceLoader.cpp
-	${TF_RESOURCE_LOADER}/TextureContainers.h
-	)
+	${TF_RESOURCE_LOADER}/TextureContainers.h)
+source_group(Resources/ResourceLoader FILES ${RESOURCES_FILES})
 	
 set(TOOLS_FILES
 	${TF_TOOLS_DIR}/Network/Network.c
@@ -532,7 +531,7 @@ set(TOOLS_FILES
 set(RENDERER_SOURCE_FILES 
 	${GRAPHICS_FILES}
 	${GRAPHICS_THIRD_PARTY_FILES}
-	${RENDERER__FILES}
+	${RENDERER_FILES}
 	${RESOURCES_FILES}
 	${TOOLS_FILES}
 	)
