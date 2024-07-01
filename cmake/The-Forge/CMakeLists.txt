@@ -619,7 +619,7 @@ if(${WINDOWS} MATCHES ON)
 endif()
 
 # OS
-set(APP_INTERFACES_FILES
+set(APPLICATION_INTERFACES_FILES
 	${TF_APPLICATION_DIR}/Interfaces/IApp.h
 	${TF_APPLICATION_DIR}/Interfaces/ICameraController.h
 	${TF_APPLICATION_DIR}/Interfaces/IFont.h
@@ -630,22 +630,47 @@ set(APP_INTERFACES_FILES
 	${TF_APPLICATION_DIR}/Interfaces/IUI.h
 	)
 
-set(APP_FILES
-	${APP_INTERFACES_FILES}
-	${TF_APPLICATION_DIR}/Fonts/FontSystem.cpp
-	${TF_APPLICATION_DIR}/Fonts/stbtt.cpp
+set(APPLICATION_PROFILER_FILES
 	${TF_APPLICATION_DIR}/Profiler/GpuProfiler.cpp
     ${TF_APPLICATION_DIR}/Profiler/GpuProfiler.h
 	${TF_APPLICATION_DIR}/Profiler/ProfilerBase.cpp
     ${TF_APPLICATION_DIR}/Profiler/ProfilerBase.h
-    ${TF_APPLICATION_DIR}/Profiler/ProfilerHTML.h
-	${TF_APPLICATION_DIR}/UI/UI.cpp
+	${TF_APPLICATION_DIR}/Profiler/ProfilerHTML.h)
+
+set(APPLICATION_FONTS_FILES
+	${TF_APPLICATION_DIR}/Fonts/FontSystem.cpp
+	${TF_APPLICATION_DIR}/Fonts/stbtt.cpp)
+
+set(APPLICATION_ROOT_FILES	
 	${TF_APPLICATION_DIR}/CameraController.cpp
     ${TF_APPLICATION_DIR}/Config.h
     ${TF_APPLICATION_DIR}/InputSystem.cpp
 	${TF_APPLICATION_DIR}/RemoteControl.cpp
-	${TF_APPLICATION_DIR}/Screenshot.cpp
-	)
+	${TF_APPLICATION_DIR}/Screenshot.cpp)
+
+set(APPLICATION_UI_SHADER_FILES
+	${TF_APPLICATION_DIR}/UI/Shaders/FSL/imgui.frag.fsl
+	${TF_APPLICATION_DIR}/UI/Shaders/FSL/imgui.vert.fsl
+	${TF_APPLICATION_DIR}/UI/Shaders/FSL/textured_mesh.frag.fsl
+	${TF_APPLICATION_DIR}/UI/Shaders/FSL/textured_mesh.vert.fsl
+	${TF_APPLICATION_DIR}/UI/Shaders/FSL/UI_ShaderList.fsl)
+	
+set(APPLICATION_UI_FILES  ${TF_APPLICATION_DIR}/UI/UI.cpp)
+	
+set(APPLICATION_FILES
+	${APPLICATION_INTERFACES_FILES}
+	${APPLICATION_PROFILER_FILES}
+	${APPLICATION_FONTS_FILES}
+	${APPLICATION_ROOT_FILES}
+	${APPLICATION_UI_SHADER_FILES}
+	${APPLICATION_UI_FILES})
+	
+source_group(Application FILES ${APPLICATION_ROOT_FILES})
+source_group(Application/UI FILES ${APPLICATION_UI_FILES})
+source_group(Application/UI/Shaders FILES ${APPLICATION_UI_SHADER_FILES})
+source_group(Application/Profiler FILES ${APPLICATION_PROFILER_FILES})	
+source_group(Application/Fonts FILES ${APPLICATION_FONTS_FILES})
+source_group(Application/Interfaces FILES ${APPLICATION_INTERFACES_FILES})
 
 set(GAME_INTERFACES_FILES ${GAME_DIR}/Interfaces/IScripting.h
 set(GAME_FILES
@@ -763,7 +788,7 @@ if (${APPLE_PLATFORM} MATCHES ON)
 endif ()
 
 set(OS_SOURCE_FILES
-	${CORE_FILES} 
+	${APPLICATION_FILES}
 	${RESOURCES_FILES}
 	${UTILLITY_FILES}
 	)
