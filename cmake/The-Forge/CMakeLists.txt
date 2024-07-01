@@ -129,10 +129,10 @@ set(TF_GRAPHICS_THIRD_PARTY_DIR ${TF_GRAPHICS_DIR}/ThirdParty/OpenSource)
 set(TF_RENDERER_DIR ${THE_FORGE_DIR}/Common_3/Renderer)
 
 set(TF_RESOURCES_DIR ${THE_FORGE_DIR}/Common_3/Resources)
-set(TF_RESOURCE_ANIMATION ${TF_RESOURCES_DIR}/AnimationSystem)
-set(TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR ${TF_RESOURCE_ANIMATION}/ThirdParty/OpenSource)
-set(TF_RESOURCE_LOADER ${TF_RESOURCES_DIR}/ResourceLoader)
-set(TF_RESOURCE_LOADER_THIRD_PARTY_DIR ${TF_RESOURCE_LOADER}/ThirdParty/OpenSource)
+set(TF_RESOURCES_ANIMATION ${TF_RESOURCES_DIR}/AnimationSystem)
+set(TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR ${TF_RESOURCES_ANIMATION}/ThirdParty/OpenSource)
+set(TF_RESOURCES_LOADER ${TF_RESOURCES_DIR}/ResourceLoader)
+set(TF_RESOURCES_LOADER_THIRD_PARTY_DIR ${TF_RESOURCES_LOADER}/ThirdParty/OpenSource)
 
 set(TF_TOOLS_DIR ${THE_FORGE_DIR}/Common_3/Tools)
 set(TF_TOOLS_THIRD_PARTY_DIR ${TF_TOOLS_DIR}/ThirdParty/OpenSource)
@@ -320,46 +320,46 @@ set(THIRD_PARTY_DEPS Imgui GaInput Lua)
 # Tools
 # ozz-animation
 set(OZZ_FILES
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/additive_animation_builder.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/animation_builder.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/animation_optimizer.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_animation.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_animation_archive.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_animation_utils.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_skeleton.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_skeleton_archive.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_track.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/skeleton_builder.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/track_builder.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/track_optimizer.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/animation.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/animation_keyframe.h
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/animation_utils.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/blending_job.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/ik_aim_job.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/ik_two_bone_job.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/local_to_model_job.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/sampling_job.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/skeleton.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/skeleton_utils.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/track.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/track_sampling_job.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/track_triggering_job.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/containers/string_archive.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/io/archive.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/maths/math_archive.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/maths/simd_math_archive.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/maths/soa_math_archive.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/memory/allocator.cc
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/platform.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/additive_animation_builder.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/animation_builder.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/animation_optimizer.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_animation.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_animation_archive.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_animation_utils.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_skeleton.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_skeleton_archive.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/raw_track.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/skeleton_builder.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/track_builder.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/offline/track_optimizer.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/animation.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/animation_keyframe.h
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/animation_utils.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/blending_job.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/ik_aim_job.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/ik_two_bone_job.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/local_to_model_job.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/sampling_job.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/skeleton.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/skeleton_utils.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/track.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/track_sampling_job.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/runtime/track_triggering_job.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/containers/string_archive.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/io/archive.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/maths/math_archive.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/maths/simd_math_archive.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/maths/soa_math_archive.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/memory/allocator.cc
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/platform.cc
 	)
 
 
 # AssetPipelineCmd
 set(ASSET_PIPELINE_CMD_FILES
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/TressFX/TressFXAsset.h
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/TressFX/TressFXAsset.cpp
-	${TF_RESOURCE_ANIMATION_THIRD_PARTY_DIR}/TressFX/TressFXFileFormat.h
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/TressFX/TressFXAsset.h
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/TressFX/TressFXAsset.cpp
+	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/TressFX/TressFXFileFormat.h
 	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipeline.cpp
 	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipeline.h
 	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipeline_Textures.cpp
@@ -512,13 +512,13 @@ set(RENDERER_FILES
 	${TF_RENDERER_DIR}/VisibilityBuffer/VisibilityBuffer.cpp)
 source_group(Renderer FILES ${RENDERER_FILES})
 
-set(RESOURCES_INTERFACES_FILES ${TF_RESOURCE_LOADER}/Interfaces/IResourceLoader.h)
+set(RESOURCES_INTERFACES_FILES ${TF_RESOURCES_LOADER}/Interfaces/IResourceLoader.h)
 source_group(Resources/ResourceLoader/Interfaces FILES ${RESOURCES_INTERFACES_FILES})
 	
 set(RESOURCES_FILES
 	${RESOURCES_INTERFACES_FILES}
-	${TF_RESOURCE_LOADER}/ResourceLoader.cpp
-	${TF_RESOURCE_LOADER}/TextureContainers.h)
+	${TF_RESOURCES_LOADER}/ResourceLoader.cpp
+	${TF_RESOURCES_LOADER}/TextureContainers.h)
 source_group(Resources/ResourceLoader FILES ${RESOURCES_FILES})
 	
 set(TOOLS_FILES
@@ -666,20 +666,20 @@ if (${APPLE_PLATFORM} MATCHES ON)
 endif ()
 
 set(RESOURCES_FILES
-    ${TF_RESOURCE_ANIMATION}/Animation/AnimatedObject.cpp
-    ${TF_RESOURCE_ANIMATION}/Animation/AnimatedObject.h
-    ${TF_RESOURCE_ANIMATION}/Animation/Animation.cpp
-    ${TF_RESOURCE_ANIMATION}/Animation/Animation.h
-	${TF_RESOURCE_ANIMATION}/Animation/Clip.cpp
-	${TF_RESOURCE_ANIMATION}/Animation/Clip.h
-	${TF_RESOURCE_ANIMATION}/Animation/ClipController.cpp
-	${TF_RESOURCE_ANIMATION}/Animation/ClipController.h
-	${TF_RESOURCE_ANIMATION}/Animation/ClipMask.cpp
-	${TF_RESOURCE_ANIMATION}/Animation/ClipMask.h
-	${TF_RESOURCE_ANIMATION}/Animation/Rig.cpp
-	${TF_RESOURCE_ANIMATION}/Animation/Rig.h
-	${TF_RESOURCE_ANIMATION}/Animation/SkeletonBatcher.cpp
-	${TF_RESOURCE_ANIMATION}/Animation/SkeletonBatcher.h
+    ${TF_RESOURCES_ANIMATION}/Animation/AnimatedObject.cpp
+    ${TF_RESOURCES_ANIMATION}/Animation/AnimatedObject.h
+    ${TF_RESOURCES_ANIMATION}/Animation/Animation.cpp
+    ${TF_RESOURCES_ANIMATION}/Animation/Animation.h
+	${TF_RESOURCES_ANIMATION}/Animation/Clip.cpp
+	${TF_RESOURCES_ANIMATION}/Animation/Clip.h
+	${TF_RESOURCES_ANIMATION}/Animation/ClipController.cpp
+	${TF_RESOURCES_ANIMATION}/Animation/ClipController.h
+	${TF_RESOURCES_ANIMATION}/Animation/ClipMask.cpp
+	${TF_RESOURCES_ANIMATION}/Animation/ClipMask.h
+	${TF_RESOURCES_ANIMATION}/Animation/Rig.cpp
+	${TF_RESOURCES_ANIMATION}/Animation/Rig.h
+	${TF_RESOURCES_ANIMATION}/Animation/SkeletonBatcher.cpp
+	${TF_RESOURCES_ANIMATION}/Animation/SkeletonBatcher.h
     )
 
 set(UTILLITIES_INTERFACES_FILES
