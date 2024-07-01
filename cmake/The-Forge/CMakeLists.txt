@@ -539,7 +539,6 @@ set(RESOURCES_INTERFACES_FILES ${TF_RESOURCES_LOADER}/Interfaces/IResourceLoader
 source_group(Resources/ResourceLoader/Interfaces FILES ${RESOURCES_INTERFACES_FILES})
 	
 set(RESOURCES_FILES
-	${RESOURCES_INTERFACES_FILES}
 	${TF_RESOURCES_LOADER}/ResourceLoader.cpp
 	${TF_RESOURCES_LOADER}/TextureContainers.h)
 source_group(Resources/ResourceLoader FILES ${RESOURCES_FILES})
@@ -548,12 +547,20 @@ set(TOOLS_FILES
 	${TF_TOOLS_DIR}/Network/Network.c
 	${TF_TOOLS_DIR}/Network/Network.h
 	${TF_TOOLS_DIR}/ReloadServer/ReloadClient.cpp
-	${TF_TOOLS_DIR}/ReloadServer/ReloadClient.h
-	)
+	${TF_TOOLS_DIR}/ReloadServer/ReloadClient.h)
+	
+source_group(Tools/Network FILES 
+	${TF_TOOLS_DIR}/Network/Network.c 
+	${TF_TOOLS_DIR}/Network/Network.h)
+	
+source_group(Tools/ReloadServer FILES 
+	${TF_TOOLS_DIR}/ReloadServer/ReloadClient.cpp 
+	${TF_TOOLS_DIR}/ReloadServer/ReloadClient.h)
 
 set(RENDERER_SOURCE_FILES 
 	${RENDERER_INTERFACE_FILES}
 	${GRAPHICS_INTERFACE_FILES}
+	${RESOURCES_INTERFACES_FILES}
 	${RENDERER_PARTICLE_SYSTEM_SHADER_FILES}
 	${RENDERER_VISIBILITY_BUFFER_SHADER_FILES}
 	${GRAPHICS_FILES}
