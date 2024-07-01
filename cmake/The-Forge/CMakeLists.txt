@@ -144,7 +144,7 @@ set(TF_GAME_DIR ${THE_FORGE_DIR}/Common_3/Game)
 set(TF_GAME_THIRD_PARTY_DIR ${TF_GAME_DIR}/ThirdParty)
 
 set(TF_OS_DIR ${THE_FORGE_DIR}/Common_3/OS)
-set(TF_OS_THIRD_PARTY_DIR ${TF_OS_DIR}/ThirdPaty)
+set(TF_OS_THIRD_PARTY_DIR ${TF_OS_DIR}/ThirdParty)
 
 set(TF_UTILITIES_DIR ${THE_FORGE_DIR}/Common_3/Utilities)
 set(TF_UTILITIES_THIRD_PARTY_DIR ${TF_UTILITIES_DIR}/ThirdParty)
@@ -606,7 +606,7 @@ endif()
 if(${WINDOWS} MATCHES ON)
     set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES} WinPixEventRuntime AGS Nvapi)
     set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES} "Xinput9_1_0.lib" "ws2_32.lib")
-    set(RENDERER_DEFINES ${RENDERER_DEFINES} "_WINDOWS")
+    set(RENDERER_DEFINES ${RENDERER_DEFINES} "_WINDOWS" "_UNICODE")
 endif()
 
 # OS
@@ -663,7 +663,7 @@ source_group(Application/Profiler FILES ${APPLICATION_PROFILER_FILES})
 source_group(Application/Fonts FILES ${APPLICATION_FONTS_FILES})
 source_group(Application/Interfaces FILES ${APPLICATION_INTERFACES_FILES})
 
-set(GAME_INTERFACES_FILES ${GAME_DIR}/Interfaces/IScripting.h)
+set(GAME_INTERFACES_FILES ${TF_GAME_DIR}/Interfaces/IScripting.h)
 set(GAME_SCRIPTING_FILES
 	${TF_GAME_DIR}/Scripting/LuaManager.cpp
     ${TF_GAME_DIR}/Scripting/LuaManager.h
@@ -881,7 +881,7 @@ install(
 	
 install(
 	FILES 
-	${GRAPHICS_DIR}/GraphicsConfig.h
+	${TF_GRAPHICS_DIR}/GraphicsConfig.h
 	DESTINATION include/The-Forge/Graphics/)
 	
 install(
@@ -934,7 +934,7 @@ install(
 	
 install(
 	FILES 
-	${TF_RESOURCE_LOADER_THIRD_PARTY_DIR}/OpenSource/tinyimageformat/tinyimageformat_base.h
+	${TF_RESOURCES_LOADER_THIRD_PARTY_DIR}/OpenSource/tinyimageformat/tinyimageformat_base.h
 	DESTINATION include/The-Forge/Resources/ResourceLoader/ThirdParty/OpenSource/tinyimageformat/)
 	
 install(
