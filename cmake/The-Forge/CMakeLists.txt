@@ -354,7 +354,6 @@ set(OZZ_FILES
 	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/ozz-animation/src/base/platform.cc
 	)
 
-
 # AssetPipelineCmd
 set(ASSET_PIPELINE_CMD_FILES
 	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/TressFX/TressFXAsset.h
@@ -381,13 +380,12 @@ set(ASSET_PIPELINE_CMD_FILES
 	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vertexfilter.cpp
 	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vfetchanalyzer.cpp
 	${TF_TOOLS_THIRD_PARTY_DIR}/meshoptimizer/src/vfetchoptimizer.cpp
-	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c
-	)
+	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c)
+	
 # lz4
 set(LZ4_FILES
 	${TF_UTILITIES_DIR}/ThirdParty/OpenSource/lz4/lz4.c
-	${TF_UTILITIES_DIR}/ThirdParty/OpenSource/lz4/lz4hc.c
-	)
+	${TF_UTILITIES_DIR}/ThirdParty/OpenSource/lz4/lz4hc.c)
 
 # zstd
 set(ZSTD_FILES
@@ -415,16 +413,14 @@ set(ZSTD_FILES
 	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/huf_decompress.c
 	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_ddict.c
 	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_decompress.c
-	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_decompress_block.c
-	)
+	${TF_UTILITIES_THIRD_PARTY_DIR}/zstd/decompress/zstd_decompress_block.c)
 
 # BunyLib
 set(BUNY_FILES
 	${TF_TOOLS_DIR}/BunyArchive/Buny.c
 	${TF_TOOLS_DIR}/BunyArchive/Buny.h
 	${LZ4_FILES}
-	${ZSTD_FILES}
-	)
+	${ZSTD_FILES})
 	
 # BunyTool
 set(BUNY_TOOL_FILES
@@ -433,8 +429,7 @@ set(BUNY_TOOL_FILES
 	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/BunyTool.rc
 	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/icon.cio
 	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/resource.h
-	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c
-	)
+	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c)
 	
 # ispc_texcomp
 set(ISPC_TEX_COMP_FILES
@@ -442,8 +437,7 @@ set(ISPC_TEX_COMP_FILES
 	${TF_TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp.h
 	${TF_TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp_astc.cpp
 	${TF_TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/kernel.ispc
-	${TF_TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/kernel_astc.ispc
-	)
+	${TF_TOOLS_THIRD_PARTY_DIR}/ISPCTextureCompressor/ispc_texcomp/kernel_astc.ispc)
 	
 # Renderer
 set(GRAPHICS_DX11_FILES
@@ -484,8 +478,7 @@ source_group(Graphics/Metal FILES ${GRAPHICS_METAL_FILES})
 set(GRAPHICS_THIRD_PARTY_FILES
 	${TF_GRAPHICS_THIRD_PARTY_DIR}/ags/AgsHelper.h
     ${TF_GRAPHICS_THIRD_PARTY_DIR}/nvapi/NvApiHelper.h
-    ${TF_GRAPHICS_THIRD_PARTY_DIR}/VulkanMemoryAllocator/VulkanMemoryAllocator.h
-	)
+    ${TF_GRAPHICS_THIRD_PARTY_DIR}/VulkanMemoryAllocator/VulkanMemoryAllocator.h)
 	
 set(GRAPHICS_INTERFACE_FILES
 	${TF_GRAPHICS_DIR}/Interfaces/IGraphics.h
@@ -497,7 +490,8 @@ set(GRAPHICS_FILES
     ${TF_GRAPHICS_DIR}/CommonShaderReflection.cpp
     ${TF_GRAPHICS_DIR}/GraphicsConfig.cpp
 	${TF_GRAPHICS_DIR}/GraphicsConfig.h
-    ${TF_GRAPHICS_DIR}/PickRenderingAPI.cpp)
+    ${TF_GRAPHICS_DIR}/PickRenderingAPI.cpp
+	${TF_GRAPHICS_DIR}/ShaderUtilities.h.fsl)
 source_group(Graphics FILES ${GRAPHICS_FILES})
 
 set(RENDERER_INTERFACE_FILES
@@ -506,11 +500,35 @@ set(RENDERER_INTERFACE_FILES
 	${TF_RENDERER_DIR}/Interfaces/IVisibilityBuffer2.h)
 source_group(Renderer/Interfaces FILES ${RENDERER_INTERFACE_FILES})
 
-set(RENDERER_FILES
-	${RENDERER_INTERFACE_FILES}
-	${TF_RENDERER_DIR}/ParticleSystem/ParticleSystem.cpp
-	${TF_RENDERER_DIR}/VisibilityBuffer/VisibilityBuffer.cpp)
-source_group(Renderer FILES ${RENDERER_FILES})
+set(RENDERER_PARTICLE_SYSTEM_SHADER_FILES
+	${TF_RENDERER_DIR}/ParticleSystem/Shaders/particle.frag.fsl
+	${TF_RENDERER_DIR}/ParticleSystem/Shaders/particle.vert.fsl
+	${TF_RENDERER_DIR}/ParticleSystem/Shaders/particle_boids.h.fsl
+	${TF_RENDERER_DIR}/ParticleSystem/Shaders/particle_clear_sorting_structs.comp.fsl
+	${TF_RENDERER_DIR}/ParticleSystem/Shaders/particle_defs.h.fsl
+	${TF_RENDERER_DIR}/ParticleSystem/Shaders/particle_packing.h.fsl
+	${TF_RENDERER_DIR}/ParticleSystem/Shaders/particle_random.h.fsl
+	${TF_RENDERER_DIR}/ParticleSystem/Shaders/particle_sets.h.fsl
+	${TF_RENDERER_DIR}/ParticleSystem/Shaders/particle_shared.h.fsl
+	${TF_RENDERER_DIR}/ParticleSystem/Shaders/particle_simulate.comp.fsl
+	${TF_RENDERER_DIR}/ParticleSystem/Shaders/particle_utils.h.fsl)
+set(RENDERER_PARTICLE_SYSTEM_FILES ${TF_RENDERER_DIR}/ParticleSystem/ParticleSystem.cpp)
+	
+set(RENDERER_VISIBILITY_BUFFER_SHADER_FILES
+	${TF_RENDERER_DIR}/VisibilityBuffer/Shaders/FSL/batch_compaction.h.fsl
+	${TF_RENDERER_DIR}/VisibilityBuffer/Shaders/FSL/clear_buffers.h.fsl
+	${TF_RENDERER_DIR}/VisibilityBuffer/Shaders/FSL/pre_skin_vertexes.h.fsl
+	${TF_RENDERER_DIR}/VisibilityBuffer/Shaders/FSL/triangle_filtering.h.fsl
+	${TF_RENDERER_DIR}/VisibilityBuffer/Shaders/FSL/vb_resources.h.fsl
+	${TF_RENDERER_DIR}/VisibilityBuffer/Shaders/FSL/vb_shader_defs.h.fsl
+	${TF_RENDERER_DIR}/VisibilityBuffer/Shaders/FSL/vb_shading_utilities.h.fsl
+	${TF_RENDERER_DIR}/VisibilityBuffer/Shaders/FSL/vb_structs.h.fsl)	
+set(RENDERER_VISIBILITY_BUFFER_FILES ${TF_RENDERER_DIR}/VisibilityBuffer/VisibilityBuffer.cpp)
+	
+source_group(Renderer/ParticleSystem FILES ${RENDERER_PARTICLE_SYSTEM_FILES})
+source_group(Renderer/VisibilityBuffer FILES ${RENDERER_VISIBILITY_BUFFER_FILES})
+source_group(Renderer/ParticleSystem/Shaders FILES ${RENDERER_PARTICLE_SYSTEM_SHADER_FILES})
+source_group(Renderer/VisibilityBuffer/Shaders FILES ${RENDERER_VISIBILITY_BUFFER_SHADER_FILES})
 
 set(RESOURCES_INTERFACES_FILES ${TF_RESOURCES_LOADER}/Interfaces/IResourceLoader.h)
 source_group(Resources/ResourceLoader/Interfaces FILES ${RESOURCES_INTERFACES_FILES})
@@ -529,9 +547,14 @@ set(TOOLS_FILES
 	)
 
 set(RENDERER_SOURCE_FILES 
+	${RENDERER_INTERFACE_FILES}
+	${GRAPHICS_INTERFACE_FILES}
+	${RENDERER_PARTICLE_SYSTEM_SHADER_FILES}
+	${RENDERER_VISIBILITY_BUFFER_SHADER_FILES}
 	${GRAPHICS_FILES}
 	${GRAPHICS_THIRD_PARTY_FILES}
-	${RENDERER_FILES}
+	${RENDERER_PARTICLE_SYSTEM_FILES}
+	${RENDERER_VISIBILITY_BUFFER_FILES}
 	${RESOURCES_FILES}
 	${TOOLS_FILES}
 	)
