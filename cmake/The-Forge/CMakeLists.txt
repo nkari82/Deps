@@ -859,63 +859,53 @@ install(
 	${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lualib.h
 	${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lauxlib.h
 	${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lua.hpp
-	DESTINATION include
-	)
+	DESTINATION include)
 		
 install(
 	FILES 
 	${APP_INTERFACES_FILES}
-	DESTINATION include/The-Forge/Application/Interfaces/
-	)
+	DESTINATION include/The-Forge/Application/Interfaces/)
 
 install(
 	FILES 
 	${TF_APPLICATION_DIR}/Config.h
-	DESTINATION include/The-Forge/Application
-	)
+	DESTINATION include/The-Forge/Application)
 	
 install(
 	FILES 
 	${GAME_INTERFACES_FILES}
-	DESTINATION include/The-Forge/Game/Interfaces/
-	)
+	DESTINATION include/The-Forge/Game/Interfaces/)
 	
 install(
 	FILES 
 	${TF_GAME_DIR}/Scripting/LuaManager.h
 	${TF_GAME_DIR}/Scripting/LuaManagerCommon.h
-	DESTINATION include/The-Forge/Game/Scripting/
-	)
+	DESTINATION include/The-Forge/Game/Scripting/)
 	
 install(
 	FILES
 	${GRAPHICS_INTERFACE_FILES}
-	DESTINATION include/The-Forge/Graphics/Interfaces/
-	)
+	DESTINATION include/The-Forge/Graphics/Interfaces/)
 	
 install(
 	FILES 
 	${GRAPHICS_DIR}/GraphicsConfig.h
-	DESTINATION include/The-Forge/Graphics/
-	)
+	DESTINATION include/The-Forge/Graphics/)
 	
 install(
 	FILES 
 	${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12Config.h
-	DESTINATION include/The-Forge/Graphics/Direct3D12/
-	)
+	DESTINATION include/The-Forge/Graphics/Direct3D12/)
 	
 install(
 	FILES 
 	${TF_GRAPHICS_DIR}/Direct3D11/Direct3D11Config.h
-	DESTINATION include/The-Forge/Graphics/Direct3D11/
-	)
+	DESTINATION include/The-Forge/Graphics/Direct3D11/)
 	
 install(
 	FILES 
 	${TF_GRAPHICS_DIR}/Vulkan/VulkanConfig.h
-	DESTINATION include/The-Forge/Graphics/Vulkan/
-	)
+	DESTINATION include/The-Forge/Graphics/Vulkan/)
 
 install(
 	DIRECTORY 
@@ -923,75 +913,63 @@ install(
 	DESTINATION include/The-Forge/Graphics/ThirdParty/
 	FILES_MATCHING
 	PATTERN "*.hpp"
-	PATTERN "*.h" 
-	)
+	PATTERN "*.h" )
 	
 install(
 	FILES 
 	${OS_INTERFACES_FILES}
-	DESTINATION include/The-Forge/OS/Interfaces/
-	)
+	DESTINATION include/The-Forge/OS/Interfaces/)
 	
 install(
 	FILES 
 	${TF_OS_DIR}/CPUConfig.h
-	DESTINATION include/The-Forge/OS/
-	)
+	DESTINATION include/The-Forge/OS/)
 	
 install(
 	FILES 
 	${TF_OS_THIRD_PARTY_DIR}/OpenSource/cpu_features/src/cpu_features_types.h
-	DESTINATION include/The-Forge/OS/ThirdParty/OpenSource/cpu_features/src/
-	)
+	DESTINATION include/The-Forge/OS/ThirdParty/OpenSource/cpu_features/src/)
 	
 install(
 	FILES 
 	${RENDERER_CORE_INTERFACE_FILES}
-	DESTINATION include/The-Forge/Renderer/Interfaces/
-	)
+	DESTINATION include/The-Forge/Renderer/Interfaces/)
 	
 install(
 	FILES 
 	${RENDERER_RESOURCES_INTERFACES_FILES}
-	DESTINATION include/The-Forge/Resources/ResourceLoader/Interfaces/
-	)
+	DESTINATION include/The-Forge/Resources/ResourceLoader/Interfaces/)
 	
 install(
 	FILES 
 	${TF_RESOURCE_LOADER_THIRD_PARTY_DIR}/OpenSource/tinyimageformat/tinyimageformat_base.h
-	DESTINATION include/The-Forge/Resources/ResourceLoader/ThirdParty/OpenSource/tinyimageformat/
-	)
+	DESTINATION include/The-Forge/Resources/ResourceLoader/ThirdParty/OpenSource/tinyimageformat/)
 	
 install(
 	FILES 
 	${OS_UTILLITIES_INTERFACES_FILES}
-	DESTINATION include/The-Forge/Utilities/Interfaces
-	)
+	DESTINATION include/The-Forge/Utilities/Interfaces)
 		
 install(
 	FILES 
 	${TF_UTILITIES_DIR}/Log/Log.h
-	DESTINATION include/The-Forge/Utilities/Log/
-	)
+	DESTINATION include/The-Forge/Utilities/Log/)
 	
 install(
 	FILES 
 	${TF_UTILITIES_DIR}/Math/MathTypes.h
 	${TF_UTILITIES_DIR}/Math/Random.h
-	DESTINATION include/The-Forge/Utilities/Math/
-	)
+	DESTINATION include/The-Forge/Utilities/Math/)
 	
 install(
 	FILES 
 	${TF_UTILITIES_DIR}/Threading/Atomics.h
-	DESTINATION include/The-Forge/Utilities/Threading/
-	)
+	DESTINATION include/The-Forge/Utilities/Threading/)
 
 install(
 	FILES 
 	${TF_UTILITIES_DIR}/RingBuffer.h
-	DESTINATION include/The-Forge/Utilities/
-	)
+	DESTINATION include/The-Forge/Utilities/)
 	
 install(
 	DIRECTORY 
@@ -999,15 +977,12 @@ install(
 	DESTINATION include/The-Forge/Utilities/ThirdParty/
 	FILES_MATCHING 
 	PATTERN "*.hpp"
-	PATTERN "*.h" 
-	)
-	
+	PATTERN "*.h" )
 	
 install(
 	DIRECTORY  
 	${THE_FORGE_DIR}/Common_3/IDE/
-	DESTINATION include/The-Forge/
-	)
+	DESTINATION include/The-Forge/)
 
 # binary
 install(TARGETS The-Forge Imgui GaInput SpirvTools DESTINATION lib)
@@ -1019,8 +994,7 @@ install(
 	${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/DirectXShaderCompiler/lib/x64/dxcompiler.lib
 	${TF_OS_THIRD_PARTY_DIR}/OpenSource/winpixeventruntime/bin/WinPixEventRuntime.lib
 	${TF_OS_THIRD_PARTY_DIR}/OpenSource/winpixeventruntime/bin/WinPixEventRuntime_UAP.lib
-	DESTINATION lib
-	)
+	DESTINATION lib)
 	
 install(
 	FILES 
@@ -1029,5 +1003,4 @@ install(
 	${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/Direct3d12Agility/bin/x64/d3d12SDKLayers.dll
 	${TF_OS_THIRD_PARTY_DIR}/OpenSource/winpixeventruntime/bin/WinPixEventRuntime.dll
 	${TF_OS_THIRD_PARTY_DIR}/OpenSource/winpixeventruntime/bin/WinPixEventRuntime_UAP.dll
-	DESTINATION bin
-	)
+	DESTINATION bin)
