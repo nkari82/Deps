@@ -672,9 +672,8 @@ source_group(Application/Profiler FILES ${APPLICATION_PROFILER_FILES})
 source_group(Application/Fonts FILES ${APPLICATION_FONTS_FILES})
 source_group(Application/Interfaces FILES ${APPLICATION_INTERFACES_FILES})
 
-set(GAME_INTERFACES_FILES ${GAME_DIR}/Interfaces/IScripting.h
-set(GAME_FILES
-	${GAME_INTERFACES_FILES}
+set(GAME_INTERFACES_FILES ${GAME_DIR}/Interfaces/IScripting.h)
+set(GAME_SCRIPTING_FILES
 	${TF_GAME_DIR}/Scripting/LuaManager.cpp
     ${TF_GAME_DIR}/Scripting/LuaManager.h
     ${TF_GAME_DIR}/Scripting/LuaManagerCommon.h
@@ -682,48 +681,55 @@ set(GAME_FILES
     ${TF_GAME_DIR}/Scripting/LuaManagerImpl.h
     ${TF_GAME_DIR}/Scripting/LuaSystem.cpp
     ${TF_GAME_DIR}/Scripting/LunaV.hpp)
+	
+set(GAME_FILES ${GAME_INTERFACES_FILES} ${GAME_SCRIPTING_FILES})
+source_group(Game/Interfaces FILES ${GAME_INTERFACES_FILES})	
+source_group(Game/Scripting FILES ${GAME_SCRIPTING_FILES})
 
-set{OS_INTERFACES_FILES ${OS_DIR}/Interfaces/IOperatingSystem.h)
-set(OS_FILES
-    ${OS_INTERFACES_FILES}
-    ${TF_OS_DIR}/CPUConfig.cpp
-    ${TF_OS_DIR}/CPUConfig.h
-    ${TF_OS_DIR}/WindowSystem/WindowSystem.cpp
-    )
-
-if (${WINDOWS} MATCHES ON)
-    set(OS_FILES
-		${TF_OS_DIR}/Windows/WindowsBase.cpp
-        ${TF_OS_DIR}/Windows/WindowsFileSystem.cpp
-        ${TF_OS_DIR}/Windows/WindowsLog.c
-        ${TF_OS_DIR}/Windows/WindowsStackTraceDump.cpp
-        ${TF_OS_DIR}/Windows/WindowsStackTraceDump.h
-        ${TF_OS_DIR}/Windows/WindowsThread.c
-        ${TF_OS_DIR}/Windows/WindowsTime.c
-        ${TF_OS_DIR}/Windows/WindowsWindow.cpp
-		${TF_OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_x86_windows.c
-		#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_aarch64_iOS.c
-		#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_aarch64_linux_or_android.c
-		#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_x86_freebsd.c
-		#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_x86_linux_or_android.c
-		#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_x86_macos.c		
-		${OS_FILES})
-endif ()
+set(OS_INTERFACES_FILES ${TF_OS_DIR}/Interfaces/IOperatingSystem.h)
+set(OS_WINDOW_SYSTEM_FILES ${TF_OS_DIR}/WindowSystem/WindowSystem.cpp)
+set(OS_ROOT_FILES ${TF_OS_DIR}/CPUConfig.cpp ${TF_OS_DIR}/CPUConfig.h)
+source_group(OS FILES ${OS_ROOT_FILES})
+source_group(OS/Interfaces FILES ${OS_INTERFACES_FILES})
+source_group(OS/WindowsSystem FILES ${OS_WINDOW_SYSTEM_FILES})
+	
+set(OS_FILES ${OS_INTERFACES_FILES} ${OS_ROOT_FILES} ${OS_WINDOW_SYSTEM_FILES})
+set(OS_WINDOWS_FILES
+	${TF_OS_DIR}/Windows/WindowsBase.cpp
+    ${TF_OS_DIR}/Windows/WindowsFileSystem.cpp
+    ${TF_OS_DIR}/Windows/WindowsLog.c
+    ${TF_OS_DIR}/Windows/WindowsStackTraceDump.cpp
+    ${TF_OS_DIR}/Windows/WindowsStackTraceDump.h
+    ${TF_OS_DIR}/Windows/WindowsThread.c
+    ${TF_OS_DIR}/Windows/WindowsTime.c
+    ${TF_OS_DIR}/Windows/WindowsWindow.cpp)
+source_group(OS/Windows FILES ${OS_WINDOWS_FILES})
 
 set(OS_DARWIN_FILES
     ${TF_OS_DIR}/Darwin/CocoaFileSystem.mm
     ${TF_OS_DIR}/Darwin/DarwinLog.c
-    ${TF_OS_DIR}/Darwin/DarwinThread.c)
-		
-if (${APPLE_PLATFORM} MATCHES ON)
-	set(OS_FILES 
+    ${TF_OS_DIR}/Darwin/DarwinThread.c
 	${TF_OS_DIR}/Darwin/macOSAppDelegate.h
 	${TF_OS_DIR}/Darwin/macOSAppDelegate.m
 	${TF_OS_DIR}/Darwin/macOSBase.mm
-	${TF_OS_DIR}/Darwin/macOSWindow.mm
-	${OS_FILES} 
-	${OS_DARWIN_FILES})
+	${TF_OS_DIR}/Darwin/macOSWindow.mm)
+source_group(OS/Darwin FILES ${OS_DARWIN_FILES})
+		
+if (${WINDOWS} MATCHES ON)
+	set(CPU_FEATURES_FILES ${TF_OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_x86_windows.c)
+	#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_aarch64_iOS.c
+	#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_aarch64_linux_or_android.c
+	#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_x86_freebsd.c
+	#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_x86_linux_or_android.c
+	#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_x86_macos.c		
+		
+    set(OS_FILES ${OS_WINDOWS_FILES} ${CPU_FEATURES_FILES} ${OS_FILES})
 endif ()
+
+if (${APPLE_PLATFORM} MATCHES ON)
+	set(OS_FILES ${OS_FILES} ${OS_DARWIN_FILES})
+endif ()
+source_group(OS/ThirdParty/OpenSource/cpu_features/src FILES ${CPU_FEATURES_FILES})
 
 set(RESOURCES_FILES
     ${TF_RESOURCES_ANIMATION}/Animation/AnimatedObject.cpp
@@ -788,6 +794,7 @@ if (${APPLE_PLATFORM} MATCHES ON)
 endif ()
 
 set(OS_SOURCE_FILES
+	${OS_FILES}
 	${APPLICATION_FILES}
 	${RESOURCES_FILES}
 	${UTILLITY_FILES}
