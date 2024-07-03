@@ -149,6 +149,8 @@ set(TF_OS_THIRD_PARTY_DIR ${TF_OS_DIR}/ThirdParty)
 set(TF_UTILITIES_DIR ${THE_FORGE_DIR}/Common_3/Utilities)
 set(TF_UTILITIES_THIRD_PARTY_DIR ${TF_UTILITIES_DIR}/ThirdParty)
 
+set(TF_MIDDLEWARE_3_DIR ${THE_FORGE_DIR}/Middleware_3)
+
 # Dependencies
 set(SPIRVTOOLS_FILES
     ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/SPIRV_Cross/spirv_cfg.cpp
@@ -809,6 +811,13 @@ source_group(Utilities/ThirdParty/OpenSource/rmem/src FILES ${RMEM_FILES})
 source_group(Utilities/ThirdParty/OpenSource/lz4 FILES ${LZ4_FILES})
 source_group(Utilities/ThirdParty/OpenSource/zstd FILES ${ZSTD_FILES})
 
+set(MIDDLEWARE_PANINI_PROJECTION_FILES 
+	${TF_MIDDLEWARE_3_DIR}/PaniniProjection/Shaders/FSL/panini_projection.frag.fsl
+	${TF_MIDDLEWARE_3_DIR}/PaniniProjection/Shaders/FSL/panini_projection.vert.fsl
+	${TF_MIDDLEWARE_3_DIR}/PaniniProjection/Shaders/FSL/Panini_ShaderList.fsl
+	${TF_MIDDLEWARE_3_DIR}/PaniniProjection/Shaders/FSL/resources.h)
+source_group(Middleware_3/PaniniProjection/Shaders FILES ${MIDDLEWARE_PANINI_PROJECTION_FILES})
+
 set(UTILITIES_FILES
 	${UTILITIES_INTERFACES_FILES}
 	${UTILITIES_FILE_SYSTEM_FILES}
@@ -826,7 +835,8 @@ set(OS_SOURCE_FILES
 	${OS_FILES}
 	${APPLICATION_FILES}
 	${RESOURCES_FILES}
-	${UTILITIES_FILES})
+	${UTILITIES_FILES}
+	${MIDDLEWARE_PANINI_PROJECTION_FILES})
 	
 # Merge
 set(FORGE_FILES ${RENDERER_SOURCE_FILES} ${OS_SOURCE_FILES})
