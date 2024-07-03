@@ -122,7 +122,7 @@ endif()
 
 message("\n")
 
-set(THE_FORGE_DIR ../../The-Forge)
+set(THE_FORGE_DIR ${CMAKE_SOURCE_DIR}/The-Forge)
 set(TF_GRAPHICS_DIR ${THE_FORGE_DIR}/Common_3/Graphics) 
 set(TF_GRAPHICS_THIRD_PARTY_DIR ${TF_GRAPHICS_DIR}/ThirdParty)
 
@@ -811,12 +811,13 @@ source_group(Utilities/ThirdParty/OpenSource/rmem/src FILES ${RMEM_FILES})
 source_group(Utilities/ThirdParty/OpenSource/lz4 FILES ${LZ4_FILES})
 source_group(Utilities/ThirdParty/OpenSource/zstd FILES ${ZSTD_FILES})
 
-set(MIDDLEWARE_PANINI_PROJECTION_FILES 
+set(MIDDLEWARE_PANINI_PROJECTION_SHADER_FILES 
 	${TF_MIDDLEWARE_3_DIR}/PaniniProjection/Shaders/FSL/panini_projection.frag.fsl
 	${TF_MIDDLEWARE_3_DIR}/PaniniProjection/Shaders/FSL/panini_projection.vert.fsl
 	${TF_MIDDLEWARE_3_DIR}/PaniniProjection/Shaders/FSL/Panini_ShaderList.fsl
-	${TF_MIDDLEWARE_3_DIR}/PaniniProjection/Shaders/FSL/resources.h)
-source_group(Middleware_3/PaniniProjection/Shaders FILES ${MIDDLEWARE_PANINI_PROJECTION_FILES})
+	${TF_MIDDLEWARE_3_DIR}/PaniniProjection/Shaders/FSL/resources.h
+	)
+source_group(Middleware_3/PaniniProjection/Shaders FILES ${MIDDLEWARE_PANINI_PROJECTION_SHADER_FILES})
 
 set(UTILITIES_FILES
 	${UTILITIES_INTERFACES_FILES}
@@ -836,7 +837,7 @@ set(OS_SOURCE_FILES
 	${APPLICATION_FILES}
 	${RESOURCES_FILES}
 	${UTILITIES_FILES}
-	${MIDDLEWARE_PANINI_PROJECTION_FILES})
+	${MIDDLEWARE_PANINI_PROJECTION_SHADER_FILES})
 	
 # Merge
 set(FORGE_FILES ${RENDERER_SOURCE_FILES} ${OS_SOURCE_FILES})
@@ -1006,3 +1007,70 @@ install(
 	${TF_OS_THIRD_PARTY_DIR}/OpenSource/winpixeventruntime/bin/WinPixEventRuntime.dll
 	${TF_OS_THIRD_PARTY_DIR}/OpenSource/winpixeventruntime/bin/WinPixEventRuntime_UAP.dll
 	DESTINATION bin)
+	
+#message(${CMAKE_SOURCE_DIR})
+#message(${CMAKE_CURRENT_SOURCE_DIR})
+
+#LIST(LENGTH RENDERER_PARTICLE_SYSTEM_SHADER_FILES len)
+#message("length = ${len}")
+
+if (${WINDOWS} MATCHES ON)
+	
+	find_package(PythonInterp REQUIRED)
+	set(FSL ${TF_TOOLS_DIR}/ForgeShadingLanguage/fsl.py)
+	set(DST ${CMAKE_CURRENT_BINARY_DIR}/Shaders)
+	set(BINARY ${CMAKE_CURRENT_BINARY_DIR}/CompiledShaders)
+	set(LANGUAGE "DIRECT3D11 DIRECT3D12 VULKAN")
+
+	foreach(SHADER IN LISTS RENDERER_PARTICLE_SYSTEM_SHADER_FILES)
+		add_custom_command(TARGET The-Forge 
+			PRE_BUILD
+			COMMAND "${PYTHON_EXECUTABLE}" ${FSL} -d ${DST} -b ${BINARY}
+			-i ${CMAKE_CURRENT_BINARY_DIR}
+			-l ${LANGUAGE}
+			${SHADER}
+			--compile --incremental)
+	endforeach()
+	
+	foreach(SHADER IN LISTS RENDERER_VISIBILITY_BUFFER_SHADER_FILES)
+		add_custom_command(TARGET The-Forge 
+			PRE_BUILD
+			COMMAND "${PYTHON_EXECUTABLE}" ${FSL} -d ${DST} -b ${BINARY}
+			-i ${CMAKE_CURRENT_BINARY_DIR}
+			-l ${LANGUAGE}
+			${SHADER}
+			--compile --incremental)
+	endforeach()
+	
+	foreach(SHADER IN LISTS APPLICATION_UI_SHADER_FILES)
+		add_custom_command(TARGET The-Forge 
+			PRE_BUILD
+			COMMAND "${PYTHON_EXECUTABLE}" ${FSL} -d ${DST} -b ${BINARY}
+			-i ${CMAKE_CURRENT_BINARY_DIR}
+			-l ${LANGUAGE}
+			${SHADER}
+			--compile --incremental)
+	endforeach()
+	
+	foreach(SHADER IN LISTS RESOURCE_ANIMATION_SHADER_FILES)
+		add_custom_command(TARGET The-Forge 
+			PRE_BUILD
+			COMMAND "${PYTHON_EXECUTABLE}" ${FSL} -d ${DST} -b ${BINARY}
+			-i ${CMAKE_CURRENT_BINARY_DIR}
+			-l ${LANGUAGE}
+			${SHADER}
+			--compile --incremental)
+	endforeach()
+	
+	foreach(SHADER IN LISTS MIDDLEWARE_PANINI_PROJECTION_FILES)
+		add_custom_command(TARGET The-Forge 
+			PRE_BUILD
+			COMMAND "${PYTHON_EXECUTABLE}" ${FSL} -d ${DST} -b ${BINARY}
+			-i ${CMAKE_CURRENT_BINARY_DIR}
+			-l ${LANGUAGE}
+			${SHADER}
+			--compile --incremental)
+	endforeach()
+				
+endif ()
+	
