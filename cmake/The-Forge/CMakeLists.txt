@@ -120,8 +120,6 @@ if(${DYNAMIC_LIB} MATCHES ON)
     message("Dynamic library")
 endif()
 
-message("\n")
-
 set(THE_FORGE_DIR ${CMAKE_SOURCE_DIR}/The-Forge)
 set(TF_GRAPHICS_DIR ${THE_FORGE_DIR}/Common_3/Graphics) 
 set(TF_GRAPHICS_THIRD_PARTY_DIR ${TF_GRAPHICS_DIR}/ThirdParty)
@@ -1008,69 +1006,32 @@ install(
 	${TF_OS_THIRD_PARTY_DIR}/OpenSource/winpixeventruntime/bin/WinPixEventRuntime_UAP.dll
 	DESTINATION bin)
 	
-#message(${CMAKE_SOURCE_DIR})
-#message(${CMAKE_CURRENT_SOURCE_DIR})
 
-#LIST(LENGTH RENDERER_PARTICLE_SYSTEM_SHADER_FILES len)
-#message("length = ${len}")
-
-if (${WINDOWS} MATCHES ON)
+if (${WINDOWS} MATCHES ON)	
+	if (POLICY CMP0148) 
+		cmake_policy(SET CMP0148 OLD) 
+	endif()
 	
 	find_package(PythonInterp REQUIRED)
+	
 	set(FSL ${TF_TOOLS_DIR}/ForgeShadingLanguage/fsl.py)
-	set(DST ${CMAKE_CURRENT_BINARY_DIR}/Shaders)
-	set(BINARY ${CMAKE_CURRENT_BINARY_DIR}/CompiledShaders)
+	set(DST $(ProjectDir)$(Configuration)/Shaders)
+	set(BINARY $(ProjectDir)$(Configuration)/CompiledShaders)
 	set(LANGUAGE "DIRECT3D11 DIRECT3D12 VULKAN")
 
-	foreach(SHADER IN LISTS RENDERER_PARTICLE_SYSTEM_SHADER_FILES)
-		add_custom_command(TARGET The-Forge 
-			PRE_BUILD
-			COMMAND "${PYTHON_EXECUTABLE}" ${FSL} -d ${DST} -b ${BINARY}
-			-i ${CMAKE_CURRENT_BINARY_DIR}
-			-l ${LANGUAGE}
-			${SHADER}
-			--compile --incremental)
-	endforeach()
+	function(Compile)
+		foreach(SHADER IN LISTS ARGV)
+			add_custom_command(TARGET The-Forge 
+				PRE_BUILD COMMAND 
+				set FSL_COMPILER_FXC=C:/Program Files \(x86\)/Windows Kits/10/bin/${CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION}/x64\r\n
+				"${PYTHON_EXECUTABLE}" ${FSL} -d ${DST} -b ${BINARY} -l ${LANGUAGE} ${SHADER} --compile --incremental)
+		endforeach()
+	endfunction()
 	
-	foreach(SHADER IN LISTS RENDERER_VISIBILITY_BUFFER_SHADER_FILES)
-		add_custom_command(TARGET The-Forge 
-			PRE_BUILD
-			COMMAND "${PYTHON_EXECUTABLE}" ${FSL} -d ${DST} -b ${BINARY}
-			-i ${CMAKE_CURRENT_BINARY_DIR}
-			-l ${LANGUAGE}
-			${SHADER}
-			--compile --incremental)
-	endforeach()
-	
-	foreach(SHADER IN LISTS APPLICATION_UI_SHADER_FILES)
-		add_custom_command(TARGET The-Forge 
-			PRE_BUILD
-			COMMAND "${PYTHON_EXECUTABLE}" ${FSL} -d ${DST} -b ${BINARY}
-			-i ${CMAKE_CURRENT_BINARY_DIR}
-			-l ${LANGUAGE}
-			${SHADER}
-			--compile --incremental)
-	endforeach()
-	
-	foreach(SHADER IN LISTS RESOURCE_ANIMATION_SHADER_FILES)
-		add_custom_command(TARGET The-Forge 
-			PRE_BUILD
-			COMMAND "${PYTHON_EXECUTABLE}" ${FSL} -d ${DST} -b ${BINARY}
-			-i ${CMAKE_CURRENT_BINARY_DIR}
-			-l ${LANGUAGE}
-			${SHADER}
-			--compile --incremental)
-	endforeach()
-	
-	foreach(SHADER IN LISTS MIDDLEWARE_PANINI_PROJECTION_FILES)
-		add_custom_command(TARGET The-Forge 
-			PRE_BUILD
-			COMMAND "${PYTHON_EXECUTABLE}" ${FSL} -d ${DST} -b ${BINARY}
-			-i ${CMAKE_CURRENT_BINARY_DIR}
-			-l ${LANGUAGE}
-			${SHADER}
-			--compile --incremental)
-	endforeach()
-				
+	Compile(${RENDERER_PARTICLE_SYSTEM_SHADER_FILES})
+	Compile(${RENDERER_VISIBILITY_BUFFER_SHADER_FILES})
+	Compile(${APPLICATION_UI_SHADER_FILES})
+	Compile(${RESOURCE_ANIMATION_SHADER_FILES})
+	Compile(${MIDDLEWARE_PANINI_PROJECTION_SHADER_FILES})
 endif ()
 	
