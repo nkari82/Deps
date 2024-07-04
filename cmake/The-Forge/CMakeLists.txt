@@ -419,17 +419,21 @@ set(BUNY_FILES
 	${TF_TOOLS_DIR}/BunyArchive/Buny.h
 	${LZ4_FILES}
 	${ZSTD_FILES})
-	
 add_library(BunyLib STATIC ${BUNY_FILES})
 
 # ispc_texcomp
+set(KERNAL_ISPC_FILES 
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ispc_texcomp/kernel.ispc
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ispc_texcomp/kernel_astc.ispc)
+	
 set(ISPC_TEX_COMP_FILES
 	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp.cpp
 	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp.h
 	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp_astc.cpp
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ispc_texcomp/kernel.ispc
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ispc_texcomp/kernel_astc.ispc)
-											  
+	${KERNAL_ISPC_FILES})
+add_library(ispc_texcomp STATIC ${ISPC_TEX_COMP_FILES})
+target_include_directories(ispc_texcomp PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/$(IntDir))
+
 # Renderer
 set(GRAPHICS_DX11_FILES
     ${TF_GRAPHICS_DIR}/Direct3D11/Direct3D11.cpp
@@ -487,7 +491,6 @@ set(GRAPHICS_FILES
 	${AGS_FILES} 
 	${NVAPI_FILES} 
 	${VULKAN_MEMORY_ALLOCATOR_FILES})
-	
 source_group(Graphics FILES ${GRAPHICS_ROOT_FILES})
 source_group(Graphics/Interfaces FILES ${GRAPHICS_INTERFACE_FILES})
 source_group(Graphics/Metal FILES ${GRAPHICS_METAL_FILES})
@@ -531,7 +534,6 @@ set(RENDERER_FILES
 	${RENDERER_PARTICLE_SYSTEM_FILES}
 	${RENDERER_VISIBILITY_BUFFER_SHADER_FILES}
 	${RENDERER_VISIBILITY_BUFFER_FILES})
-	
 source_group(Renderer/ParticleSystem FILES ${RENDERER_PARTICLE_SYSTEM_FILES})
 source_group(Renderer/VisibilityBuffer FILES ${RENDERER_VISIBILITY_BUFFER_FILES})
 source_group(Renderer/ParticleSystem/Shaders FILES ${RENDERER_PARTICLE_SYSTEM_SHADER_FILES})
@@ -541,14 +543,12 @@ source_group(Renderer/Interfaces FILES ${RENDERER_INTERFACE_FILES})
 set(RESOURCES_INTERFACES_FILES ${TF_RESOURCES_LOADER}/Interfaces/IResourceLoader.h)
 set(RESOURCES_ROOT_FILES ${TF_RESOURCES_LOADER}/ResourceLoader.cpp ${TF_RESOURCES_LOADER}/TextureContainers.h)
 set(RESOURCES_FILES ${RESOURCES_INTERFACES_FILES} ${RESOURCES_ROOT_FILES})
-	
 source_group(Resources/ResourceLoader FILES ${RESOURCES_ROOT_FILES})
 source_group(Resources/ResourceLoader/Interfaces FILES ${RESOURCES_INTERFACES_FILES})
 	
 set(TOOLS_NETWORK_FILES ${TF_TOOLS_DIR}/Network/Network.c ${TF_TOOLS_DIR}/Network/Network.h)
 set(TOOLS_RELOAD_SERVER_FILES ${TF_TOOLS_DIR}/ReloadServer/ReloadClient.cpp ${TF_TOOLS_DIR}/ReloadServer/ReloadClient.h	)
 set(TOOLS_FILES ${TOOLS_NETWORK_FILES} ${TOOLS_RELOAD_SERVER_FILES})
-	
 source_group(Tools/Network FILES  ${TOOLS_NETWORK_FILES})
 source_group(Tools/ReloadServer FILES ${TOOLS_RELOAD_SERVER_FILES})
 
@@ -703,12 +703,12 @@ set(OS_DARWIN_FILES
 source_group(OS/Darwin FILES ${OS_DARWIN_FILES})
 		
 if (${WINDOWS} MATCHES ON)
-	set(CPU_FEATURES_FILES ${TF_OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_x86_windows.c)
-	#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_aarch64_iOS.c
-	#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_aarch64_linux_or_android.c
-	#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_x86_freebsd.c
-	#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_x86_linux_or_android.c
-	#${OS_DIR}/ThirdParty/OpenSource/cpu_features/src/impl_x86_macos.c		
+	set(CPU_FEATURES_FILES ${TF_OS_THIRD_PARTY_DIR}/OpenSource/cpu_features/src/impl_x86_windows.c)
+	#${TF_OS_THIRD_PARTY_DIR}/OpenSource/cpu_features/src/impl_aarch64_iOS.c
+	#${TF_OS_THIRD_PARTY_DIR}/OpenSource/cpu_features/src/impl_aarch64_linux_or_android.c
+	#${TF_OS_THIRD_PARTY_DIR}/OpenSource/cpu_features/src/impl_x86_freebsd.c
+	#${TF_OS_THIRD_PARTY_DIR}/OpenSource/cpu_features/src/impl_x86_linux_or_android.c
+	#${TF_OS_THIRD_PARTY_DIR}/OpenSource/cpu_features/src/impl_x86_macos.c		
 		
     set(OS_FILES ${OS_WINDOWS_FILES} ${CPU_FEATURES_FILES} ${OS_FILES})
 endif ()
@@ -849,7 +849,6 @@ if (${APPLE_PLATFORM} MATCHES ON)
 endif()
 
 
-#bunylib.lib OS.lib winmm.lib
 # BunyTool
 set(BUNY_TOOL_BUNY_ARCHIVE_FILES ${TF_TOOLS_DIR}/BunyArchive/BunyTool.c)
 set(BUNY_TOOL_BUNY_ARCHIVE_VISUAL_STUDIO_FILES 
@@ -1062,5 +1061,15 @@ if (${WINDOWS} MATCHES ON)
 	Compile(${APPLICATION_UI_SHADER_FILES})
 	Compile(${RESOURCE_ANIMATION_SHADER_FILES})
 	Compile(${MIDDLEWARE_PANINI_PROJECTION_SHADER_FILES})
+	
+	set(ISPC ${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ISPC/win/ispc.exe)
+	foreach(KERNAL_PATH IN LISTS KERNAL_ISPC_FILES)
+		cmake_path(GET KERNAL_PATH STEM filename)
+		add_custom_command(TARGET ispc_texcomp PRE_BUILD COMMAND ${ISPC} -O2 
+			${KERNAL_PATH} 
+			-o "$(IntDir)${filename}.obj" 
+			-h "$(IntDir)${filename}_ispc.h" 
+			--target=sse2,sse4,avx,avx2 --opt=fast-math)
+	endforeach()
 endif ()
 	
