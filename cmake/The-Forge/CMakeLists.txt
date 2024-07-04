@@ -350,6 +350,7 @@ set(OZZ_FILES
 	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/platform.cc)
 
 add_library(ozz STATIC ${OZZ_FILES})
+target_include_directories(ozz PUBLIC ${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/include)
 
 # AssetPipelineCmd
 set(ASSET_PIPELINE_CMD_FILES
