@@ -316,38 +316,40 @@ set(THIRD_PARTY_DEPS Imgui GaInput Lua)
 # Tools
 # ozz-animation
 set(OZZ_FILES
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/offline/additive_animation_builder.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/offline/animation_builder.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/offline/animation_optimizer.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/offline/raw_animation.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/offline/raw_animation_archive.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/offline/raw_animation_utils.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/offline/raw_skeleton.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/offline/raw_skeleton_archive.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/offline/raw_track.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/offline/skeleton_builder.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/offline/track_builder.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/offline/track_optimizer.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/runtime/animation.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/runtime/animation_keyframe.h
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/runtime/animation_utils.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/runtime/blending_job.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/runtime/ik_aim_job.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/runtime/ik_two_bone_job.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/runtime/local_to_model_job.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/runtime/sampling_job.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/runtime/skeleton.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/runtime/skeleton_utils.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/runtime/track.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/runtime/track_sampling_job.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/runtime/track_triggering_job.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/containers/string_archive.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/io/archive.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/maths/math_archive.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/maths/simd_math_archive.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/maths/soa_math_archive.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/memory/allocator.cc
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/platform.cc)
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/offline/additive_animation_builder.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/offline/animation_builder.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/offline/animation_optimizer.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/offline/raw_animation.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/offline/raw_animation_archive.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/offline/raw_animation_utils.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/offline/raw_skeleton.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/offline/raw_skeleton_archive.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/offline/raw_track.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/offline/skeleton_builder.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/offline/track_builder.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/offline/track_optimizer.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/runtime/animation.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/runtime/animation_keyframe.h
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/runtime/animation_utils.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/runtime/blending_job.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/runtime/ik_aim_job.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/runtime/ik_two_bone_job.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/runtime/local_to_model_job.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/runtime/sampling_job.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/runtime/skeleton.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/runtime/skeleton_utils.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/runtime/track.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/runtime/track_sampling_job.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/animation/runtime/track_triggering_job.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/containers/string_archive.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/io/archive.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/maths/math_archive.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/maths/simd_math_archive.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/maths/soa_math_archive.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/memory/allocator.cc
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/src/base/platform.cc)
+
+add_library(ozz STATIC ${OZZ_FILES})
 
 # AssetPipelineCmd
 set(ASSET_PIPELINE_CMD_FILES
@@ -417,15 +419,8 @@ set(BUNY_FILES
 	${LZ4_FILES}
 	${ZSTD_FILES})
 	
-# BunyTool
-set(BUNY_TOOL_FILES
-	${TF_OS_DIR}/Windows/WindowsToolsFileSystem.cpp
-	${TF_TOOLS_DIR}/BunyArchive/BunyTool.c
-	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/BunyTool.rc
-	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/icon.cio
-	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/resource.h
-	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c)
-	
+add_library(BunyLib STATIC ${BUNY_FILES})
+
 # ispc_texcomp
 set(ISPC_TEX_COMP_FILES
 	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp.cpp
@@ -833,6 +828,7 @@ set(UTILITIES_FILES
 set(OS_SOURCE_FILES
 	${OS_FILES}
 	${APPLICATION_FILES}
+	${GAME_FILES}
 	${RESOURCES_FILES}
 	${UTILITIES_FILES}
 	${MIDDLEWARE_PANINI_PROJECTION_SHADER_FILES})
@@ -850,6 +846,28 @@ if (${APPLE_PLATFORM} MATCHES ON)
     set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=c++17 -stdlib=libc++ -x objective-c++")
     target_compile_options(The-Forge PRIVATE "-fobjc-arc")
 endif()
+
+
+#bunylib.lib OS.lib winmm.lib
+# BunyTool
+set(BUNY_TOOL_BUNY_ARCHIVE_FILES ${TF_TOOLS_DIR}/BunyArchive/BunyTool.c)
+set(BUNY_TOOL_BUNY_ARCHIVE_VISUAL_STUDIO_FILES 
+	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/BunyTool.rc
+	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/icon.ico
+	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/resource.h)
+	
+set(BUNY_TOOL_FILES
+	${OS_SOURCE_FILES}
+	${TF_OS_DIR}/Windows/WindowsToolsFileSystem.cpp
+	${BUNY_TOOL_BUNY_ARCHIVE_FILES}
+	${BUNY_TOOL_BUNY_ARCHIVE_VISUAL_STUDIO_FILES}
+	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c)	
+source_group(BunyArchive FILES ${BUNY_TOOL_BUNY_ARCHIVE_FILES})
+source_group(BunyArchive/VisualStudio FILES ${BUNY_TOOL_BUNY_ARCHIVE_VISUAL_STUDIO_FILES})
+
+add_executable(BunyTool ${BUNY_TOOL_FILES})
+target_link_libraries(BunyTool PUBLIC BunyLib ${THIRD_PARTY_DEPS})
+target_compile_definitions(BunyTool PUBLIC "_UNICODE" "_WINDOWS")
 
 # installs
 install(TARGETS Lua DESTINATION lib)
