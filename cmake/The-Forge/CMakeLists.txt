@@ -177,8 +177,8 @@ add_library(SpirvTools STATIC ${SPIRVTOOLS_FILES})
 set_property(TARGET SpirvTools PROPERTY CXX_STANDARD 17)
 
 add_library(WinPixEventRuntime SHARED IMPORTED)
-set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_LOCATION ${TF_THIRD_PARTY_OS_DIR}/OpenSource/winpixeventruntime/bin/WinPixEventRuntime.dll)
-set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_IMPLIB ${TF_THIRD_PARTY_OS_DIR}/OpenSource/winpixeventruntime/bin/WinPixEventRuntime.lib)
+set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_LOCATION ${TF_OS_THIRD_PARTY_DIR}/OpenSource/winpixeventruntime/bin/WinPixEventRuntime.dll)
+set_property(TARGET WinPixEventRuntime PROPERTY IMPORTED_IMPLIB ${TF_OS_THIRD_PARTY_DIR}/OpenSource/winpixeventruntime/bin/WinPixEventRuntime.lib)
 
 add_library(AGS SHARED IMPORTED)
 set_property(TARGET AGS PROPERTY IMPORTED_LOCATION ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/ags/ags_lib/lib/amd_ags_x64.dll)
@@ -858,7 +858,17 @@ set(BUNY_TOOL_BUNY_ARCHIVE_VISUAL_STUDIO_FILES
 	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/resource.h)
 	
 set(BUNY_TOOL_FILES
-	${OS_SOURCE_FILES}
+	${OS_FILES}
+	${UTILITIES_FILES}
+	${APPLICATION_PROFILER_FILES}
+	${APPLICATION_UI_FILES}
+	${APPLICATION_FONTS_FILES}
+	${APPLICATION_ROOT_FILES}
+	${GAME_SCRIPTING_FILES}
+	${GRAPHICS_ROOT_FILES}
+	${TOOLS_NETWORK_FILES}
+	${TOOLS_RELOAD_SERVER_FILES}
+	${RENDERER_SOURCE_FILES}
 	${TF_OS_DIR}/Windows/WindowsToolsFileSystem.cpp
 	${BUNY_TOOL_BUNY_ARCHIVE_FILES}
 	${BUNY_TOOL_BUNY_ARCHIVE_VISUAL_STUDIO_FILES}
@@ -867,7 +877,7 @@ source_group(BunyArchive FILES ${BUNY_TOOL_BUNY_ARCHIVE_FILES})
 source_group(BunyArchive/VisualStudio FILES ${BUNY_TOOL_BUNY_ARCHIVE_VISUAL_STUDIO_FILES})
 
 add_executable(BunyTool ${BUNY_TOOL_FILES})
-target_link_libraries(BunyTool PUBLIC BunyLib ${THIRD_PARTY_DEPS})
+target_link_libraries(BunyTool PUBLIC BunyLib ozz ${RENDERER_LIBRARIES} ${THIRD_PARTY_DEPS})
 target_compile_definitions(BunyTool PUBLIC "_UNICODE" "_WINDOWS")
 
 # installs
