@@ -870,11 +870,11 @@ set(BUNY_TOOL_FILES
 	${TOOLS_RELOAD_SERVER_FILES}
 	${RENDERER_SOURCE_FILES}
 	${TF_OS_DIR}/Windows/WindowsToolsFileSystem.cpp
-	${BUNY_TOOL_BUNY_ARCHIVE_FILES}
-	${BUNY_TOOL_BUNY_ARCHIVE_VISUAL_STUDIO_FILES}
+	${TF_TOOLS_DIR}/BunyArchive/BunyTool.c
+	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/BunyTool.rc
+	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/icon.ico
+	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/resource.h
 	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c)	
-source_group(BunyArchive FILES ${BUNY_TOOL_BUNY_ARCHIVE_FILES})
-source_group(BunyArchive/VisualStudio FILES ${BUNY_TOOL_BUNY_ARCHIVE_VISUAL_STUDIO_FILES})
 
 add_executable(BunyTool ${BUNY_TOOL_FILES})
 target_link_libraries(BunyTool PUBLIC BunyLib ozz ${RENDERER_LIBRARIES} ${THIRD_PARTY_DEPS})
