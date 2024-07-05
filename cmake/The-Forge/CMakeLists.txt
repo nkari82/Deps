@@ -312,7 +312,7 @@ set(LUA_FILES
 add_library(Lua STATIC ${LUA_FILES})
 
 set(THIRD_PARTY_DEPS Imgui GaInput Lua)
-		
+
 # Tools
 # ozz-animation
 set(OZZ_FILES
@@ -351,34 +351,6 @@ set(OZZ_FILES
 
 add_library(ozz STATIC ${OZZ_FILES})
 target_include_directories(ozz PUBLIC ${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/include)
-
-# AssetPipelineCmd
-set(ASSET_PIPELINE_CMD_FILES
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/TressFX/TressFXAsset.h
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/TressFX/TressFXAsset.cpp
-	${TF_RESOURCES_ANIMATION_THIRD_PARTY_DIR}/OpenSource/TressFX/TressFXFileFormat.h
-	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipeline.cpp
-	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipeline.h
-	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipeline_Textures.cpp
-	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipelineCmd.cpp
-	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipelineConfig.h
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/allocator.cpp
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/clusterizer.cpp
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/indexcodec.cpp
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/indexgenerator.cpp
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/meshoptimizer.h
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/overdrawanalyzer.cpp
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/overdrawoptimizer.cpp
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/simplifier.cpp
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/spatialorder.cpp
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/stripifier.cpp
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vcacheanalyzer.cpp
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vcacheoptimizer.cpp
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vertexcodec.cpp
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vertexfilter.cpp
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vfetchanalyzer.cpp
-	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vfetchoptimizer.cpp
-	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c)
 	
 # lz4
 set(LZ4_FILES
@@ -850,35 +822,68 @@ endif()
 
 
 # BunyTool
-set(BUNY_TOOL_BUNY_ARCHIVE_FILES ${TF_TOOLS_DIR}/BunyArchive/BunyTool.c)
-set(BUNY_TOOL_BUNY_ARCHIVE_VISUAL_STUDIO_FILES 
-	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/BunyTool.rc
-	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/icon.ico
-	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/resource.h)
+if (${WINDOWS} MATCHES ON)	
+	set(BUNY_TOOL_BUNY_ARCHIVE_FILES ${TF_TOOLS_DIR}/BunyArchive/BunyTool.c)
+	set(BUNY_TOOL_BUNY_ARCHIVE_VISUAL_STUDIO_FILES 
+		${TF_TOOLS_DIR}/BunyArchive/VisualStudio/BunyTool.rc
+		${TF_TOOLS_DIR}/BunyArchive/VisualStudio/icon.ico
+		${TF_TOOLS_DIR}/BunyArchive/VisualStudio/resource.h)
+		
+	set(BUNY_TOOL_FILES
+		${UTILITIES_MEMORY_TRACKING_FILES}
+		${UTILITIES_FILE_SYSTEM_FILES}
+		${UTILITIES_THREADING_FILES}
+		${UTILITIES_LOG_FILES}
+		${UTILITIES_MATH_FILES}
+		${BSTRLIB_FILES}
+		${TF_OS_DIR}/Windows/WindowsThread.c
+		${TF_OS_DIR}/Windows/WindowsFileSystem.cpp
+		${TF_OS_DIR}/Windows/WindowsLog.c
+		${TF_OS_DIR}/Windows/WindowsTime.c
+		${TF_OS_DIR}/Windows/WindowsToolsFileSystem.cpp
+		${TF_TOOLS_DIR}/BunyArchive/BunyTool.c
+		${TF_TOOLS_DIR}/BunyArchive/VisualStudio/BunyTool.rc
+		${TF_TOOLS_DIR}/BunyArchive/VisualStudio/icon.ico
+		${TF_TOOLS_DIR}/BunyArchive/VisualStudio/resource.h
+		${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c
+		${TF_UTILITIES_DIR}/Timer.c)	
+	add_executable(BunyTool ${BUNY_TOOL_FILES})
+	target_link_libraries(BunyTool PUBLIC BunyLib winmm.lib)
+	target_compile_definitions(BunyTool PUBLIC "TOOLS_FILESYSTEM" "_WINDOWS")
+endif ()
+
+# AssetPipelineCmd
+set(ASSET_PIPELINE_CMD_FILES
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/TressFX/TressFXAsset.h
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/TressFX/TressFXAsset.cpp
+	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/TressFX/TressFXFileFormat.h
+	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipeline.cpp
+	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipeline.h
+	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipeline_Textures.cpp
+	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipelineCmd.cpp
+	${TF_TOOLS_DIR}/AssetPipeline/src/AssetPipelineConfig.h
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/allocator.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/clusterizer.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/indexcodec.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/indexgenerator.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/meshoptimizer.h
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/overdrawanalyzer.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/overdrawoptimizer.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/simplifier.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/spatialorder.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/stripifier.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vcacheanalyzer.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vcacheoptimizer.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vertexcodec.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vertexfilter.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vfetchanalyzer.cpp
+	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vfetchoptimizer.cpp
+	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c)
 	
-set(BUNY_TOOL_FILES
-	${OS_FILES}
-	${UTILITIES_FILES}
-	${APPLICATION_PROFILER_FILES}
-	${APPLICATION_UI_FILES}
-	${APPLICATION_FONTS_FILES}
-	${APPLICATION_ROOT_FILES}
-	${GAME_SCRIPTING_FILES}
-	${GRAPHICS_ROOT_FILES}
-	${TOOLS_NETWORK_FILES}
-	${TOOLS_RELOAD_SERVER_FILES}
-	${RENDERER_SOURCE_FILES}
-	${TF_OS_DIR}/Windows/WindowsToolsFileSystem.cpp
-	${TF_TOOLS_DIR}/BunyArchive/BunyTool.c
-	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/BunyTool.rc
-	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/icon.ico
-	${TF_TOOLS_DIR}/BunyArchive/VisualStudio/resource.h
-	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c)	
-
-add_executable(BunyTool ${BUNY_TOOL_FILES})
-target_link_libraries(BunyTool PUBLIC BunyLib ozz ${RENDERER_LIBRARIES} ${THIRD_PARTY_DEPS})
-target_compile_definitions(BunyTool PUBLIC "_UNICODE" "_WINDOWS")
-
+add_executable(AssetPipelineCmd ${ASSET_PIPELINE_CMD_FILES})
+target_link_libraries(AssetPipelineCmd PUBLIC BunyLib ozz ispc_texcomp ${RENDERER_LIBRARIES} ${THIRD_PARTY_DEPS})
+target_compile_definitions(AssetPipelineCmd PUBLIC "_UNICODE" "_WINDOWS")
+	
 # installs
 install(TARGETS Lua DESTINATION lib)
 install(
