@@ -403,9 +403,10 @@ set(ISPC_TEX_COMP_FILES
 	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp.h
 	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp_astc.cpp
 	${KERNAL_ISPC_FILES})
-	
+
+
 set(ISPC ${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ISPC/win/ispc.exe)	
-set(ispc_texcomp_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/ispc_texcomp.dir/Debug)
+set(ispc_texcomp_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/ispc_texcomp.dir/$(Configuration))
 foreach(KERNAL_PATH IN LISTS KERNAL_ISPC_FILES)
 	cmake_path(GET KERNAL_PATH STEM filename)
 	add_custom_command(
@@ -419,13 +420,13 @@ foreach(KERNAL_PATH IN LISTS KERNAL_ISPC_FILES)
 		COMMAND 
 			${ISPC} -O2 ${KERNAL_PATH} 
 			-o "${ispc_texcomp_BINARY_DIR}/${filename}.obj" 
-			-h "${ispc_texcomp_BINARY_DIR}/{filename}_ispc.h" 
+			-h "${ispc_texcomp_BINARY_DIR}/${filename}_ispc.h" 
 			--target=sse2,sse4,avx,avx2 
 			--opt=fast-math
 		WORKING_DIRECTORY "${ispc_texcomp_BINARY_DIR}")
 endforeach()
 
-add_library(ispc_texcomp SHARED 
+add_library(ispc_texcomp STATIC 
 	${ISPC_TEX_COMP_FILES}
 	${ispc_texcomp_BINARY_DIR}/kernel.obj
 	${ispc_texcomp_BINARY_DIR}/kernel_sse2.obj
@@ -436,8 +437,7 @@ add_library(ispc_texcomp SHARED
 	${ispc_texcomp_BINARY_DIR}/kernel_astc_sse2.obj
 	${ispc_texcomp_BINARY_DIR}/kernel_astc_sse4.obj
 	${ispc_texcomp_BINARY_DIR}/kernel_astc_avx.obj
-	${ispc_texcomp_BINARY_DIR}/kernel_astc_avx2.obj
-	)
+	${ispc_texcomp_BINARY_DIR}/kernel_astc_avx2.obj)
 target_include_directories(ispc_texcomp PUBLIC ${ispc_texcomp_BINARY_DIR})
 
 # Renderer
