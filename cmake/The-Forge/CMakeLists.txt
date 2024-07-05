@@ -931,7 +931,6 @@ target_link_libraries(AssetPipelineCmd PUBLIC BunyLib ozz ispc_texcomp winmm.lib
 target_compile_definitions(AssetPipelineCmd PUBLIC "_WINDOWS")
 	
 # installs
-install(TARGETS Lua DESTINATION lib)
 install(
 	FILES 
 	${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lua.h
@@ -1065,7 +1064,8 @@ install(
 	DESTINATION include/The-Forge/)
 
 # binary
-install(TARGETS The-Forge Imgui GaInput SpirvTools DESTINATION lib)
+install(TARGETS The-Forge ${THIRD_PARTY_DEPS} DESTINATION lib)
+install(TARGETS AssetPipelineCmd BunyTool DESTINATION bin)
 
 install(
 	FILES 
