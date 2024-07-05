@@ -843,7 +843,7 @@ set(OS_SOURCE_FILES
 # Merge
 set(FORGE_FILES ${RENDERER_SOURCE_FILES} ${OS_SOURCE_FILES})
 
-add_library(The-Forge SHARED ${FORGE_FILES})
+add_library(The-Forge STATIC ${FORGE_FILES})
 target_include_directories(The-Forge PUBLIC ${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/include)
 target_link_libraries(The-Forge PUBLIC ${RENDERER_LIBRARIES} ${THIRD_PARTY_DEPS})
 target_link_directories(The-Forge PUBLIC ${RENDERER_LIBRARY_PATHS})
