@@ -403,8 +403,42 @@ set(ISPC_TEX_COMP_FILES
 	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp.h
 	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ispc_texcomp/ispc_texcomp_astc.cpp
 	${KERNAL_ISPC_FILES})
-add_library(ispc_texcomp STATIC ${ISPC_TEX_COMP_FILES})
-target_include_directories(ispc_texcomp PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/$(IntDir))
+	
+set(ISPC ${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ISPC/win/ispc.exe)	
+set(ispc_texcomp_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/ispc_texcomp.dir/Debug)
+foreach(KERNAL_PATH IN LISTS KERNAL_ISPC_FILES)
+	cmake_path(GET KERNAL_PATH STEM filename)
+	add_custom_command(
+		OUTPUT
+			${ispc_texcomp_BINARY_DIR}/${filename}.obj
+			${ispc_texcomp_BINARY_DIR}/${filename}_sse2.obj
+			${ispc_texcomp_BINARY_DIR}/${filename}_sse4.obj
+			${ispc_texcomp_BINARY_DIR}/${filename}_avx.obj
+			${ispc_texcomp_BINARY_DIR}/${filename}_avx2.obj
+			${ispc_texcomp_BINARY_DIR}/${filename}_ispc.h
+		COMMAND 
+			${ISPC} -O2 ${KERNAL_PATH} 
+			-o "${ispc_texcomp_BINARY_DIR}/${filename}.obj" 
+			-h "${ispc_texcomp_BINARY_DIR}/{filename}_ispc.h" 
+			--target=sse2,sse4,avx,avx2 
+			--opt=fast-math
+		WORKING_DIRECTORY "${ispc_texcomp_BINARY_DIR}")
+endforeach()
+
+add_library(ispc_texcomp SHARED 
+	${ISPC_TEX_COMP_FILES}
+	${ispc_texcomp_BINARY_DIR}/kernel.obj
+	${ispc_texcomp_BINARY_DIR}/kernel_sse2.obj
+	${ispc_texcomp_BINARY_DIR}/kernel_sse4.obj
+	${ispc_texcomp_BINARY_DIR}/kernel_avx.obj
+	${ispc_texcomp_BINARY_DIR}/kernel_avx2.obj
+	${ispc_texcomp_BINARY_DIR}/kernel_astc.obj
+	${ispc_texcomp_BINARY_DIR}/kernel_astc_sse2.obj
+	${ispc_texcomp_BINARY_DIR}/kernel_astc_sse4.obj
+	${ispc_texcomp_BINARY_DIR}/kernel_astc_avx.obj
+	${ispc_texcomp_BINARY_DIR}/kernel_astc_avx2.obj
+	)
+target_include_directories(ispc_texcomp PUBLIC ${ispc_texcomp_BINARY_DIR})
 
 # Renderer
 set(GRAPHICS_DX11_FILES
@@ -854,6 +888,17 @@ endif ()
 
 # AssetPipelineCmd
 set(ASSET_PIPELINE_CMD_FILES
+	${UTILITIES_MEMORY_TRACKING_FILES}
+	${UTILITIES_FILE_SYSTEM_FILES}
+	${UTILITIES_THREADING_FILES}
+	${UTILITIES_LOG_FILES}
+	${UTILITIES_MATH_FILES}
+	${BSTRLIB_FILES}
+	${TF_OS_DIR}/Windows/WindowsThread.c
+	${TF_OS_DIR}/Windows/WindowsFileSystem.cpp
+	${TF_OS_DIR}/Windows/WindowsLog.c
+	${TF_OS_DIR}/Windows/WindowsTime.c
+	${TF_OS_DIR}/Windows/WindowsToolsFileSystem.cpp
 	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/TressFX/TressFXAsset.h
 	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/TressFX/TressFXAsset.cpp
 	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/TressFX/TressFXFileFormat.h
@@ -878,11 +923,12 @@ set(ASSET_PIPELINE_CMD_FILES
 	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vertexfilter.cpp
 	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vfetchanalyzer.cpp
 	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vfetchoptimizer.cpp
-	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c)
+	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c
+	${TF_UTILITIES_DIR}/Timer.c)
 	
 add_executable(AssetPipelineCmd ${ASSET_PIPELINE_CMD_FILES})
-target_link_libraries(AssetPipelineCmd PUBLIC BunyLib ozz ispc_texcomp ${RENDERER_LIBRARIES} ${THIRD_PARTY_DEPS})
-target_compile_definitions(AssetPipelineCmd PUBLIC "_UNICODE" "_WINDOWS")
+target_link_libraries(AssetPipelineCmd PUBLIC BunyLib ozz ispc_texcomp winmm.lib)
+target_compile_definitions(AssetPipelineCmd PUBLIC "_WINDOWS")
 	
 # installs
 install(TARGETS Lua DESTINATION lib)
@@ -1066,15 +1112,5 @@ if (${WINDOWS} MATCHES ON)
 	Compile(${APPLICATION_UI_SHADER_FILES})
 	Compile(${RESOURCE_ANIMATION_SHADER_FILES})
 	Compile(${MIDDLEWARE_PANINI_PROJECTION_SHADER_FILES})
-	
-	set(ISPC ${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/ISPCTextureCompressor/ISPC/win/ispc.exe)
-	foreach(KERNAL_PATH IN LISTS KERNAL_ISPC_FILES)
-		cmake_path(GET KERNAL_PATH STEM filename)
-		add_custom_command(TARGET ispc_texcomp PRE_BUILD COMMAND ${ISPC} -O2 
-			${KERNAL_PATH} 
-			-o "$(IntDir)${filename}.obj" 
-			-h "$(IntDir)${filename}_ispc.h" 
-			--target=sse2,sse4,avx,avx2 --opt=fast-math)
-	endforeach()
 endif ()
 	
