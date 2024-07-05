@@ -274,6 +274,13 @@ if (${APPLE_PLATFORM} MATCHES ON)
     target_compile_options(GaInput PRIVATE "-fno-objc-arc")
 endif()
 
+set(LUA_INCLUDE_FILES
+	${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lua.h
+	${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/luaconf.h
+	${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lualib.h
+	${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lauxlib.h
+	${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lua.hpp)
+	
 set(LUA_FILES
     ${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lapi.c
     ${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lauxlib.c
@@ -815,8 +822,7 @@ set(MIDDLEWARE_PANINI_PROJECTION_SHADER_FILES
 	${TF_MIDDLEWARE_3_DIR}/PaniniProjection/Shaders/FSL/panini_projection.frag.fsl
 	${TF_MIDDLEWARE_3_DIR}/PaniniProjection/Shaders/FSL/panini_projection.vert.fsl
 	${TF_MIDDLEWARE_3_DIR}/PaniniProjection/Shaders/FSL/Panini_ShaderList.fsl
-	${TF_MIDDLEWARE_3_DIR}/PaniniProjection/Shaders/FSL/resources.h
-	)
+	${TF_MIDDLEWARE_3_DIR}/PaniniProjection/Shaders/FSL/resources.h)
 source_group(Middleware_3/PaniniProjection/Shaders FILES ${MIDDLEWARE_PANINI_PROJECTION_SHADER_FILES})
 
 set(UTILITIES_FILES
@@ -931,29 +937,10 @@ target_link_libraries(AssetPipelineCmd PUBLIC BunyLib ozz ispc_texcomp winmm.lib
 target_compile_definitions(AssetPipelineCmd PUBLIC "_WINDOWS")
 	
 # installs
-install(
-	FILES 
-	${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lua.h
-	${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/luaconf.h
-	${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lualib.h
-	${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lauxlib.h
-	${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lua.hpp
-	DESTINATION include)
-		
-install(
-	FILES 
-	${APP_INTERFACES_FILES}
-	DESTINATION include/The-Forge/Application/Interfaces/)
-
-install(
-	FILES 
-	${TF_APPLICATION_DIR}/Config.h
-	DESTINATION include/The-Forge/Application)
-	
-install(
-	FILES 
-	${GAME_INTERFACES_FILES}
-	DESTINATION include/The-Forge/Game/Interfaces/)
+install(FILES ${LUA_INCLUDE_FILES} DESTINATION include)
+install(FILES ${APPLICATION_INTERFACES_FILES} DESTINATION include/The-Forge/Application/Interfaces/)
+install(FILES ${TF_APPLICATION_DIR}/Config.h DESTINATION include/The-Forge/Application/)
+install(FILES ${GAME_INTERFACES_FILES} DESTINATION include/The-Forge/Game/Interfaces/)
 	
 install(
 	FILES 
@@ -961,110 +948,38 @@ install(
 	${TF_GAME_DIR}/Scripting/LuaManagerCommon.h
 	DESTINATION include/The-Forge/Game/Scripting/)
 	
-install(
-	FILES
-	${GRAPHICS_INTERFACE_FILES}
-	DESTINATION include/The-Forge/Graphics/Interfaces/)
-	
-install(
-	FILES 
-	${TF_GRAPHICS_DIR}/GraphicsConfig.h
-	DESTINATION include/The-Forge/Graphics/)
-	
-install(
-	FILES 
-	${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12Config.h
-	DESTINATION include/The-Forge/Graphics/Direct3D12/)
-	
-install(
-	FILES 
-	${TF_GRAPHICS_DIR}/Direct3D11/Direct3D11Config.h
-	DESTINATION include/The-Forge/Graphics/Direct3D11/)
-	
-install(
-	FILES 
-	${TF_GRAPHICS_DIR}/Vulkan/VulkanConfig.h
-	DESTINATION include/The-Forge/Graphics/Vulkan/)
-
-install(
-	DIRECTORY 
-	${TF_GRAPHICS_DIR}/ThirdParty/
-	DESTINATION include/The-Forge/Graphics/ThirdParty/
-	FILES_MATCHING
-	PATTERN "*.hpp"
-	PATTERN "*.h" )
-	
-install(
-	FILES 
-	${OS_INTERFACES_FILES}
-	DESTINATION include/The-Forge/OS/Interfaces/)
-	
-install(
-	FILES 
-	${TF_OS_DIR}/CPUConfig.h
-	DESTINATION include/The-Forge/OS/)
+install(FILES ${GRAPHICS_INTERFACE_FILES} DESTINATION include/The-Forge/Graphics/Interfaces/)
+install(FILES ${TF_GRAPHICS_DIR}/GraphicsConfig.h DESTINATION include/The-Forge/Graphics/)
+install(FILES ${TF_GRAPHICS_DIR}/Direct3D12/Direct3D12Config.h DESTINATION include/The-Forge/Graphics/Direct3D12/)
+install(FILES ${TF_GRAPHICS_DIR}/Direct3D11/Direct3D11Config.h DESTINATION include/The-Forge/Graphics/Direct3D11/)
+install(FILES ${TF_GRAPHICS_DIR}/Vulkan/VulkanConfig.h DESTINATION include/The-Forge/Graphics/Vulkan/)
+install(DIRECTORY ${TF_GRAPHICS_DIR}/ThirdParty/ DESTINATION include/The-Forge/Graphics/ThirdParty/ FILES_MATCHING PATTERN "*.hpp" PATTERN "*.h" )
+install(FILES ${OS_INTERFACES_FILES} DESTINATION include/The-Forge/OS/Interfaces/)
+install(FILES ${TF_OS_DIR}/CPUConfig.h DESTINATION include/The-Forge/OS/)
 	
 install(
 	FILES 
 	${TF_OS_THIRD_PARTY_DIR}/OpenSource/cpu_features/src/cpu_features_types.h
 	DESTINATION include/The-Forge/OS/ThirdParty/OpenSource/cpu_features/src/)
 	
-install(
-	FILES 
-	${RENDERER_CORE_INTERFACE_FILES}
-	DESTINATION include/The-Forge/Renderer/Interfaces/)
-	
-install(
-	FILES 
-	${RENDERER_RESOURCES_INTERFACES_FILES}
-	DESTINATION include/The-Forge/Resources/ResourceLoader/Interfaces/)
+install(FILES ${RENDERER_INTERFACE_FILES} DESTINATION include/The-Forge/Renderer/Interfaces/)
+install(FILES ${RESOURCES_INTERFACES_FILES} DESTINATION include/The-Forge/Resources/ResourceLoader/Interfaces/)
 	
 install(
 	FILES 
 	${TF_RESOURCES_LOADER_THIRD_PARTY_DIR}/OpenSource/tinyimageformat/tinyimageformat_base.h
 	DESTINATION include/The-Forge/Resources/ResourceLoader/ThirdParty/OpenSource/tinyimageformat/)
 	
-install(
-	FILES 
-	${OS_UTILLITIES_INTERFACES_FILES}
-	DESTINATION include/The-Forge/Utilities/Interfaces)
-		
-install(
-	FILES 
-	${TF_UTILITIES_DIR}/Log/Log.h
-	DESTINATION include/The-Forge/Utilities/Log/)
-	
-install(
-	FILES 
-	${TF_UTILITIES_DIR}/Math/MathTypes.h
-	${TF_UTILITIES_DIR}/Math/Random.h
-	DESTINATION include/The-Forge/Utilities/Math/)
-	
-install(
-	FILES 
-	${TF_UTILITIES_DIR}/Threading/Atomics.h
-	DESTINATION include/The-Forge/Utilities/Threading/)
-
-install(
-	FILES 
-	${TF_UTILITIES_DIR}/RingBuffer.h
-	DESTINATION include/The-Forge/Utilities/)
-	
-install(
-	DIRECTORY 
-	${TF_UTILITIES_THIRD_PARTY_DIR}
-	DESTINATION include/The-Forge/Utilities/ThirdParty/
-	FILES_MATCHING 
-	PATTERN "*.hpp"
-	PATTERN "*.h" )
-	
-install(
-	DIRECTORY  
-	${THE_FORGE_DIR}/Common_3/IDE/
-	DESTINATION include/The-Forge/)
+install(FILES ${UTILITIES_INTERFACES_FILES} DESTINATION include/The-Forge/Utilities/Interfaces)
+install(FILES ${TF_UTILITIES_DIR}/Log/Log.h DESTINATION include/The-Forge/Utilities/Log/)
+install(FILES ${TF_UTILITIES_DIR}/Math/MathTypes.h ${TF_UTILITIES_DIR}/Math/Random.h DESTINATION include/The-Forge/Utilities/Math/)
+install(FILES ${TF_UTILITIES_DIR}/Threading/Atomics.h DESTINATION include/The-Forge/Utilities/Threading/)
+install(FILES ${TF_UTILITIES_DIR}/RingBuffer.h DESTINATION include/The-Forge/Utilities/)
+install(DIRECTORY ${TF_UTILITIES_THIRD_PARTY_DIR} DESTINATION include/The-Forge/Utilities/ FILES_MATCHING PATTERN "*.hpp" PATTERN "*.h" )
+install(DIRECTORY ${THE_FORGE_DIR}/Common_3/IDE/ DESTINATION include/The-Forge/)
 
 # binary
-install(TARGETS The-Forge ${THIRD_PARTY_DEPS} DESTINATION lib)
+install(TARGETS The-Forge SpirvTools ${THIRD_PARTY_DEPS} DESTINATION lib)
 install(TARGETS AssetPipelineCmd BunyTool DESTINATION bin)
 
 install(
