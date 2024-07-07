@@ -149,6 +149,8 @@ set(TF_UTILITIES_THIRD_PARTY_DIR ${TF_UTILITIES_DIR}/ThirdParty)
 
 set(TF_MIDDLEWARE_3_DIR ${THE_FORGE_DIR}/Middleware_3)
 
+set(PLATFORM_DEFINES "_CRT_SECURE_NO_WARNINGS")
+
 # Dependencies
 set(SPIRVTOOLS_FILES
     ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/SPIRV_Cross/spirv_cfg.cpp
@@ -268,6 +270,8 @@ endif()
 
 add_library(GaInput STATIC ${GAINPUT_STATIC_FILES})
 target_include_directories(GaInput PUBLIC ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/gainput/lib/include)
+target_compile_definitions(GaInput PRIVATE ${PLATFORM_DEFINES})
+
 if (${APPLE_PLATFORM} MATCHES ON)
     set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=c++17 -stdlib=libc++ -x objective-c++")
     set_property(TARGET GaInput PROPERTY C_STANDARD 17)
@@ -314,9 +318,9 @@ set(LUA_FILES
     ${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lundump.c
     ${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lutf8lib.c
     ${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lvm.c
-    ${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lzio.c
-    )
+    ${TF_GAME_THIRD_PARTY_DIR}/OpenSource/lua-5.3.5/src/lzio.c)
 add_library(Lua STATIC ${LUA_FILES})
+target_compile_definitions(Lua PRIVATE ${PLATFORM_DEFINES})
 
 set(THIRD_PARTY_DEPS Imgui GaInput Lua ozz)
 
@@ -869,7 +873,6 @@ if (${APPLE_PLATFORM} MATCHES ON)
     target_compile_options(The-Forge PRIVATE "-fobjc-arc")
 endif()
 
-
 # BunyTool
 if (${WINDOWS} MATCHES ON)	
 	set(BUNY_TOOL_BUNY_ARCHIVE_FILES ${TF_TOOLS_DIR}/BunyArchive/BunyTool.c)
@@ -898,7 +901,7 @@ if (${WINDOWS} MATCHES ON)
 		${TF_UTILITIES_DIR}/Timer.c)	
 	add_executable(BunyTool ${BUNY_TOOL_FILES})
 	target_link_libraries(BunyTool PUBLIC BunyLib winmm.lib)
-	target_compile_definitions(BunyTool PUBLIC "TOOLS_FILESYSTEM" "_WINDOWS")
+	target_compile_definitions(BunyTool PRIVATE "TOOLS_FILESYSTEM" "_WINDOWS")
 endif ()
 
 # AssetPipelineCmd
@@ -943,7 +946,7 @@ set(ASSET_PIPELINE_CMD_FILES
 	
 add_executable(AssetPipelineCmd ${ASSET_PIPELINE_CMD_FILES})
 target_link_libraries(AssetPipelineCmd PUBLIC BunyLib ozz ispc_texcomp winmm.lib)
-target_compile_definitions(AssetPipelineCmd PUBLIC "_WINDOWS")
+target_compile_definitions(AssetPipelineCmd PRIVATE "_WINDOWS")
 	
 # installs
 install(FILES ${LUA_INCLUDE_FILES} DESTINATION include)
