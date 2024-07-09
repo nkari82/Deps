@@ -14,3 +14,7 @@
 	path = zlib-ng
 	url = https://github.com/zlib-ng/zlib-ng.git
 	branch = develop
+[submodule "ozz-animation"]
+	path = ozz-animation
+	url = https://github.com/guillaumeblanc/ozz-animation.git
+	branch = master
