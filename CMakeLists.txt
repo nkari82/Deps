@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.15)
+#set(CMAKE_SYSTEM_NAME WindowsStore)
+#set(CMAKE_SYSTEM_VERSION 10.0)
 project(Deps)
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 IF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   SET(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/Bin CACHE PATH "Directory for sbnw installation" FORCE)
@@ -11,5 +14,9 @@ set(DX11 ON)
 set(DX12 ON)
 set(BUILD_GMOCK OFF)
 
+#if(CMAKE_SYSTEM_NAME STREQUAL "WindowsStore")
+#WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP
+
+add_subdirectory(cmake/Imgui)
 add_subdirectory(cmake/The-Forge)
 #add_subdirectory(zlib-ng)

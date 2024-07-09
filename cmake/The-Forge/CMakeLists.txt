@@ -150,6 +150,10 @@ set(TF_UTILITIES_THIRD_PARTY_DIR ${TF_UTILITIES_DIR}/ThirdParty)
 set(TF_MIDDLEWARE_3_DIR ${THE_FORGE_DIR}/Middleware_3)
 
 set(PLATFORM_DEFINES "_CRT_SECURE_NO_WARNINGS")
+if(CMAKE_SYSTEM_NAME STREQUAL "WindowsStore")
+	set(PLATFORM_DEFINES ${PLATFORM_DEFINES} "WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP")
+endif ()
+
 
 # Dependencies
 set(SPIRVTOOLS_FILES
@@ -200,16 +204,16 @@ target_include_directories(VulkanMemoryAllocator INTERFACE ${TF_GRAPHICS_THIRD_P
 add_library(D3D12MemoryAllocator INTERFACE)
 target_include_directories(D3D12MemoryAllocator INTERFACE ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/D3D12MemoryAllocator)
 
-set(IMGUI_FILES
-    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imconfig.h
-    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_demo.cpp
-    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_draw.cpp
-    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_internal.h
-    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_widgets.cpp
-    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_tables.cpp
-    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui.cpp
-    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui.h)	
-add_library(Imgui STATIC ${IMGUI_FILES})
+#set(IMGUI_FILES
+#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imconfig.h
+#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_demo.cpp
+#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_draw.cpp
+#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_internal.h
+#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_widgets.cpp
+#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_tables.cpp
+#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui.cpp
+#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui.h)	
+#add_library(Imgui STATIC ${IMGUI_FILES})
 
 set(TF_APPLICATION_THIRD_PARTY_INPUT_DIR ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/gainput/lib/source)
 set(GAINPUT_STATIC_FILES
@@ -619,7 +623,7 @@ endif()
 if(${WINDOWS} MATCHES ON)
     set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES} WinPixEventRuntime AGS Nvapi)
     set(RENDERER_LIBRARIES ${RENDERER_LIBRARIES} "Xinput9_1_0.lib" "ws2_32.lib")
-    set(RENDERER_DEFINES ${RENDERER_DEFINES} "_WINDOWS" "_UNICODE")
+    set(RENDERER_DEFINES ${RENDERER_DEFINES} "_UNICODE")
 endif()
 
 # OS
@@ -735,7 +739,6 @@ if (${WINDOWS} MATCHES ON)
 	#${TF_OS_THIRD_PARTY_DIR}/OpenSource/cpu_features/src/impl_x86_freebsd.c
 	#${TF_OS_THIRD_PARTY_DIR}/OpenSource/cpu_features/src/impl_x86_linux_or_android.c
 	#${TF_OS_THIRD_PARTY_DIR}/OpenSource/cpu_features/src/impl_x86_macos.c		
-		
     set(OS_FILES ${OS_WINDOWS_FILES} ${CPU_FEATURES_FILES} ${OS_FILES})
 endif ()
 
@@ -866,7 +869,7 @@ add_library(The-Forge STATIC ${FORGE_FILES})
 target_include_directories(The-Forge PUBLIC ${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/include)
 target_link_libraries(The-Forge PUBLIC ${RENDERER_LIBRARIES} ${THIRD_PARTY_DEPS})
 target_link_directories(The-Forge PUBLIC ${RENDERER_LIBRARY_PATHS})
-target_compile_definitions(The-Forge PUBLIC ${RENDERER_DEFINES})
+target_compile_definitions(The-Forge PUBLIC ${RENDERER_DEFINES} ${PLATFORM_DEFINES})
 
 if (${APPLE_PLATFORM} MATCHES ON)
     set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=c++17 -stdlib=libc++ -x objective-c++")
@@ -901,7 +904,6 @@ if (${WINDOWS} MATCHES ON)
 		${TF_UTILITIES_DIR}/Timer.c)	
 	add_executable(BunyTool ${BUNY_TOOL_FILES})
 	target_link_libraries(BunyTool PUBLIC BunyLib winmm.lib)
-	target_compile_definitions(BunyTool PRIVATE "TOOLS_FILESYSTEM" "_WINDOWS")
 endif ()
 
 # AssetPipelineCmd
@@ -946,7 +948,6 @@ set(ASSET_PIPELINE_CMD_FILES
 	
 add_executable(AssetPipelineCmd ${ASSET_PIPELINE_CMD_FILES})
 target_link_libraries(AssetPipelineCmd PUBLIC BunyLib ozz ispc_texcomp winmm.lib)
-target_compile_definitions(AssetPipelineCmd PRIVATE "_WINDOWS")
 	
 # installs
 install(FILES ${LUA_INCLUDE_FILES} DESTINATION include)
