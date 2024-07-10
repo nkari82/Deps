@@ -204,16 +204,16 @@ target_include_directories(VulkanMemoryAllocator INTERFACE ${TF_GRAPHICS_THIRD_P
 add_library(D3D12MemoryAllocator INTERFACE)
 target_include_directories(D3D12MemoryAllocator INTERFACE ${TF_GRAPHICS_THIRD_PARTY_DIR}/OpenSource/D3D12MemoryAllocator)
 
-#set(IMGUI_FILES
-#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imconfig.h
-#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_demo.cpp
-#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_draw.cpp
-#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_internal.h
-#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_widgets.cpp
-#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_tables.cpp
-#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui.cpp
-#    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui.h)	
-#add_library(Imgui STATIC ${IMGUI_FILES})
+set(IMGUI_FILES
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imconfig.h
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_demo.cpp
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_draw.cpp
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_internal.h
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_widgets.cpp
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui_tables.cpp
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui.cpp
+    ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/imgui/imgui.h)	
+add_library(Imgui STATIC ${IMGUI_FILES})
 
 set(TF_APPLICATION_THIRD_PARTY_INPUT_DIR ${TF_APPLICATION_THIRD_PARTY_DIR}/OpenSource/gainput/lib/source)
 set(GAINPUT_STATIC_FILES
@@ -573,11 +573,7 @@ set(TOOLS_FILES ${TOOLS_NETWORK_FILES} ${TOOLS_RELOAD_SERVER_FILES})
 source_group(Tools/Network FILES  ${TOOLS_NETWORK_FILES})
 source_group(Tools/ReloadServer FILES ${TOOLS_RELOAD_SERVER_FILES})
 
-set(RENDERER_SOURCE_FILES 
-	${RENDERER_FILES}	
-	${GRAPHICS_FILES}
-	${RESOURCES_FILES}
-	${TOOLS_FILES})
+set(RENDERER_SOURCE_FILES ${RENDERER_FILES} ${GRAPHICS_FILES} ${RESOURCES_FILES})
 
 if(${APPLE_PLATFORM} MATCHES ON)
     find_library(APPLE_METAL Metal)
@@ -711,21 +707,28 @@ source_group(OS/Interfaces FILES ${OS_INTERFACES_FILES})
 source_group(OS/WindowsSystem FILES ${OS_WINDOW_SYSTEM_FILES})
 	
 set(OS_FILES ${OS_INTERFACES_FILES} ${OS_ROOT_FILES} ${OS_WINDOW_SYSTEM_FILES})
+
+set(OS_WINDOWS_SYSTEM_FILES 
+	${TF_OS_DIR}/Windows/WindowsFileSystem.cpp
+	${TF_OS_DIR}/Windows/WindowsLog.c
+	${TF_OS_DIR}/Windows/WindowsTime.c
+	${TF_OS_DIR}/Windows/WindowsThread.c)
+
 set(OS_WINDOWS_FILES
+	${OS_WINDOWS_SYSTEM_FILES}
 	${TF_OS_DIR}/Windows/WindowsBase.cpp
-    ${TF_OS_DIR}/Windows/WindowsFileSystem.cpp
-    ${TF_OS_DIR}/Windows/WindowsLog.c
     ${TF_OS_DIR}/Windows/WindowsStackTraceDump.cpp
     ${TF_OS_DIR}/Windows/WindowsStackTraceDump.h
-    ${TF_OS_DIR}/Windows/WindowsThread.c
-    ${TF_OS_DIR}/Windows/WindowsTime.c
     ${TF_OS_DIR}/Windows/WindowsWindow.cpp)
 source_group(OS/Windows FILES ${OS_WINDOWS_FILES})
 
+set(OS_DARWIN_SYSTEM_FILES 
+	${TF_OS_DIR}/Darwin/CocoaFileSystem.mm
+	${TF_OS_DIR}/Darwin/DarwinLog.c
+	${TF_OS_DIR}/Darwin/DarwinThread.c)
+	
 set(OS_DARWIN_FILES
-    ${TF_OS_DIR}/Darwin/CocoaFileSystem.mm
-    ${TF_OS_DIR}/Darwin/DarwinLog.c
-    ${TF_OS_DIR}/Darwin/DarwinThread.c
+	${OS_DARWIN_SYSTEM_FILES}
 	${TF_OS_DIR}/Darwin/macOSAppDelegate.h
 	${TF_OS_DIR}/Darwin/macOSAppDelegate.m
 	${TF_OS_DIR}/Darwin/macOSBase.mm
@@ -740,10 +743,12 @@ if (${WINDOWS} MATCHES ON)
 	#${TF_OS_THIRD_PARTY_DIR}/OpenSource/cpu_features/src/impl_x86_linux_or_android.c
 	#${TF_OS_THIRD_PARTY_DIR}/OpenSource/cpu_features/src/impl_x86_macos.c		
     set(OS_FILES ${OS_WINDOWS_FILES} ${CPU_FEATURES_FILES} ${OS_FILES})
+	set(OS_SYSTEM_FILES ${OS_WINDOWS_SYSTEM_FILES})
 endif ()
 
 if (${APPLE_PLATFORM} MATCHES ON)
 	set(OS_FILES ${OS_FILES} ${OS_DARWIN_FILES})
+	set(OS_SYSTEM_FILES ${OS_DARWIN_SYSTEM_FILES})
 endif ()
 source_group(OS/ThirdParty/OpenSource/cpu_features/src FILES ${CPU_FEATURES_FILES})
 
@@ -863,7 +868,7 @@ set(OS_SOURCE_FILES
 	${MIDDLEWARE_PANINI_PROJECTION_SHADER_FILES})
 	
 # Merge
-set(FORGE_FILES ${RENDERER_SOURCE_FILES} ${OS_SOURCE_FILES})
+set(FORGE_FILES ${RENDERER_SOURCE_FILES} ${OS_SOURCE_FILES} ${TOOLS_FILES})
 
 add_library(The-Forge STATIC ${FORGE_FILES})
 target_include_directories(The-Forge PUBLIC ${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/ozz-animation/include)
@@ -875,6 +880,8 @@ if (${APPLE_PLATFORM} MATCHES ON)
     set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=c++17 -stdlib=libc++ -x objective-c++")
     target_compile_options(The-Forge PRIVATE "-fobjc-arc")
 endif()
+		
+add_library(TF_Renderer STATIC ${RENDERER_SOURCE_FILES} ${OS_SYSTEM_FILES} ${UTILITIES_FILES} )
 
 # BunyTool
 if (${WINDOWS} MATCHES ON)	
@@ -885,39 +892,22 @@ if (${WINDOWS} MATCHES ON)
 		${TF_TOOLS_DIR}/BunyArchive/VisualStudio/resource.h)
 		
 	set(BUNY_TOOL_FILES
-		${UTILITIES_MEMORY_TRACKING_FILES}
-		${UTILITIES_FILE_SYSTEM_FILES}
-		${UTILITIES_THREADING_FILES}
-		${UTILITIES_LOG_FILES}
-		${UTILITIES_MATH_FILES}
-		${BSTRLIB_FILES}
-		${TF_OS_DIR}/Windows/WindowsThread.c
-		${TF_OS_DIR}/Windows/WindowsFileSystem.cpp
-		${TF_OS_DIR}/Windows/WindowsLog.c
-		${TF_OS_DIR}/Windows/WindowsTime.c
+		${OS_SYSTEM_FILES}
+		${UTILITIES_FILES}
 		${TF_OS_DIR}/Windows/WindowsToolsFileSystem.cpp
 		${TF_TOOLS_DIR}/BunyArchive/BunyTool.c
 		${TF_TOOLS_DIR}/BunyArchive/VisualStudio/BunyTool.rc
 		${TF_TOOLS_DIR}/BunyArchive/VisualStudio/icon.ico
 		${TF_TOOLS_DIR}/BunyArchive/VisualStudio/resource.h
-		${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c
-		${TF_UTILITIES_DIR}/Timer.c)	
+		${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c)	
 	add_executable(BunyTool ${BUNY_TOOL_FILES})
 	target_link_libraries(BunyTool PUBLIC BunyLib winmm.lib)
 endif ()
 
 # AssetPipelineCmd
 set(ASSET_PIPELINE_CMD_FILES
-	${UTILITIES_MEMORY_TRACKING_FILES}
-	${UTILITIES_FILE_SYSTEM_FILES}
-	${UTILITIES_THREADING_FILES}
-	${UTILITIES_LOG_FILES}
-	${UTILITIES_MATH_FILES}
-	${BSTRLIB_FILES}
-	${TF_OS_DIR}/Windows/WindowsThread.c
-	${TF_OS_DIR}/Windows/WindowsFileSystem.cpp
-	${TF_OS_DIR}/Windows/WindowsLog.c
-	${TF_OS_DIR}/Windows/WindowsTime.c
+	${OS_SYSTEM_FILES}
+	${UTILITIES_FILES}
 	${TF_OS_DIR}/Windows/WindowsToolsFileSystem.cpp
 	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/TressFX/TressFXAsset.h
 	${TF_RESOURCES_ANIMATION_SYSTEM_THIRD_PARTY_DIR}/OpenSource/TressFX/TressFXAsset.cpp
@@ -943,8 +933,7 @@ set(ASSET_PIPELINE_CMD_FILES
 	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vertexfilter.cpp
 	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vfetchanalyzer.cpp
 	${TF_TOOLS_THIRD_PARTY_DIR}/OpenSource/meshoptimizer/src/vfetchoptimizer.cpp
-	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c
-	${TF_UTILITIES_DIR}/Timer.c)
+	${TF_UTILITIES_DIR}/FileSystem/ToolFileSystem.c)
 	
 add_executable(AssetPipelineCmd ${ASSET_PIPELINE_CMD_FILES})
 target_link_libraries(AssetPipelineCmd PUBLIC BunyLib ozz ispc_texcomp winmm.lib)
@@ -992,7 +981,7 @@ install(DIRECTORY ${TF_UTILITIES_THIRD_PARTY_DIR} DESTINATION include/The-Forge/
 install(DIRECTORY ${THE_FORGE_DIR}/Common_3/IDE/ DESTINATION include/The-Forge/)
 
 # binary
-install(TARGETS The-Forge SpirvTools ${THIRD_PARTY_DEPS} DESTINATION lib)
+install(TARGETS The-Forge SpirvTools TF_Renderer ${THIRD_PARTY_DEPS} DESTINATION lib)
 install(TARGETS AssetPipelineCmd BunyTool DESTINATION bin)
 
 install(
@@ -1013,7 +1002,6 @@ install(
 	${TF_OS_THIRD_PARTY_DIR}/OpenSource/winpixeventruntime/bin/WinPixEventRuntime_UAP.dll
 	DESTINATION bin)
 	
-
 if (${WINDOWS} MATCHES ON)	
 	if (POLICY CMP0148) 
 		cmake_policy(SET CMP0148 OLD) 
