@@ -17,6 +17,5 @@ set(BUILD_GMOCK OFF)
 #if(CMAKE_SYSTEM_NAME STREQUAL "WindowsStore")
 #WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP
 
-add_subdirectory(cmake/Imgui)
 add_subdirectory(cmake/The-Forge)
 #add_subdirectory(zlib-ng)

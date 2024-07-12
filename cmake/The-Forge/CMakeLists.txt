@@ -968,9 +968,10 @@ install(FILES ${RENDERER_INTERFACE_FILES} DESTINATION include/The-Forge/Renderer
 install(FILES ${RESOURCES_INTERFACES_FILES} DESTINATION include/The-Forge/Resources/ResourceLoader/Interfaces/)
 	
 install(
-	FILES 
-	${TF_RESOURCES_LOADER_THIRD_PARTY_DIR}/OpenSource/tinyimageformat/tinyimageformat_base.h
-	DESTINATION include/The-Forge/Resources/ResourceLoader/ThirdParty/OpenSource/tinyimageformat/)
+	DIRECTORY 
+	${TF_RESOURCES_LOADER_THIRD_PARTY_DIR}/OpenSource/tinyimageformat/
+	DESTINATION include/The-Forge/Resources/ResourceLoader/ThirdParty/OpenSource/tinyimageformat/
+	FILES_MATCHING PATTERN "*.hpp" PATTERN "*.h")
 	
 install(FILES ${UTILITIES_INTERFACES_FILES} DESTINATION include/The-Forge/Utilities/Interfaces)
 install(FILES ${TF_UTILITIES_DIR}/Log/Log.h DESTINATION include/The-Forge/Utilities/Log/)
