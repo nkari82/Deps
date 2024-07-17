@@ -18,3 +18,11 @@
 	path = ozz-animation
 	url = https://github.com/guillaumeblanc/ozz-animation.git
 	branch = master
+[submodule "luv"]
+	path = luv
+	url = https://github.com/luvit/luv.git
+	branch = master
+[submodule "sol2"]
+	path = sol2
+	url = https://github.com/ThePhD/sol2.git
+	branch = develop
