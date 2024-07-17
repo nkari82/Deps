@@ -939,16 +939,10 @@ add_executable(AssetPipelineCmd ${ASSET_PIPELINE_CMD_FILES})
 target_link_libraries(AssetPipelineCmd PUBLIC BunyLib ozz ispc_texcomp winmm.lib)
 	
 # installs
-install(FILES ${LUA_INCLUDE_FILES} DESTINATION include)
 install(FILES ${APPLICATION_INTERFACES_FILES} DESTINATION include/The-Forge/Application/Interfaces/)
 install(FILES ${TF_APPLICATION_DIR}/Config.h DESTINATION include/The-Forge/Application/)
 install(FILES ${GAME_INTERFACES_FILES} DESTINATION include/The-Forge/Game/Interfaces/)
-	
-install(
-	FILES 
-	${TF_GAME_DIR}/Scripting/LuaManager.h
-	${TF_GAME_DIR}/Scripting/LuaManagerCommon.h
-	DESTINATION include/The-Forge/Game/Scripting/)
+install(FILES ${TF_GAME_DIR}/Scripting/LuaManager.h ${TF_GAME_DIR}/Scripting/LuaManagerCommon.h DESTINATION include/The-Forge/Game/Scripting/)
 	
 install(FILES ${GRAPHICS_INTERFACE_FILES} DESTINATION include/The-Forge/Graphics/Interfaces/)
 install(FILES ${TF_GRAPHICS_DIR}/GraphicsConfig.h DESTINATION include/The-Forge/Graphics/)
