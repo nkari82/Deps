@@ -16,13 +16,26 @@ set(BUILD_GMOCK OFF)
 set(BUILD_MODULE OFF) #luv
 set(BUILD_SHARED_LIBS ON) #luv
 
-set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
+
 
 #if(CMAKE_SYSTEM_NAME STREQUAL "WindowsStore")
 #WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP
 
 #add_subdirectory(cmake/The-Forge)
+set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 add_subdirectory(luv)
+set(CMAKE_POLICY_DEFAULT_CMP0077 OLD)
 #add_subdirectory(zlib-ng)
 
+install(TARGETS luajit-5.1 DESTINATION lib)
+
+install(
+	FILES 
+	${CMAKE_SOURCE_DIR}/luv/deps/luajit/src/lua.h
+	${CMAKE_SOURCE_DIR}/luv/deps/luajit/src/lauxlib.h
+	${CMAKE_SOURCE_DIR}/luv/deps/luajit/src/lualib.h
+	${CMAKE_SOURCE_DIR}/luv/deps/luajit/src/luajit.h
+	${CMAKE_SOURCE_DIR}/luv/deps/luajit/src/lua.hpp
+	DESTINATION include/lua)
+	
 

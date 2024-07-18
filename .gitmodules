@@ -26,3 +26,7 @@
 	path = sol2
 	url = https://github.com/ThePhD/sol2.git
 	branch = develop
+[submodule "spdlog"]
+	path = spdlog
+	url = https://github.com/gabime/spdlog.git
+	branch = v1.x
