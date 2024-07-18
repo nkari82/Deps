@@ -30,3 +30,15 @@
 	path = spdlog
 	url = https://github.com/gabime/spdlog.git
 	branch = v1.x
+[submodule "rapidjson"]
+	path = rapidjson
+	url = https://github.com/Tencent/rapidjson.git
+	branch = master
+[submodule "asio"]
+	path = asio
+	url = https://github.com/chriskohlhoff/asio.git
+	branch = master
+[submodule "cista"]
+	path = cista
+	url = https://github.com/felixguendling/cista.git
+	branch = master
