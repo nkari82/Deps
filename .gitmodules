@@ -42,3 +42,19 @@
 	path = cista
 	url = https://github.com/felixguendling/cista.git
 	branch = master
+[submodule "Lumo"]
+	path = Lumo
+	url = https://github.com/nkari82/Lumo.git
+	branch = main
+[submodule "LuaJIT"]
+	path = LuaJIT
+	url = https://github.com/LuaJIT/LuaJIT.git
+	branch = v2.1
+[submodule "luajit-cmake"]
+	path = luajit-cmake
+	url = https://github.com/zhaozg/luajit-cmake.git
+	branch = master
+[submodule "readerwriterqueue"]
+	path = readerwriterqueue
+	url = https://github.com/cameron314/readerwriterqueue.git
+	branch = master
