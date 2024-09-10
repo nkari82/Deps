@@ -883,6 +883,15 @@ endif()
 		
 add_library(TF_Renderer STATIC ${RENDERER_SOURCE_FILES} ${OS_SYSTEM_FILES} ${UTILITIES_FILES} )
 
+add_library(TF_Application STATIC 	
+	${APPLICATION_INTERFACES_FILES}
+	${APPLICATION_PROFILER_FILES}
+	${APPLICATION_FONT_SHADER_FILES}
+	${APPLICATION_FONTS_FILES}
+	${TF_APPLICATION_DIR}/CameraController.cpp
+    ${TF_APPLICATION_DIR}/InputSystem.cpp
+	${TF_APPLICATION_DIR}/Screenshot.cpp)
+	
 # BunyTool
 if (${WINDOWS} MATCHES ON)	
 	set(BUNY_TOOL_BUNY_ARCHIVE_FILES ${TF_TOOLS_DIR}/BunyArchive/BunyTool.c)
@@ -976,7 +985,7 @@ install(DIRECTORY ${TF_UTILITIES_THIRD_PARTY_DIR} DESTINATION include/The-Forge/
 install(DIRECTORY ${THE_FORGE_DIR}/Common_3/IDE/ DESTINATION include/The-Forge/)
 
 # binary
-install(TARGETS The-Forge SpirvTools TF_Renderer ${THIRD_PARTY_DEPS} DESTINATION lib)
+install(TARGETS The-Forge SpirvTools TF_Renderer TF_Application ${THIRD_PARTY_DEPS} DESTINATION lib)
 install(TARGETS AssetPipelineCmd BunyTool DESTINATION bin)
 
 install(
