@@ -23,20 +23,19 @@ set(LUAJIT_DIR ${CMAKE_SOURCE_DIR}/LuaJIT)
 #if(CMAKE_SYSTEM_NAME STREQUAL "WindowsStore")
 #WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP
 
-#add_subdirectory(cmake/The-Forge)
+add_subdirectory(cmake/The-Forge)
 #set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 #add_subdirectory(luv)
 #set(CMAKE_POLICY_DEFAULT_CMP0077 OLD)
 #add_subdirectory(zlib-ng)
 
-set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
-add_subdirectory(luajit-cmake)
-set(CMAKE_POLICY_DEFAULT_CMP0077 OLD)
-add_subdirectory(Lumo)
+#set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
+#add_subdirectory(luajit-cmake)
+#set(CMAKE_POLICY_DEFAULT_CMP0077 OLD)
+#add_subdirectory(Lumo)
 
-
+# unused
 #install(TARGETS luajit-5.1 DESTINATION lib)
-
 #install(
 #	FILES 
 #	${CMAKE_SOURCE_DIR}/luv/deps/luajit/src/lua.h
