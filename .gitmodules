@@ -58,3 +58,7 @@
 	path = readerwriterqueue
 	url = https://github.com/cameron314/readerwriterqueue.git
 	branch = master
+[submodule "LegitProfiler"]
+	path = LegitProfiler
+	url = https://github.com/Raikiri/LegitProfiler.git
+	branch = master
