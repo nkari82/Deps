@@ -58,7 +58,11 @@
 	path = readerwriterqueue
 	url = https://github.com/cameron314/readerwriterqueue.git
 	branch = master
-[submodule "LegitProfiler"]
-	path = LegitProfiler
-	url = https://github.com/Raikiri/LegitProfiler.git
+[submodule "implot"]
+	path = implot
+	url = https://github.com/epezent/implot.git
 	branch = master
+[submodule "json"]
+	path = json
+	url = https://github.com/nlohmann/json.git
+	branch = develop
